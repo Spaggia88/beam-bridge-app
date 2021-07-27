@@ -1,0 +1,38 @@
+<html>
+<head>
+    <script src="./../node_modules/web3/dist/web3.min.js"></script>
+    <script src="./BeamToken.js"></script>
+    <script src="./PipeUser.js"></script>
+    <script src="./index.js"></script>
+</head>
+<body>
+    <span id="resultBalance"></span>
+    <p>
+        <button id="balance" onclick="getBalance()">balance</button>
+    </p>
+    <p>
+        <b>Send Token to Beam</b>
+    </p>
+    <p>
+        <label for="publicKey">Public key: </label>
+        <input type="text" id="publicKey" size="70" value="0xd9a92711c1b2e6341ce647b5024446ff8e0166e5f8970b006282f3d18de5670d01">
+    </p>
+    <p>
+        <label for="amount">Amount: </label>
+        <input type="text" id="amount" value="5000000">
+    </p>
+    <p>
+        <button id="send" onclick="sendToken()">send to beam</button>
+    </p>
+    <p>
+        <b>Receive Token from Beam</b>
+    </p>
+    <p>
+        <label for="amount">Message ID: </label>
+        <input type="text" id="msgId">
+    </p>
+    <p>
+        <button id="receive" onclick="receiveToken()">receive from beam</button>
+    </p>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bridges App</title>
+        <link href="./styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="background" id="bg">
+            <div class="error-container" id="error-full-container">
+                <div id="error-full"></div>
+            </div>
+            <div id="error-common"></div>
+        
+            <div class="container" id="main-page">
+                <div class="container__user">
+                    <div class="container__user__title">Private key:</div>
+                    <div class="container__user__key" id="pk-value"></div>
+                </div>
+                <div class="container__controls">
+                    <button class="container__controls__receive ui-button" id="receive-popup-open">
+                        <span class="ui-button__inner-wrapper">
+                            <div class="ui-button__icon">
+                                <img src="./icons/icon-withdraw.svg"/>
+                            </div>
+                            <span class="ui-button__text confirm-text">receive</span>
+                        </span>
+                    </button>
+                    <button class="container__controls__send ui-button" id="send-popup-open">
+                        <span class="ui-button__inner-wrapper">
+                            <div class="ui-button__icon">
+                                <img src="./icons/icon-deposit-blue.svg"/>
+                            </div>
+                            <span class="ui-button__text confirm-text">send</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="popup" id="send-popup">
+                <div class="popup__content">
+                    <div class="popup__content__title"> SEND</div>
+                    <div class="popup__content__params">
+                        <div class="send-input__title"> Receiver: </div>
+                        <div class="send-input__receiver">
+                            <input type="text" class="send-input__receiver__elem" id="receiver-input"/>
+                        </div>
+
+                        <div class="send-input__title"> Amount: </div>
+                        <div class="send-input__amount">
+                            <input type="text" class="send-input__amount__elem" placeholder="0" id="amount-input"/>
+                        </div>
+                    </div>
+                    <div class="popup__content__controls">
+                        <button class="popup__content__controls__cancel ui-button" id="send-cancel">
+                            <span class="ui-button__inner-wrapper">
+                                <div class="ui-button__icon">
+                                    <img src="./icons/icon-cancel.svg"/>
+                                </div>
+                                <span class="ui-button__text cancel-text">cancel</span>
+                            </span>
+                        </button>
+                        <button class="container__controls__send ui-button" id="send-confirm">
+                            <span class="ui-button__inner-wrapper">
+                                <div class="ui-button__icon">
+                                    <img src="./icons/icon-deposit-blue.svg"/>
+                                </div>
+                                <span class="ui-button__text confirm-text">send</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popup" id="receive-popup">
+                <div class="popup__content receive">
+                    <div class="popup__content__title"> RECEIVE</div>
+                    <div class="popup__content__params">
+                        <div class="send-input__title"> Message ID: </div>
+                        <div class="send-input__msg">
+                            <input type="text" class="send-input__msg__elem" id="msgid-input"/>
+                        </div>
+                    </div>
+                    <div class="popup__content__controls">
+                        <button class="popup__content__controls__cancel ui-button" id="receive-cancel">
+                            <span class="ui-button__inner-wrapper">
+                                <div class="ui-button__icon">
+                                    <img src="./icons/icon-cancel.svg"/>
+                                </div>
+                                <span class="ui-button__text cancel-text">cancel</span>
+                            </span>
+                        </button>
+                        <button class="container__controls__receive ui-button" id="receive-confirm">
+                            <span class="ui-button__inner-wrapper">
+                                <div class="ui-button__icon">
+                                    <img src="./icons/icon-withdraw.svg"/>
+                                </div>
+                                <span class="ui-button__text confirm-text">receive</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src='./scripts/libs/jquery-3.6.0.min.js'></script>
+    <script type="text/javascript" src="qrc:///qtwebchannel/qwebchannel.js" async></script>
+    <script type="module" async src="./scripts/index.js"></script>
+</html>
