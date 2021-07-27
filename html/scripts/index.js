@@ -122,15 +122,25 @@ class BrigesPlugin {
                 $('#pk-value').text(this.pluginData.pkValue);
                 this.showPlugin();
             } else if (apiCallId === "receive") {
-                let shaderOut = this.parseShaderResult(apiResult);
+                /*let shaderOut = this.parseShaderResult(apiResult);
 
 
-                console.log(shaderOut);
+                console.log(shaderOut);*/
+                Utils.callApi("process_invoke_data", "process_invoke_data", {
+                    data: apiResult.raw_data,
+                    confirm_comment: ""
+                });
+                return this.refresh(true);
             } else if (apiCallId === "send") {
-                let shaderOut = this.parseShaderResult(apiResult);
+                /*let shaderOut = this.parseShaderResult(apiResult);
 
 
-                console.log(shaderOut);
+                console.log(shaderOut);*/
+                Utils.callApi("process_invoke_data", "process_invoke_data", {
+                    data: apiResult.raw_data,
+                    confirm_comment: ""
+                });
+                return this.refresh(true);
             } else if (apiCallId === "process_invoke_data") {
 
             }
