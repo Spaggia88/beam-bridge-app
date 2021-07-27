@@ -24,10 +24,8 @@ window.addEventListener('load', async () => {
     }
 });
 
-const ethTokenSender = '0x627306090abab3a6e1400e9345bc60c78a8bef57';
 const ethTokenContract = '0x8CdaF0CD259887258Bc13a92C0a6dA92698644C0';
 const ethPipeUserContract = '0x345cA3e014Aaf5dcA488057592ee47305D9B3e10';
-const ethSenderPrivateKey = '0xc87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3';
 
 async function getBalance() {
     let accounts = await window.web3.eth.getAccounts();
@@ -50,26 +48,17 @@ async function getBalance() {
     console.log("token balance: ", tokenBalance);
 }
 
-const requestToContract = async (sender, receiver, privateKey, abi) => {
+const requestToContract = async (sender, receiver, abi) => {
     let nonce = await window.web3.eth.getTransactionCount(sender);
-    let signedTx = await window.web3.eth.accounts.signTransaction({
+    let hashTx = await window.web3.eth.sendTransaction({
         from: sender,
         to: receiver,
         data: abi,
         gas: 2000000,
         nonce: nonce,
-    }, privateKey);
+    });
 
-    console.log('signed tx: ', signedTx);
-    try {
-        let createReceipt = await window.web3.eth.sendSignedTransaction(
-            signedTx.rawTransaction
-        );
-
-        return createReceipt;
-    } catch (err) {
-        console.log('exception: ', err);
-    }
+    console.log('hash tx: ', hashTx);
 }
 
 async function sendToken() {
@@ -85,17 +74,16 @@ async function sendToken() {
     const pubKey = document.getElementById("publicKey").value;
     const approveTx = tokenContract.methods.approve(ethPipeUserContract, sendValue);
     const lockTx = pipeUserContract.methods.sendFunds(sendValue, pubKey);
+    let accounts = await window.web3.eth.getAccounts();
     
 
     await requestToContract(
-        ethTokenSender, 
+        accounts[0], 
         ethTokenContract, 
-        ethSenderPrivateKey, 
         approveTx.encodeABI());
     let lockTxReceipt = await requestToContract(
-        ethTokenSender, 
+        accounts[0], 
         ethPipeUserContract,
-        ethSenderPrivateKey, 
         lockTx.encodeABI());
 
     console.log('receipt: ', lockTxReceipt);
@@ -108,11 +96,11 @@ async function receiveToken() {
     );
     const msgId = parseInt(document.getElementById("msgId").value);
     const receiveTx = pipeUserContract.methods.receiveFunds(msgId);
+    let accounts = await window.web3.eth.getAccounts();
 
     let receiveTxReceipt = await requestToContract(
-        ethTokenSender, 
+        accounts[0], 
         ethPipeUserContract,
-        ethSenderPrivateKey, 
         receiveTx.encodeABI());
 
     console.log('receive receipt: ', receiveTxReceipt);
