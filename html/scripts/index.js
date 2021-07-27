@@ -121,26 +121,15 @@ class BrigesPlugin {
                 this.pluginData.pkValue = shaderOut.pk;
                 $('#pk-value').text(this.pluginData.pkValue);
                 this.showPlugin();
-            } else if (apiCallId === "receive") {
-                /*let shaderOut = this.parseShaderResult(apiResult);
-
-
-                console.log(shaderOut);*/
+            } else if (apiCallId === "receive" || apiCallId === "send") {
+                if (apiResult.raw_data === undefined || apiResult.raw_data.length === 0) {
+                    throw 'Failed to load raw data';
+                }
+                
                 Utils.callApi("process_invoke_data", "process_invoke_data", {
                     data: apiResult.raw_data,
                     confirm_comment: ""
                 });
-                return this.refresh(true);
-            } else if (apiCallId === "send") {
-                /*let shaderOut = this.parseShaderResult(apiResult);
-
-
-                console.log(shaderOut);*/
-                Utils.callApi("process_invoke_data", "process_invoke_data", {
-                    data: apiResult.raw_data,
-                    confirm_comment: ""
-                });
-                return this.refresh(true);
             } else if (apiCallId === "process_invoke_data") {
 
             }
