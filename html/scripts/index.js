@@ -1,6 +1,6 @@
 import Utils from "./libs/utils.js";
 
-const CONTRACT_ID = "0c03c71d489ebf3df054b38771439b0f0330d9851b445b48d3211c8371c2d89f";
+const CONTRACT_ID = "5ed7f2d7821ae50e775d4d6951cc446b3cd56b9d50626d9f37b8ad02a9e95c4e";
 const REJECTED_CALL_ID = -32021;
 const TIMEOUT = 3000;
 
@@ -9,7 +9,8 @@ class BrigesPlugin {
         this.timeout = undefined;
         this.pluginData = {
             mainLoaded: false,
-            pkValue: ''
+            pkValue: '',
+            incomingTrs: []
         }
     }
 
@@ -87,12 +88,29 @@ class BrigesPlugin {
         return shaderOut;
     }
 
+    refresh = (now) => {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+        this.timeout = setTimeout(() => {
+            this.loadTransactions();
+        }, now ? 0 : 3000)
+    }
+
     showPlugin = () => {
         if (!this.pluginData.mainLoaded) {
             this.pluginData.mainLoaded = true;
 
             $('#main-page').show();
         }
+        this.refresh(false);
+    }
+   
+    loadTransactions = () => {
+        Utils.callApi("view_incoming", "invoke_contract", {
+            create_tx: false,
+            args: "role=manager,action=view_incoming,iStartFrom=0,cid=" + CONTRACT_ID
+        });
     }
 
     onApiResult = (json) => {    
@@ -120,6 +138,50 @@ class BrigesPlugin {
 
                 this.pluginData.pkValue = shaderOut.pk;
                 $('#pk-value').text(this.pluginData.pkValue);
+                this.loadTransactions();
+            } else if (apiCallId === "view_incoming") {
+                let shaderOut = this.parseShaderResult(apiResult);
+                if (shaderOut.incoming === undefined) {
+                    throw "Failed to load incoming transactions";    
+                }
+                this.pluginData.incomingTrs = shaderOut.incoming;
+                shaderOut.incoming.length > 0 ? $('#incoming').show() : $('#incoming').hide();
+                $(".row-elem").remove();
+                for(const [i, elem] of shaderOut.incoming.entries()) {
+                    let tableElem = document.getElementById('incoming');
+                    let rowElem = document.createElement('tr');
+                    rowElem.className = 'row-elem';
+
+                    let colElemId = document.createElement('td');
+                    colElemId.appendChild(document.createTextNode(elem.MsgId));
+
+                    let colElemUser = document.createElement('td');
+                    colElemUser.appendChild(document.createTextNode(elem.User));
+
+                    let colElemAmount = document.createElement('td');
+                    colElemAmount.appendChild(document.createTextNode(elem.amount));
+
+                    let colElemReceive = document.createElement('td');
+                    colElemReceive.appendChild(document.createTextNode('receive'));
+                    colElemReceive.className = "receive-control";
+                    colElemReceive.setAttribute("index", i);
+                    rowElem.appendChild(colElemId);
+                    rowElem.appendChild(colElemUser);
+                    rowElem.appendChild(colElemAmount);
+                    rowElem.appendChild(colElemReceive);
+
+                    tableElem.appendChild(rowElem);
+
+                    $('.receive-control').click((ev) => {
+                        const id = $(ev.target).attr('index');
+                        const clickedTr = this.pluginData.incomingTrs[id];
+                        Utils.callApi("receive", "invoke_contract", {
+                            create_tx: false,
+                            args: "role=user,action=receive,cid=" + CONTRACT_ID + ",msgId=" + clickedTr.MsgId
+                        });
+                    })
+                }
+
                 this.showPlugin();
             } else if (apiCallId === "receive" || apiCallId === "send") {
                 if (apiResult.raw_data === undefined || apiResult.raw_data.length === 0) {

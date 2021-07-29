@@ -14,6 +14,15 @@
     display: none;
 }
 
+#incoming {
+    margin-top: 30px;
+}
+
+.receive-control {
+    color: #0bccf7;
+    cursor: pointer;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -46,7 +55,6 @@
 
 .container__controls__send {
     background-color: #da68f5;
-    margin-left: 30px;
 }
 
 .container__controls__receive {

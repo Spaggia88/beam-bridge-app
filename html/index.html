@@ -14,18 +14,26 @@
         
             <div class="container" id="main-page">
                 <div class="container__user">
-                    <div class="container__user__title">Public key:</div>
+                    <div class="container__user__title">Wallet key:</div>
                     <div class="container__user__key" id="pk-value"></div>
                 </div>
+                <table id="incoming">
+                    <tr>
+                        <th>Message ID</th>
+                        <th>User</th>
+                        <th>Amount</th>
+                        <th>Control</th>
+                    </tr>
+                </table>
                 <div class="container__controls">
-                    <button class="container__controls__receive ui-button" id="receive-popup-open">
+                    <!-- <button class="container__controls__receive ui-button" id="receive-popup-open">
                         <span class="ui-button__inner-wrapper">
                             <div class="ui-button__icon">
                                 <img src="./icons/icon-withdraw.svg"/>
                             </div>
                             <span class="ui-button__text confirm-text">receive</span>
                         </span>
-                    </button>
+                    </button> -->
                     <button class="container__controls__send ui-button" id="send-popup-open">
                         <span class="ui-button__inner-wrapper">
                             <div class="ui-button__icon">
@@ -35,13 +43,14 @@
                         </span>
                     </button>
                 </div>
+                
             </div>
 
             <div class="popup" id="send-popup">
                 <div class="popup__content">
                     <div class="popup__content__title"> SEND</div>
                     <div class="popup__content__params">
-                        <div class="send-input__title"> Receiver: </div>
+                        <div class="send-input__title"> Wallet address: </div>
                         <div class="send-input__receiver">
                             <input type="text" class="send-input__receiver__elem" id="receiver-input"/>
                         </div>
@@ -50,6 +59,11 @@
                         <div class="send-input__amount">
                             <input type="text" class="send-input__amount__elem" placeholder="0" id="amount-input"/>
                         </div>
+                        <select name="select">
+                            <option value="value1">bDAI</option>
+                            <option value="value2" selected>bUSDT</option>
+                            <option value="value3">bWBTC</option>
+                        </select>
                     </div>
                     <div class="popup__content__controls">
                         <button class="popup__content__controls__cancel ui-button" id="send-cancel">
@@ -72,7 +86,7 @@
                 </div>
             </div>
 
-            <div class="popup" id="receive-popup">
+            <!-- <div class="popup" id="receive-popup">
                 <div class="popup__content receive">
                     <div class="popup__content__title"> RECEIVE</div>
                     <div class="popup__content__params">
@@ -100,7 +114,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </body>
     <script src='./scripts/libs/jquery-3.6.0.min.js'></script>
