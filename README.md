@@ -14,7 +14,6 @@
     url=http://127.0.0.1:9999/html/index.html
 ```
 6. Start UI wallet and enjoy
-7. Page for metamask available here: http://localhost:9999/bridge-front/
 
 # Debugging plugin in "DevTools"
 
