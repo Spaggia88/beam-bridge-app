@@ -45,7 +45,7 @@ const Content = styled.form`
   background-color: rgba(13, 77, 118, .9);
   padding: 50px 20px;
   display: flex;
-  margin-top: 35px;
+  margin-top: 30px;
   flex-direction: column;
   align-items: center;
 `;

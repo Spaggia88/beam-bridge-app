@@ -43,6 +43,7 @@ const BackControlText = styled.p`
 
 const FormStyled = styled.form`
   width: 600px;
+  margin-top: 30px;
   backdrop-filter: blur(10px);
   border-radius: 10px;
   background-color: rgba(13, 77, 118, .9);
@@ -65,13 +66,34 @@ const FormSubtitle = styled.p`
 
 const SendStyled = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  margin-left: 20px;
   margin-top: 50px;
 `;
 
 const handleBackClick: React.MouseEventHandler = () => {
   setView(View.BALANCE);
 };
+
+const Cancel = styled.button`
+  margin-right: 20px;
+  display: block;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--color-cancel)};
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    box-shadow: 0 0 8px white;
+  }
+`;
 
 const Send = () => {
   const addressInputRef = useRef<HTMLInputElement>();
@@ -87,6 +109,11 @@ const Send = () => {
     const amount = parseInt(data.get('amount') as string);
     
     send(address, amount)
+  }
+
+  const handleCancelClick = (event) => {
+    event.preventDefault();
+    setView(View.BALANCE);
   }
 
   return (
@@ -110,7 +137,9 @@ const Send = () => {
         <Input type='common' ref={addressInputRef} name="address"></Input>
         <FormSubtitle>AMOUNT</FormSubtitle>
         <Input type='amount' ref={amountInputRef} name="amount"></Input>
+        
         <SendStyled>
+          <Cancel type="button" color="cancel" onClick={handleCancelClick}>cancel</Cancel>
           <Button color="send">send</Button>
         </SendStyled>
       </FormStyled>

@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from '@linaria/react';
 
 interface ButtonProps {
-  color?: 'send' | 'receive';
+  color?: 'send' | 'receive' | 'cancel';
   icon?: string;
 }
 
