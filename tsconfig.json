@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es5",
+    "esModuleInterop": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/web-ext-types"
+    ],
+    "types": ["node"],
+    "baseUrl": "src/app",
+    "paths": {
+      "@app/*": ["*"],
+      "@core/*": ["core/*"],
+      "@pages/*": ["pages/*"],
+      "@state/*": ["state/*"],
+      "@assets/*": ["assets/*"]
+    }
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules"]
+}
