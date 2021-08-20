@@ -72,7 +72,7 @@ const BalanceFilled = () => {
       name: 'amount',
       title: 'Amount',
       fn: (value: string) => {
-        return parseInt(value) / Math.pow(10, 8) + ' USDT';
+        return parseInt(value) / Math.pow(10, 8) + ' bUSDT';
       }
     },
     {
