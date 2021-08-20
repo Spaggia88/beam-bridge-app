@@ -109,7 +109,8 @@ const Send = () => {
     const address = data.get('address') as string;
     const amount = parseFloat(data.get('amount') as string);
     
-    send(amount, address)
+    send(amount, address.replace('0x',''));
+    setView(View.BALANCE);
   }
 
   const handleCancelClick = (event) => {
