@@ -75,6 +75,9 @@ const Selector = (data: {type: string}) => {
     background-color: transparent;
     border: none;
     font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   `;
 
   const DropdownElemOption = styled.div`
@@ -89,10 +92,20 @@ const Selector = (data: {type: string}) => {
     display: ${({ isVisible }) => `${isVisible ? 'block' : 'none'}`};
   `;
 
+  const Triangle = styled.div`
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #8da1ad;
+    margin-left: 5px;
+  `;
+
   return data.type === 'amount' ? (
     <StyledDropdown>
       <DropdownElem onClick={toggleDropdown}>
         {selectedItem ? items.find(item => item.id == selectedItem.id).name : ""}
+        <Triangle></Triangle>
       </DropdownElem>
       <DropdownBody isVisible={isOpen} className={`dropdown-body ${isOpen && 'open'}`}>
         {items.map(item => (
