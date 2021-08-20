@@ -73,7 +73,12 @@ const Receive = () => {
   const pKey = useStore($userPkey);
 
   const handleCopyClick: React.MouseEventHandler = () => {
-    navigator.clipboard.writeText(pKey);
+    const el = document.createElement('textarea');
+    el.value = pKey;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
     setView(View.BALANCE);
   };
 
@@ -96,7 +101,7 @@ const Receive = () => {
       <Content>
         <ContentTitle>Сopy and send your bridge contract address to the sender</ContentTitle>
         <PkeyValue>{pKey}</PkeyValue>
-        <Button color="receive" onClick={() => {handleCopyClick}}>copy and clode</Button>
+        <Button color="receive" onClick={handleCopyClick}>copy and clode</Button>
       </Content>
     </Container>
   );
