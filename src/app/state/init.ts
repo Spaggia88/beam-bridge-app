@@ -76,7 +76,7 @@ export async function receive(id: string) {
     });
 }
 
-export async function send(amount: string, address) {
+export async function send(amount: number, address: string) {
     dapp.apiCall("send", "invoke_contract", {
         create_tx: false,
         args: "role=user,action=send,cid=" + CONTRACT_ID + 

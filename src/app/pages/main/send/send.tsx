@@ -108,7 +108,7 @@ const Send = () => {
     const address = data.get('address') as string;
     const amount = parseInt(data.get('amount') as string);
     
-    send(address, amount)
+    send(amount, address)
   }
 
   const handleCancelClick = (event) => {
