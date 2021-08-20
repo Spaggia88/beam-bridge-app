@@ -77,10 +77,11 @@ export async function receive(id: string) {
 }
 
 export async function send(amount: number, address: string) {
+    const finalAmount = amount * Math.pow(10, 8)
     dapp.apiCall("send", "invoke_contract", {
         create_tx: false,
         args: "role=user,action=send,cid=" + CONTRACT_ID + 
-            ",amount=" + amount + 
+            ",amount=" + finalAmount + 
             ",receiver=" + address
     });
 }

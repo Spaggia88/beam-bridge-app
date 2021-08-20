@@ -47,7 +47,8 @@ const FormStyled = styled.form`
   backdrop-filter: blur(10px);
   border-radius: 10px;
   background-color: rgba(13, 77, 118, .9);
-  padding: 40px 30px;
+  padding: 0 20px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
 `;
@@ -106,7 +107,7 @@ const Send = () => {
 
     const data = new FormData(event.currentTarget);
     const address = data.get('address') as string;
-    const amount = parseInt(data.get('amount') as string);
+    const amount = parseFloat(data.get('amount') as string);
     
     send(amount, address)
   }
