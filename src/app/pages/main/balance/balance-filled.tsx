@@ -38,6 +38,8 @@ const StyledControls = styled.div`
 
 const StyledTable = styled.div`
   margin-top: 30px;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 const receiveButton = css`
