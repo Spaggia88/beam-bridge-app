@@ -83,10 +83,10 @@ const BalanceFilled = () => {
 
   return (
     <Container>
-        <Content>
+        {/* <Content>
             <BalanceCard type="usdt" balanceValue={usdtBalance}></BalanceCard>
             <BalanceCard type="eth" balanceValue={ethBalance}></BalanceCard>
-        </Content>
+        </Content> */}
         <StyledControls>
             <Button color="send" onClick={handleSendClick}>send</Button>
             <span className={receiveButton}>

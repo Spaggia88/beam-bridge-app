@@ -70,3 +70,12 @@ export async function receive(id: string) {
         args: "role=user,action=receive,cid=" + CONTRACT_ID + ",msgId=" + id
     });
 }
+
+export async function send(amount: string, address) {
+    dapp.apiCall("send", "invoke_contract", {
+        create_tx: false,
+        args: "role=user,action=send,cid=" + CONTRACT_ID + 
+            ",amount=" + amount + 
+            ",receiver=" + address
+    });
+}

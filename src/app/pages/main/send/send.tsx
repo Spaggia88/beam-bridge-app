@@ -4,6 +4,7 @@ import { styled } from '@linaria/react';
 import { Button, Input } from '@pages/shared';
 import { setView, View } from '@state/shared';
 import { $selectedCurrency } from '@state/send';
+import { send } from '@state/init';
 
 const Container = styled.div`
   display: flex;
@@ -84,6 +85,8 @@ const Send = () => {
     const data = new FormData(event.currentTarget);
     const address = data.get('address') as string;
     const amount = parseInt(data.get('amount') as string);
+    
+    send(address, amount)
   }
 
   return (
@@ -101,17 +104,16 @@ const Send = () => {
             back
           </BackControlText>
         </BackControl>
-      </ControlStyled>
+      </ControlStyled> */}
       <FormStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <FormTitle>Send token to Beam</FormTitle>
-        <FormSubtitle>BEAM BRIDGE CONTRACT ADDRESS</FormSubtitle>
+        <FormSubtitle>ETH WALLET ADDRESS</FormSubtitle>
         <Input type='common' ref={addressInputRef} name="address"></Input>
         <FormSubtitle>AMOUNT</FormSubtitle>
         <Input type='amount' ref={amountInputRef} name="amount"></Input>
         <SendStyled>
-          <Button color="send">send to beam</Button>
+          <Button color="send">send</Button>
         </SendStyled>
-      </FormStyled> */}
+      </FormStyled>
     </Container>
   );
 };

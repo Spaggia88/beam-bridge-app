@@ -94,7 +94,7 @@ const Receive = () => {
         </BackControl>
       </ControlStyled> */}
       <Content>
-        <ContentTitle>Сopy and send your ETH wallet address to the sender</ContentTitle>
+        <ContentTitle>Сopy and send your bridge contract address to the sender</ContentTitle>
         <PkeyValue>{pKey}</PkeyValue>
         <Button color="receive" onClick={() => {handleCopyClick}}>copy and clode</Button>
       </Content>
