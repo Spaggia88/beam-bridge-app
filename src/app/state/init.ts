@@ -14,7 +14,7 @@ export enum RPCMethod {
     Send = 'send'
 }
 
-const CONTRACT_ID = "5ed7f2d7821ae50e775d4d6951cc446b3cd56b9d50626d9f37b8ad02a9e95c4e";
+const CONTRACT_ID = "e47369d042c450e45a2e1526eb23b07dab7522418fc07dd32296e4466cc8bc6b";
 export const rpcAppEvent = createEvent<AppEvent>();
 
 const dapp = AppCore.getInstance();
@@ -36,11 +36,16 @@ sample({
         case RPCMethod.ViewIncoming:
             shaderOut = JSON.parse(result.output)
             console.log(shaderOut);
-            setIncome([{pid: 1, status: '', id: '1', amount: '50000000' },
-                {pid: 2, id: '2', status: '', amount: '600000000' },
-                {pid: 3, status: '', id: '3', amount: '9000000000' }])
+            const income = shaderOut.incoming;
+
+            if (income !== undefined && income.length > 0) {
+                setIncome(income);
+                console.log('added')
+            }
+
             break;
-        case RPCMethod.Send || RPCMethod.Receive:
+        case RPCMethod.Receive:
+        case RPCMethod.Send:
             dapp.apiCall("process_invoke_data", "process_invoke_data", {
                 data: result.raw_data,
                 confirm_comment: ""

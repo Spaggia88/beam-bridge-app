@@ -94,7 +94,7 @@ const BalanceFilled = () => {
             </span>
         </StyledControls>
         <StyledTable>
-          <Table config={TABLE_CONFIG} data={data} keyBy='pid'/>
+          <Table config={TABLE_CONFIG} data={data} keyBy='MsgId'/>
         </StyledTable>
     </Container>
   );

@@ -114,7 +114,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
               return name === 'status' 
                 ? (
                 <Column key={index}>
-                  <ConfirmReceive onClick={() => handleReceiveClick(item['id'])}>
+                  <ConfirmReceive onClick={() => handleReceiveClick(item['MsgId'])}>
                     <ConfirmIcon
                       type="image/svg+xml"
                       data={'./assets/icon-send-blue.svg'}
