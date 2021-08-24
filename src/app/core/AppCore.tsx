@@ -78,4 +78,8 @@ export default class AppCore {
   public apiCall(callid: string, method: string, params) {
     utils.callApi(callid, method, params);
   }
+
+  public intervalCall(callid: string, method: string, params) {
+    setInterval(() => {utils.callApi(callid, method, params)}, 3000)
+  }
 }

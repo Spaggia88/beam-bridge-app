@@ -65,6 +65,10 @@ export async function initApp() {
                 create_tx: false,
                 args: "role=user,action=get_pk,cid=" + CONTRACT_ID
             });
+            dapp.intervalCall("view_incoming", "invoke_contract", {
+                create_tx: false,
+                args: "role=manager,action=view_incoming,iStartFrom=0,cid=" + CONTRACT_ID
+            });
         }
     });
 }
