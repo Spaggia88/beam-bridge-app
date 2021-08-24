@@ -41,6 +41,8 @@ sample({
             if (income !== undefined && income.length > 0) {
                 setIncome(income);
                 console.log('added')
+            } else {
+                setIncome([]);
             }
 
             break;
