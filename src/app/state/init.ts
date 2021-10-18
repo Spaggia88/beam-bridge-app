@@ -14,7 +14,7 @@ export enum RPCMethod {
     Send = 'send'
 }
 
-const CONTRACT_ID = "e47369d042c450e45a2e1526eb23b07dab7522418fc07dd32296e4466cc8bc6b";
+const CONTRACT_ID = "9ee103785338d97ab0b73bf5ade9280edf6dc8826b00077117a88d0e596a3a58";
 export const rpcAppEvent = createEvent<AppEvent>();
 
 const dapp = AppCore.getInstance();
@@ -30,7 +30,7 @@ sample({
             setPkey(shaderOut.pk);
             dapp.apiCall("view_incoming", "invoke_contract", {
                 create_tx: false,
-                args: "role=manager,action=view_incoming,iStartFrom=0,cid=" + CONTRACT_ID
+                args: "role=manager,action=view_incoming,startFrom=0,cid=" + CONTRACT_ID
             });
           break;
         case RPCMethod.ViewIncoming:
@@ -60,7 +60,7 @@ sample({
 
 export async function initApp() {
     dapp.init(rpcAppEvent);
-    dapp.start('./bridges.wasm');
+    dapp.start('./pipe_app.wasm');
     $ready.watch(value => {
         if (value !== null && value) {
             dapp.initApiCall("get_pk", "invoke_contract", {
@@ -69,7 +69,7 @@ export async function initApp() {
             });
             dapp.intervalCall("view_incoming", "invoke_contract", {
                 create_tx: false,
-                args: "role=manager,action=view_incoming,iStartFrom=0,cid=" + CONTRACT_ID
+                args: "role=manager,action=view_incoming,startFrom=0,cid=" + CONTRACT_ID
             });
         }
     });
@@ -84,10 +84,13 @@ export async function receive(id: string) {
 
 export async function send(amount: number, address: string) {
     const finalAmount = amount * Math.pow(10, 8)
+    // TODO: remove this temporary solution
+    const relayerFee = amount * Math.pow(10, 7);
     dapp.apiCall("send", "invoke_contract", {
         create_tx: false,
         args: "role=user,action=send,cid=" + CONTRACT_ID + 
             ",amount=" + finalAmount + 
-            ",receiver=" + address
+            ",receiver=" + address + 
+            ",relayerFee=" + relayerFee
     });
 }
