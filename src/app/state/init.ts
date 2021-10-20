@@ -14,7 +14,7 @@ export enum RPCMethod {
     Send = 'send'
 }
 
-const CONTRACT_ID = "9ee103785338d97ab0b73bf5ade9280edf6dc8826b00077117a88d0e596a3a58";
+const CONTRACT_ID = "7617af66e36084a763019544094bf1586096b2befef348c14d369c69aa9c99f7";
 export const rpcAppEvent = createEvent<AppEvent>();
 
 const dapp = AppCore.getInstance();
