@@ -34,7 +34,12 @@ sample({
             });
           break;
         case RPCMethod.ViewIncoming:
-            shaderOut = JSON.parse(result.output)
+            try {
+                shaderOut = JSON.parse(result.output);
+            } catch(e) {
+                console.log(e);
+                return
+            }
             console.log(shaderOut);
             const income = shaderOut.incoming;
 
@@ -82,10 +87,10 @@ export async function receive(id: string) {
     });
 }
 
-export async function send(amount: number, address: string) {
+export async function send(amount: number, address: string, fee: number) {
     const finalAmount = amount * Math.pow(10, 8)
     // TODO: remove this temporary solution
-    const relayerFee = amount * Math.pow(10, 7);
+    const relayerFee = fee * Math.pow(10, 7);
     dapp.apiCall("send", "invoke_contract", {
         create_tx: false,
         args: "role=user,action=send,cid=" + CONTRACT_ID + 

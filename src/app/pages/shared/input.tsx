@@ -1,11 +1,12 @@
 import React, { useState, useRef, HTMLAttributes } from 'react';
 import { styled } from '@linaria/react';
 import { isNil } from '@core/utils';
-import { setCurrency, currencies } from '@state/send';
+import { setCurrency, currencies, $selectedCurrency} from '@state/send';
+import { useStore } from 'effector-react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
-  type: 'amount' | 'common'
+  type: 'amount' | 'common' | 'fee'
 }
 
 interface DropdownProps {
@@ -59,11 +60,17 @@ const Selector = (data: {type: string}) => {
   const [selectedItem, setSelectedItem] = useState(items[0]);
   
   const toggleDropdown = () => setOpen(!isOpen);
+  const selectedCurrency = useStore($selectedCurrency);
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setCurrency(item);
     setOpen(false);
+  }
+
+  const getCurrTitle = () => {
+    console.log(selectedItem);
+    return selectedItem ? items.find(item => item.id == selectedItem.id).name : "";
   }
 
   const StyledDropdown = styled.div`
@@ -87,8 +94,9 @@ const Selector = (data: {type: string}) => {
   `;
 
   const DropdownBody = styled.div<DropdownProps>`
+    z-index: 100;
     position: absolute;
-    background-color: rgba(11, 204, 247, 0.5);
+    background-color: rgba(11, 204, 247);
     display: ${({ isVisible }) => `${isVisible ? 'block' : 'none'}`};
   `;
 
@@ -104,7 +112,7 @@ const Selector = (data: {type: string}) => {
   return data.type === 'amount' ? (
     <StyledDropdown>
       <DropdownElem onClick={toggleDropdown}>
-        {selectedItem ? items.find(item => item.id == selectedItem.id).name : ""}
+        {selectedCurrency.name}
         <Triangle></Triangle>
       </DropdownElem>
       <DropdownBody isVisible={isOpen} className={`dropdown-body ${isOpen && 'open'}`}>
@@ -116,7 +124,11 @@ const Selector = (data: {type: string}) => {
         ))}
       </DropdownBody>
     </StyledDropdown>
-  ) : (<></>);
+  ) : (data.type === 'fee' ? (<StyledDropdown>
+    <DropdownElem>
+      {selectedCurrency.name}
+    </DropdownElem>
+  </StyledDropdown>) : <></>);
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
