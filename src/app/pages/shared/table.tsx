@@ -56,6 +56,11 @@ const ConfirmReceive = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: row;
+
+  &:hover,
+  &:active {
+    box-shadow: 0 0 8px white;
+  }
 `;
 
 const ConfirmIcon = styled.object`
@@ -119,9 +124,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
                       type="image/svg+xml"
                       data={'./assets/icon-send-blue.svg'}
                       width="16"
-                      height="16"
-                    ></ConfirmIcon>
-                    
+                      height="16"></ConfirmIcon>
                     Confirm receive
                   </ConfirmReceive>
                 </Column>) 
