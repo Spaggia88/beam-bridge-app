@@ -88,9 +88,9 @@ export async function receive(id: string) {
 }
 
 export async function send(amount: number, address: string, fee: number) {
-    const finalAmount = amount * Math.pow(10, 8)
-    // TODO: remove this temporary solution
-    const relayerFee = fee * Math.pow(10, 7);
+    const decimals = await getTokenDecimals();
+    const finalAmount = amount * Math.pow(10, decimals)
+    const relayerFee = fee * Math.pow(10, decimals);
     dapp.apiCall("send", "invoke_contract", {
         create_tx: false,
         args: "role=user,action=send,cid=" + CONTRACT_ID + 
@@ -98,4 +98,9 @@ export async function send(amount: number, address: string, fee: number) {
             ",receiver=" + address + 
             ",relayerFee=" + relayerFee
     });
+}
+
+// TODO: implement depending on the type of token
+async function getTokenDecimals() {
+    return 8;
 }
