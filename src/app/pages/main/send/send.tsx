@@ -109,7 +109,7 @@ const Send = () => {
     const data = new FormData(event.currentTarget);
     const address = data.get('address') as string;
     const amount = parseFloat(data.get('amount') as string);
-    const fee = parseFloat(data.get('amount') as string);
+    const fee = parseFloat(data.get('fee') as string);
     
     send(amount, address.replace('0x',''), fee);
     setView(View.BALANCE);
