@@ -6,6 +6,7 @@ import {
     setIncome
 } from './shared';
 import AppCore, { AppEvent } from '@core/AppCore';
+import { SendParams } from '@core/types';
 
 export enum RPCMethod {
     GetPk = 'get_pk',
@@ -87,8 +88,8 @@ export async function receive(id: string) {
     });
 }
 
-export async function send(amount: number, address: string, fee: number) {
-    const decimals = await getTokenDecimals();
+export async function send(params: SendParams) {
+    const { amount, address, fee, decimals } = params;
     const finalAmount = amount * Math.pow(10, decimals)
     const relayerFee = fee * Math.pow(10, decimals);
     dapp.apiCall("send", "invoke_contract", {
@@ -101,6 +102,7 @@ export async function send(amount: number, address: string, fee: number) {
 }
 
 // TODO: implement depending on the type of token
-async function getTokenDecimals() {
-    return 8;
-}
+// in case the data is not hardcoded
+// function getTokenDecimals(id) {
+//
+// }

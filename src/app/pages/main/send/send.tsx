@@ -101,7 +101,7 @@ const Send = () => {
   const amountInputRef = useRef<HTMLInputElement>();
   const feeInputRef = useRef<HTMLInputElement>();
   
-  const currency = useStore($selectedCurrency);
+  const selectedCurrency = useStore($selectedCurrency);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
@@ -111,7 +111,12 @@ const Send = () => {
     const amount = parseFloat(data.get('amount') as string);
     const fee = parseFloat(data.get('fee') as string);
     
-    send(amount, address.replace('0x',''), fee);
+    send({
+      amount, 
+      address: address.replace('0x',''), 
+      fee,
+      decimals: selectedCurrency.decimals 
+    });
     setView(View.BALANCE);
   }
 
