@@ -4,6 +4,7 @@ import { styled } from '@linaria/react';
 interface ButtonProps {
   color?: 'send' | 'receive' | 'cancel';
   icon?: string;
+  onClick?: (param: any) => void;
 }
 
 const ButtonStyled = styled.button<ButtonProps>`
