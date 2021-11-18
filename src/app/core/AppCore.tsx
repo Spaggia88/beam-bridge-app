@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { 
-  View, setView, setReady,
+  View, setView, setReady, setIncome, setPkey
 
 } from './../state/shared';
-import Utils from '@core/utils';
+import Utils from '@core/utils.js';
 
 export enum RPCMethod {
   GetPk = 'get_pk',
@@ -81,5 +81,38 @@ export default class AppCore {
 
   public intervalCall(callid: string, method: string, params) {
     setInterval(() => {utils.callApi(callid, method, params)}, 3000)
+  }
+
+  static viewIncomingLoaded(err, res) {
+    if (res.incoming !== undefined && res.incoming.length > 0) {
+        setIncome(res.incoming);
+        console.log('added')
+    } else {
+        setIncome([]);
+    }
+    console.log('view params res:', res);
+    setReady(true);
+  }
+
+  static onMakeTx (err, res, full) {
+    // if (err) {
+    //     return this.setError(err, "Failed to generate transaction request")
+    // }
+
+    Utils.callApi(
+        'process_invoke_data', {data: full.result.raw_data}, 
+        (...args) => {}
+    )
+  }
+
+  static pkLoaded(err, res) {
+    setPkey(res.pk);
+  } 
+
+  static loadPKey(cid: string) {
+    Utils.invokeContract("role=user,action=get_pk,cid="+cid, 
+    (...args) => {
+        AppCore.pkLoaded(...args);
+    });
   }
 }

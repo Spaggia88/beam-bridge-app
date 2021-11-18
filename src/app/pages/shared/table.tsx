@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { styled } from '@linaria/react';
 import { receive } from '@state/init';
-import { isNil } from '@core/utils';
+import { isNil } from '@core/utils.js';
 
 interface CellConfig {
   name: string;
@@ -90,7 +90,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
   };
 
   const handleReceiveClick = (id: string) => {
-    receive(id)
+    //receive(id)
   };
 
   console.log(data);

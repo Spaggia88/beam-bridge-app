@@ -8,5 +8,12 @@ export interface SendParams {
 export interface Currency {
     id: number,
     decimals: number,
-    name: string
+    name: string,
+    cid: string
 }
+
+export const currencies : Currency[] = [
+    {name: "bUSDT", id: 1, decimals: 8, cid: '7617af66e36084a763019544094bf1586096b2befef348c14d369c69aa9c99f7'},
+    {name:'bWBTC', id: 2, decimals: 8, cid: '7617af66e36084a763019544094bf1586096b2befef348c14d369c69aa9c99f7'},
+    {name:'bDAI', id: 3, decimals: 8, cid: '7617af66e36084a763019544094bf1586096b2befef348c14d369c69aa9c99f7'}
+];

@@ -1,7 +1,7 @@
 import React, { useState, useRef, HTMLAttributes } from 'react';
 import { styled } from '@linaria/react';
-import { isNil } from '@core/utils';
-import { setCurrency, currencies, $selectedCurrency} from '@state/send';
+import { setCurrency, $selectedCurrency} from '@state/send';
+import { currencies } from '@core/types';
 import { useStore } from 'effector-react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -66,11 +66,6 @@ const Selector = (data: {type: string}) => {
     setSelectedItem(item);
     setCurrency(item);
     setOpen(false);
-  }
-
-  const getCurrTitle = () => {
-    console.log(selectedItem);
-    return selectedItem ? items.find(item => item.id == selectedItem.id).name : "";
   }
 
   const StyledDropdown = styled.div`

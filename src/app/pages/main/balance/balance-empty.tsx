@@ -6,7 +6,6 @@ import {
   
 } from '@state/shared';
 import { Button } from '@pages/shared';
-import { isNil } from '@core/utils';
 
 const Container = styled.div`
   display: flex;

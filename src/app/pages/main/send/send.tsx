@@ -116,7 +116,7 @@ const Send = () => {
       address: address.replace('0x',''), 
       fee,
       decimals: selectedCurrency.decimals 
-    });
+    }, selectedCurrency.cid);
     setView(View.BALANCE);
   }
 

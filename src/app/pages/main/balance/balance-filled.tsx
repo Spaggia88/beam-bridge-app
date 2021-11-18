@@ -6,10 +6,9 @@ import {
   setView, View, 
   $ethBalance,
   $usdtBalance,
-  $income
+  $income, $ready
 } from '@state/shared';
 import { BalanceCard, Button, Table } from '@pages/shared';
-import { isNil } from '@core/utils';
 
 const Container = styled.div`
   display: flex;
@@ -54,10 +53,10 @@ const handleReceiveClick: React.MouseEventHandler = () => {
     setView(View.RECEIVE);
 };
 
-const BalanceFilled = () => {
-  const ethBalance = useStore($ethBalance) / Math.pow(10, 18);
-  const usdtBalance = useStore($usdtBalance) / Math.pow(10, 8);
-  
+const BalanceFilled: React.FC<any> = () => {
+  //const ethBalance = useStore($ethBalance) / Math.pow(10, 18);
+  //const usdtBalance = useStore($usdtBalance) / Math.pow(10, 8);
+  const ready = useStore($ready);
   const data = useStore($income);
 //   const [data, setData] = useState(null);
 
@@ -84,7 +83,7 @@ const BalanceFilled = () => {
   ];
 
   return (
-    <Container>
+    ready ? (<Container>
         {/* <Content>
             <BalanceCard type="usdt" balanceValue={usdtBalance}></BalanceCard>
             <BalanceCard type="eth" balanceValue={ethBalance}></BalanceCard>
@@ -98,7 +97,7 @@ const BalanceFilled = () => {
         <StyledTable>
           <Table config={TABLE_CONFIG} data={data} keyBy='MsgId'/>
         </StyledTable>
-    </Container>
+    </Container>) : null
   );
 };
 
