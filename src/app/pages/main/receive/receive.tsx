@@ -147,7 +147,6 @@ const Selector = (data: {type: string}) => {
 }
 
 const Receive = () => {
-  AppCore.loadPKey(currencies[0].cid);
   const pKey = useStore($userPkey);
 
   const handleCopyClick: React.MouseEventHandler = () => {

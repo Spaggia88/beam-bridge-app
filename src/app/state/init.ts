@@ -39,9 +39,12 @@ export async function initApp() {
         "apiResultHandler": (...args) => { console.log(...args) }
       }, (err) => {
         Utils.download("./pipe_app.wasm", (err, bytes) => {
-            setReady(true);
-            // Utils.invokeContract("role=manager,action=view_incoming,cid=" + currencies[0].cid, 
-            //     (...args) => AppCore.viewIncomingLoaded(...args), bytes);
+            //setReady(true);
+            Utils.invokeContract("role=user,action=get_pk,cid="+currencies[0].cid, 
+            (...args) => {
+                setReady(true);
+                AppCore.pkLoaded(...args);
+            }, bytes);
         })
       });
 }
