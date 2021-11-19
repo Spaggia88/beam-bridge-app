@@ -1,4 +1,5 @@
-import { createEvent, restore } from 'effector';
+import { createEvent, restore, createStore } from 'effector';
+import { Transaction } from '@core/types';
 
 export enum View {
   CONNECT,
@@ -26,5 +27,18 @@ export const $ethBalance = restore(setEthBalance, null);
 export const setUsdtBalance = createEvent<number>();
 export const $usdtBalance = restore(setUsdtBalance, null);
 
-export const setIncome = createEvent<{pid: number, status: string, id: string, amount: string}[]>();
-export const $income = restore(setIncome, []);
+//export const $income = restore(setIncome, []);
+
+
+export const addTransactions = createEvent<Transaction[]>();
+
+export const $transactions = createStore([]);
+export const transactionsReset = createEvent();
+
+$transactions.reset(transactionsReset);
+
+$transactions.on(addTransactions, (state, data) => state.concat(data));
+
+$transactions.watch(n => {
+  console.log(n)
+})

@@ -6,9 +6,10 @@ import {
   setView, View, 
   $ethBalance,
   $usdtBalance,
-  $income, $ready
+  $transactions, $ready
 } from '@state/shared';
 import { BalanceCard, Button, Table } from '@pages/shared';
+import { currencies, Transaction } from '@app/core/types';
 
 const Container = styled.div`
   display: flex;
@@ -57,7 +58,7 @@ const BalanceFilled: React.FC<any> = () => {
   //const ethBalance = useStore($ethBalance) / Math.pow(10, 18);
   //const usdtBalance = useStore($usdtBalance) / Math.pow(10, 8);
   const ready = useStore($ready);
-  const data = useStore($income);
+  const data = useStore($transactions);
 //   const [data, setData] = useState(null);
 
 //   $income.watch(value => {
@@ -72,8 +73,10 @@ const BalanceFilled: React.FC<any> = () => {
     {
       name: 'amount',
       title: 'Amount',
-      fn: (value: string) => {
-        return parseInt(value) / Math.pow(10, 8) + ' bUSDT';
+      fn: (value: string, tr: Transaction) => {
+        const curr = currencies.find((item) => item.cid === tr.cid);
+
+        return parseInt(value) / Math.pow(10, 8) + ' ' + curr.name;
       }
     },
     {

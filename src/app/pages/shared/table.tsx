@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { styled } from '@linaria/react';
 import { receive } from '@state/init';
 import { isNil } from '@core/utils.js';
+import { Transaction } from '@app/core/types';
 
 interface CellConfig {
   name: string;
@@ -89,8 +90,8 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
     setFilterBy(index === filterBy ? -filterBy : index);
   };
 
-  const handleReceiveClick = (id: string) => {
-    //receive(id)
+  const handleReceiveClick = (tr: Transaction) => {
+    receive(tr);
   };
 
   console.log(data);
@@ -119,7 +120,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
               return name === 'status' 
                 ? (
                 <Column key={index}>
-                  <ConfirmReceive onClick={() => handleReceiveClick(item['MsgId'])}>
+                  <ConfirmReceive onClick={() => handleReceiveClick(item)}>
                     <ConfirmIcon
                       type="image/svg+xml"
                       data={'./assets/icon-send-blue.svg'}

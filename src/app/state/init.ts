@@ -1,10 +1,10 @@
 import { sample, createEvent } from 'effector';
 import React from 'react';
 import { 
-    setReady
+    setReady, transactionsReset
 } from './shared';
 import AppCore, { AppEvent } from '@core/AppCore';
-import { SendParams, currencies } from '@core/types';
+import { SendParams, currencies, Transaction } from '@core/types';
 
 export enum RPCMethod {
     GetPk = 'get_pk',
@@ -46,17 +46,24 @@ export async function initApp() {
                 AppCore.pkLoaded(...args);
             }, bytes);
 
-            Utils.invokeContract("role=manager,action=view_incoming,startFrom=0,cid="+currencies[0].cid, 
-            (...args) => {
-                setReady(true);
-                AppCore.viewIncomingLoaded(...args);
-            }, bytes);
+            
+            setInterval(() => {
+                transactionsReset();
+                currencies.forEach((item) => {
+                    Utils.invokeContract("role=manager,action=view_incoming,startFrom=0,cid="+item.cid, 
+                    (...args) => {
+                        AppCore.viewIncomingLoaded(item.cid, ...args);
+                    }, bytes);
+                });
+            }, 3000)
+
+            setReady(true);
         })
       });
 }
 
-export async function receive(id: string, cid: string) {
-    Utils.invokeContract("role=user,action=receive,cid=" + cid + ",msgId=" + id, 
+export async function receive(tr: Transaction) {
+    Utils.invokeContract("role=user,action=receive,cid=" + tr.cid + ",msgId=" + tr.id, 
     (...args) => {
         AppCore.onMakeTx(...args);
     });

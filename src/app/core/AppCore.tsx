@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { 
-  View, setView, setReady, setIncome, setPkey
+  View, setView, setReady, addTransactions, setPkey
 
 } from './../state/shared';
 import Utils from '@core/utils.js';
+import { Transaction } from './types';
 
 export enum RPCMethod {
   GetPk = 'get_pk',
@@ -70,26 +71,22 @@ export default class AppCore {
   });
   }
 
-  public initApiCall(callid: string, method: string, params) {
-    params['contract'] = this.shaderBytes;
-    utils.callApi(callid, method, params);
-  }
-
-  public apiCall(callid: string, method: string, params) {
-    utils.callApi(callid, method, params);
-  }
-
-  public intervalCall(callid: string, method: string, params) {
-    setInterval(() => {utils.callApi(callid, method, params)}, 3000)
-  }
-
-  static viewIncomingLoaded(err, res) {
+  static viewIncomingLoaded(cid, err, res) {
     if (res.incoming !== undefined && res.incoming.length > 0) {
-        setIncome(res.incoming);
-        console.log('added')
-    } else {
-        setIncome([]);
+      let trs: Transaction[];
+      res.incoming.forEach((item, i) => {
+        trs.push({
+          amount: item.amount,
+          cid: item.cid,
+          pid: i,
+          id: item['MsgId'],
+          status: ''
+        })
+      });
+
+      addTransactions(trs);
     }
+
     console.log('view params res:', res);
     setReady(true);
   }
