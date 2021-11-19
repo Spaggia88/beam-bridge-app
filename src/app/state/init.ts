@@ -45,6 +45,12 @@ export async function initApp() {
                 setReady(true);
                 AppCore.pkLoaded(...args);
             }, bytes);
+
+            Utils.invokeContract("role=manager,action=view_incoming,startFrom=0,cid="+currencies[0].cid, 
+            (...args) => {
+                setReady(true);
+                AppCore.viewIncomingLoaded(...args);
+            }, bytes);
         })
       });
 }
