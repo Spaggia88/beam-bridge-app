@@ -17,20 +17,17 @@ import Utils from '@core/utils.js';
 export const rpcAppEvent = createEvent<AppEvent>();
 
 export async function initApp() {
-    // dapp.init(rpcAppEvent);
-    // dapp.start('./pipe_app.wasm');
-    // $ready.watch(value => {
-    //     if (value !== null && value) {
-    //         dapp.initApiCall("get_pk", "invoke_contract", {
-    //             create_tx: false,
-    //             args: "role=user,action=get_pk,cid=" + CONTRACT_ID
-    //         });
-    //         dapp.intervalCall("view_incoming", "invoke_contract", {
-    //             create_tx: false,
-    //             args: "role=manager,action=view_incoming,startFrom=0,cid=" + CONTRACT_ID
-    //         });
-    //     }
-    // });
+    let isFirstTime = true;
+    const loadViewIncome = (bytes) => {
+        transactionsReset();
+        currencies.forEach((item) => {
+            Utils.invokeContract("role=manager,action=view_incoming,startFrom=0,cid="+item.cid, 
+            (...args) => {
+                isFirstTime = false;
+                AppCore.viewIncomingLoaded(item.cid, ...args);
+            }, isFirstTime ? bytes : null);
+        });
+    };
 
     Utils.initialize({
         "appname": "BEAM Bridge app",
@@ -39,22 +36,15 @@ export async function initApp() {
         "apiResultHandler": (...args) => { console.log(...args) }
       }, (err) => {
         Utils.download("./pipe_app.wasm", (err, bytes) => {
-            //setReady(true);
             Utils.invokeContract("role=user,action=get_pk,cid="+currencies[0].cid, 
             (...args) => {
                 setReady(true);
                 AppCore.pkLoaded(...args);
             }, bytes);
 
-            
+            loadViewIncome(bytes);
             setInterval(() => {
-                transactionsReset();
-                currencies.forEach((item) => {
-                    Utils.invokeContract("role=manager,action=view_incoming,startFrom=0,cid="+item.cid, 
-                    (...args) => {
-                        AppCore.viewIncomingLoaded(item.cid, ...args);
-                    }, bytes);
-                });
+                loadViewIncome(bytes);
             }, 3000)
 
             setReady(true);
