@@ -715,3 +715,7 @@ export default class Utils {
         return res == "{}" ? obj.toString() : res
     }
 }
+
+export function isNil(value) {
+    return value == null
+}
