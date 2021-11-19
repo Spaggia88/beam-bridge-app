@@ -113,8 +113,8 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
         </tr>
       </StyledThead>
       <tbody>
-        {data.sort(sortFn).map(item => (
-          <tr key={item[keyBy]}>
+        {data.sort(sortFn).map((item, index) => (
+          <tr key={index}>
             {config.map(({ name, fn }, index) => {
               const value = item[name];
               return name === 'status' 

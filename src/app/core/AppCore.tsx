@@ -73,11 +73,11 @@ export default class AppCore {
 
   static viewIncomingLoaded(cid, err, res) {
     if (res.incoming !== undefined && res.incoming.length > 0) {
-      let trs: Transaction[];
+      let trs: Transaction[] = [];
       res.incoming.forEach((item, i) => {
         trs.push({
           amount: item.amount,
-          cid: item.cid,
+          cid: cid,
           pid: i,
           id: item['MsgId'],
           status: ''
