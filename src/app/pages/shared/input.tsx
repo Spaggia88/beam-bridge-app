@@ -6,7 +6,7 @@ import { useStore } from 'effector-react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
-  type: 'amount' | 'common' | 'fee'
+  variant: 'amount' | 'common' | 'fee',
 }
 
 interface DropdownProps {
@@ -29,11 +29,18 @@ const ContainerStyled = styled.div`
 const InputStyled = styled.input<InputProps>`
   line-height: 20px;
   border: none;
-  font-size: ${({ type }) => `${type === 'common' ? '16px' : '36px'}`};
-  color: ${({ type }) => `${type === 'common' ? 'white' : '#da68f5'}`};
+  font-size: ${({ variant }) => `${variant === 'common' ? '16px' : '36px'}`};
+  color: ${({ variant }) => `${variant === 'common' ? 'white' : '#da68f5'}`};
   background-color: transparent;
-  width: ${({ type }) => `${type === 'common' ? '100%' : '90%'}`};
+  width: ${({ variant }) => `${variant === 'common' ? '100%' : '90%'}`};
   height: 100%;
+  -moz-appearance:textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
   // &::placeholder {
   //   position: absolute;
@@ -127,12 +134,25 @@ const Selector = (data: {type: string}) => {
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ type, error, ...rest }, ref) => (
-    <ContainerStyled>
-      <InputStyled type={type} ref={ref} error={error} {...rest} />
-      <Selector type={type}/>
-    </ContainerStyled>
-  ),
+  ({ variant, error, ...rest }, ref) => {
+    const selectedCurrency = useStore($selectedCurrency);
+
+    const inputChange = (event) => {
+      let value = event.target.value;
+      var regex = new RegExp("^\\d*(\\.?\\d{0," + selectedCurrency.decimals + "})", "g");
+      value = (value.match(regex)[0]) || null;
+      event.target.value = value;
+    }
+
+    return (<ContainerStyled>
+      <InputStyled
+        variant={variant} ref={ref} 
+        onChange={variant === 'amount' || variant === 'fee' ? inputChange : null}
+        type={variant === 'amount' || variant === 'fee' ? 'number' : 'text'}
+        error={error} {...rest} />
+      <Selector type={variant}/>
+    </ContainerStyled>);
+  },
 );
 
 export default Input;

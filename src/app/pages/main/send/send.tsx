@@ -143,11 +143,11 @@ const Send = () => {
       </ControlStyled> */}
       <FormStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
         <FormSubtitle>ETH WALLET ADDRESS</FormSubtitle>
-        <Input type='common' ref={addressInputRef} name="address"></Input>
+        <Input variant='common' ref={addressInputRef} name="address"></Input>
         <FormSubtitle>AMOUNT</FormSubtitle>
-        <Input type='amount' ref={amountInputRef} name="amount"></Input>
+        <Input variant='amount' ref={amountInputRef} name="amount"></Input>
         <FormSubtitle>FEE</FormSubtitle>
-        <Input type='fee' ref={feeInputRef} name="fee"></Input>
+        <Input variant='fee' ref={feeInputRef} name="fee"></Input>
         
         <SendStyled>
           <Cancel type="button" color="cancel" onClick={handleCancelClick}>cancel</Cancel>
