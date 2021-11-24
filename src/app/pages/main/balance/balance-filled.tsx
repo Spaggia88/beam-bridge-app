@@ -51,7 +51,7 @@ const handleSendClick: React.MouseEventHandler = () => {
 };
 
 const handleReceiveClick: React.MouseEventHandler = () => {
-    setView(View.RECEIVE);
+  setView(View.RECEIVE);
 };
 
 const BalanceFilled: React.FC<any> = () => {

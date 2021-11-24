@@ -1,7 +1,7 @@
 import { sample, createEvent } from 'effector';
 import React from 'react';
 import { 
-    setReady, transactionsReset
+    setReady
 } from './shared';
 import AppCore, { AppEvent } from '@core/AppCore';
 import { SendParams, currencies, Transaction } from '@core/types';
@@ -17,18 +17,6 @@ import Utils from '@core/utils.js';
 export const rpcAppEvent = createEvent<AppEvent>();
 
 export async function initApp() {
-    let isFirstTime = true;
-    const loadViewIncome = (bytes) => {
-        transactionsReset();
-        currencies.forEach((item) => {
-            Utils.invokeContract("role=manager,action=view_incoming,startFrom=0,cid="+item.cid, 
-            (...args) => {
-                isFirstTime = false;
-                AppCore.viewIncomingLoaded(item.cid, ...args);
-            }, isFirstTime ? bytes : null);
-        });
-    };
-
     Utils.initialize({
         "appname": "BEAM Bridge app",
         "min_api_version": "6.1",
@@ -42,12 +30,10 @@ export async function initApp() {
                 AppCore.pkLoaded(...args);
             }, bytes);
 
-            loadViewIncome(bytes);
+            AppCore.loadViewIncome();
             setInterval(() => {
-                loadViewIncome(bytes);
-            }, 3000)
-
-            setReady(true);
+                AppCore.loadViewIncome(true);
+            }, 3000);
         })
       });
 }
@@ -63,6 +49,7 @@ export async function send(params: SendParams, cid: string) {
     const { amount, address, fee, decimals } = params;
     const finalAmount = amount * Math.pow(10, decimals)
     const relayerFee = fee * Math.pow(10, decimals);
+
     Utils.invokeContract("role=user,action=send,cid=" + cid + 
     ",amount=" + finalAmount + 
     ",receiver=" + address + 

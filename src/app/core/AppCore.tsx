@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { 
-  View, setView, setReady, addTransactions, setPkey
+  View, setView, setReady, setTransactions, setPkey
 
 } from './../state/shared';
 import Utils from '@core/utils.js';
-import { Transaction } from './types';
+import { Transaction, currencies } from './types';
 
 export enum RPCMethod {
   GetPk = 'get_pk',
@@ -23,6 +23,7 @@ type AppEventHandler = {
 };
 
 const utils = new Utils();
+let transactions: Transaction[] = [];
 
 export default class AppCore {
   private static instance: AppCore;
@@ -71,7 +72,8 @@ export default class AppCore {
   });
   }
 
-  static viewIncomingLoaded(cid, err, res) {
+  static viewIncomingLoaded(isUpdate: boolean, cid: string, err, res) {
+    console.log('view incoming result:', res);
     if (res.incoming !== undefined && res.incoming.length > 0) {
       let trs: Transaction[] = [];
       res.incoming.forEach((item, i) => {
@@ -83,12 +85,9 @@ export default class AppCore {
           status: ''
         })
       });
-
-      addTransactions(trs);
+      transactions = transactions.concat(trs);
+      //isUpdate ? updateTransactions(trs) : addTransactions(trs);
     }
-
-    console.log('view params res:', res);
-    setReady(true);
   }
 
   static onMakeTx (err, res, full) {
@@ -110,6 +109,26 @@ export default class AppCore {
     Utils.invokeContract("role=user,action=get_pk,cid="+cid, 
     (...args) => {
         AppCore.pkLoaded(...args);
+    });
+  }
+
+  static loadViewIncome (isUpdate: boolean = false) {
+    currencies.forEach((item) => {
+        Utils.invokeContract("role=manager,action=view_incoming,startFrom=0,cid="+item.cid, 
+        (...args) => {
+            AppCore.viewIncomingLoaded(isUpdate, item.cid, ...args);
+        });
+    });
+    setTransactions(transactions);
+    transactions = [];
+    AppCore.loadWalletTransactions();
+  };
+
+  static loadWalletTransactions () {
+    Utils.callApi(
+      'tx_list', {}, 
+      (...args) => { 
+        console.log('tx list res: ', ...args);
     });
   }
 }
