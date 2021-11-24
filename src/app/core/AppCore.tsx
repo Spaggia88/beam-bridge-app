@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { 
-  View, setView, setReady, setTransactions, setPkey
+  setIsInProgress, setTransactions, setPkey
 
 } from './../state/shared';
 import Utils from '@core/utils.js';
 import { Transaction, currencies } from './types';
+
+const IN_PROGRESS_ID = 5;
+const RECEIVE_COMMENT = 'Receive funds';
 
 export enum RPCMethod {
   GetPk = 'get_pk',
@@ -68,11 +71,10 @@ export default class AppCore {
       }
       this.shaderBytes = bytes;
       console.log('wasm loaded', bytes);
-      setReady(true);
   });
   }
 
-  static viewIncomingLoaded(isUpdate: boolean, cid: string, err, res) {
+  static viewIncomingLoaded(cid: string, err, res) {
     console.log('view incoming result:', res);
     if (res.incoming !== undefined && res.incoming.length > 0) {
       let trs: Transaction[] = [];
@@ -86,8 +88,16 @@ export default class AppCore {
         })
       });
       transactions = transactions.concat(trs);
-      //isUpdate ? updateTransactions(trs) : addTransactions(trs);
+      console.log('concat')
     }
+  }
+
+  static appTransactionsLoaded(err, res) {
+    const trInProgress = res.find((item) => {
+      return item.status === IN_PROGRESS_ID && item.comment === RECEIVE_COMMENT
+    })
+    
+    setIsInProgress(trInProgress !== undefined);
   }
 
   static onMakeTx (err, res, full) {
@@ -112,23 +122,23 @@ export default class AppCore {
     });
   }
 
-  static loadViewIncome (isUpdate: boolean = false) {
+  static loadViewIncome () {
     currencies.forEach((item) => {
         Utils.invokeContract("role=manager,action=view_incoming,startFrom=0,cid="+item.cid, 
         (...args) => {
-            AppCore.viewIncomingLoaded(isUpdate, item.cid, ...args);
+            AppCore.viewIncomingLoaded(item.cid, ...args);
         });
     });
     setTransactions(transactions);
     transactions = [];
-    AppCore.loadWalletTransactions();
+    AppCore.loadAppTransactions();
   };
 
-  static loadWalletTransactions () {
+  static loadAppTransactions () {
     Utils.callApi(
       'tx_list', {}, 
-      (...args) => { 
-        console.log('tx list res: ', ...args);
+      (...args) => {
+        AppCore.appTransactionsLoaded(...args);
     });
   }
 }

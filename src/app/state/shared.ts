@@ -25,3 +25,6 @@ export const $usdtBalance = restore(setUsdtBalance, null);
 
 export const setTransactions = createEvent<Transaction[]>();
 export const $transactions = restore(setTransactions, []);
+
+export const setIsInProgress = createEvent<boolean>();
+export const $isInProgress = restore(setIsInProgress, false);

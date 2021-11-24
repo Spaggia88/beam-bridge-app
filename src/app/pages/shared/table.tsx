@@ -3,6 +3,8 @@ import { styled } from '@linaria/react';
 import { receive } from '@state/init';
 import { isNil } from '@core/utils.js';
 import { Transaction } from '@app/core/types';
+import { $isInProgress } from '@state/shared';
+import { useStore } from 'effector-react';
 
 interface CellConfig {
   name: string;
@@ -44,7 +46,7 @@ const Column = styled.td`
   background-color: rgba(13, 77, 118, .9);
 `;
 
-const ConfirmReceive = styled.div`
+const ConfirmReceive = styled.div<{disabled: boolean}>`
   width: 167px;
   height: 32px;
   padding: 8px 16px;
@@ -54,13 +56,14 @@ const ConfirmReceive = styled.div`
   color: #0bccf7;
   text-align: center;
   font-size: 14px;
-  cursor: pointer;
+  cursor: ${({ disabled }) => {console.log(disabled); return disabled ? "not-allowed" : "pointer"}};
+  opacity: ${({ disabled }) => disabled ? "0.5" : ""};
   display: flex;
   flex-direction: row;
 
   &:hover,
   &:active {
-    box-shadow: 0 0 8px white;
+    box-shadow: ${({ disabled }) => disabled ? "none" : "0 0 8px white"};
   }
 `;
 
@@ -71,6 +74,8 @@ const ConfirmIcon = styled.object`
 
 const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
   const [filterBy, setFilterBy] = useState(0);
+  const isInProgress = useStore($isInProgress);
+  console.log(isInProgress)
 
   const sortFn = (objectA, objectB) => {
     const name = config[Math.abs(filterBy)].name;
@@ -91,7 +96,9 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
   };
 
   const handleReceiveClick = (tr: Transaction) => {
-    receive(tr);
+    if (!isInProgress) {
+      receive(tr);
+    }
   };
 
   console.log(data);
@@ -120,7 +127,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
               return name === 'status' 
                 ? (
                 <Column key={index}>
-                  <ConfirmReceive onClick={() => handleReceiveClick(item)}>
+                  <ConfirmReceive disabled={isInProgress} onClick={() => handleReceiveClick(item)}>
                     <ConfirmIcon
                       type="image/svg+xml"
                       data={'./assets/icon-send-blue.svg'}

@@ -32,7 +32,7 @@ export async function initApp() {
 
             AppCore.loadViewIncome();
             setInterval(() => {
-                AppCore.loadViewIncome(true);
+                AppCore.loadViewIncome();
             }, 3000);
         })
       });
