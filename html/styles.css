@@ -7,15 +7,10 @@
 .cmork9l{margin-top:80px;cursor:pointer;border:none;padding:16px 40px;border-radius:50px;background-color:#fff;}
 .c1jhng8y{font-size:16px;font-weight:bold;color:#032e49;}
 
-/*!**********************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/shared/active-account.linaria.css ***!
-  \**********************************************************************************************************************************************/
-.a10x1puw{padding:11px 30px;border-radius:22.5px;border:solid 1px #fff;background-color:rgba(255,255,255,0.1);-webkit-align-self:flex-end;-ms-flex-item-align:end;align-self:flex-end;margin:80px 80px 0 0;cursor:pointer;}
-
 /*!********************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/shared/balance-card.linaria.css ***!
   \********************************************************************************************************************************************/
-.cyapt4y{width:100%;height:75px;margin-top:10px;padding:20px;border-radius:10px;background-image:linear-gradient(99deg, var(--cyapt4y-0) 2%,rgb(0,69,143,.3) 99%);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+.cyapt4y{width:calc((100% - 10px) / 2);height:75px;margin-top:10px;padding:20px;border-radius:10px;background-image:linear-gradient(99deg, var(--cyapt4y-0) 2%,rgb(0,69,143,.3) 99%);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
 .l5ui9hx{display:block;}
 .bj2d4rr{font-size:16px;margin-left:10px;}
 
@@ -28,11 +23,12 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/shared/input.linaria.css ***!
   \*************************************************************************************************************************************/
 .cw4stxj{margin-top:20px;position:relative;background-color:rgba(255,255,255,.05);border-radius:10px;width:100%;height:59px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:8px 15px;}
-.i1usz2p7{line-height:20px;border:none;font-size:var(--i1usz2p7-0);color:var(--i1usz2p7-1);background-color:transparent;width:var(--i1usz2p7-2);height:100%;}
+.i1usz2p7{line-height:20px;border:none;font-size:var(--i1usz2p7-0);color:var(--i1usz2p7-1);background-color:transparent;width:var(--i1usz2p7-2);height:100%;-moz-appearance:textfield;}.i1usz2p7::-webkit-inner-spin-button,.i1usz2p7::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
 .sstj3mw{margin-left:auto;}
-.dzv2us1{cursor:pointer;background-color:transparent;border:none;font-size:20px;}
+.dzv2us1{cursor:pointer;background-color:transparent;border:none;font-size:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
 .d11oxhsa{font-size:16px;padding:10px;cursor:pointer;}
-.dt4p5fs{position:absolute;background-color:rgba(11,204,247,0.5);display:var(--dt4p5fs-0);}
+.dt4p5fs{z-index:100;position:absolute;background-color:rgba(11,204,247);display:var(--dt4p5fs-0);}
+.t48np3t{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #8da1ad;margin-left:5px;}
 
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/shared/table.linaria.css ***!
@@ -41,36 +37,44 @@
 .s1x2uxhh{height:40px;border-radius:10px;background-color:rgba(15,77,130,.6);}
 .h7rdgyd{text-align:left;color:var(--h7rdgyd-0);padding:15px 30px;}
 .c1iqv4ra{padding:20px 30px;background-color:rgba(13,77,118,.9);}
-.cwukwnd{width:167px;height:32px;padding:8px 16px;border-radius:17.5px;border:solid 1px #0bccf7;background-color:rgba(11,204,247,0.1);color:#0bccf7;text-align:center;font-size:14px;cursor:pointer;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}
+.cwukwnd{width:167px;height:32px;padding:8px 16px;border-radius:17.5px;border:solid 1px #0bccf7;background-color:rgba(11,204,247,0.1);color:#0bccf7;text-align:center;font-size:14px;cursor:var(--cwukwnd-0);opacity:var(--cwukwnd-1);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}.cwukwnd:hover,.cwukwnd:active{box-shadow:var(--cwukwnd-2);}
 .cqlcz08{display:block;margin-right:15px;}
 
-/*!*********************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/main/balance/balance.linaria.css ***!
-  \*********************************************************************************************************************************************/
-.c1rziw4i{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-bottom:50px;}
-.teylih3{font-size:56px;font-weight:900;margin-bottom:50px;}
-.crq8g2r{width:600px;margin:50px auto 0 auto;padding:45px 75px;border-radius:10px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:#0d4d76;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
-.cp54iy0{font-size:24px;font-weight:bold;}
-.s15dpdq5{margin-top:50px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}
-.skr55eg{margin-top:30px;}
+/*!****************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/main/balance/balance-filled.linaria.css ***!
+  \****************************************************************************************************************************************************/
+.ceemmbl{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:50px 0;}
+.sddggjs{margin-top:50px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}
+.sbcv357{margin-top:30px;border-radius:10px;overflow:hidden;}
+.r15xlc66{margin-left:20px;}
 
 /*!***************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/main/send/send.linaria.css ***!
   \***************************************************************************************************************************************/
 .c1dz5069{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
-.t1rjd5k7{font-size:56px;font-weight:900;}
-.c1rl5bv8{width:600px;margin:20px auto;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
-.b1ckatg7{cursor:pointer;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}
-.bdcvrkj{display:block;margin-right:15px;}
-.b1o15oto{opacity:.3;font-size:14px;font-weight:bold;}
-.fc8rb85{width:600px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:10px;background-color:rgba(13,77,118,.9);padding:40px 30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}
-.f1det58x{font-size:24px;font-weight:bold;-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;}
+.t1rjd5k7{font-size:14px;-webkit-letter-spacing:4px;-moz-letter-spacing:4px;-ms-letter-spacing:4px;letter-spacing:4px;}
+.fc8rb85{width:600px;margin-top:30px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:10px;background-color:rgba(13,77,118,.9);padding:0 20px;padding-bottom:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}
 .f1rpuknt{font-size:14px;font-weight:bold;margin-top:30px;}
-.snpifzf{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;margin-top:50px;}
+.snpifzf{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;margin-left:20px;margin-top:50px;}
+.c13lx7u7{margin-right:20px;display:block;padding:10px 30px;border:none;border-radius:50px;background-color:var(--color-cancel);text-align:center;font-weight:bold;font-size:14px;color:#ffffff;cursor:pointer;}.c13lx7u7:hover,.c13lx7u7:active{box-shadow:0 0 8px white;}
+
+/*!*********************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/main/receive/receive.linaria.css ***!
+  \*********************************************************************************************************************************************/
+.czv7lc7{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+.td446te{font-size:14px;-webkit-letter-spacing:4px;-moz-letter-spacing:4px;-ms-letter-spacing:4px;letter-spacing:4px;}
+.ci3h8jc{width:580px;border-radius:10px;background-color:rgba(13,77,118,.9);padding:50px 20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-top:30px;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+.c1tg1yqr{opacity:0.7;font-size:16px;font-style:italic;}
+.p1ppyx6z{font-size:14px;line-height:1.43;margin-top:20px;margin-bottom:30px;}
+.s1f3z2fq{margin-left:auto;}
+.d8p17ku{cursor:pointer;background-color:transparent;border:none;font-size:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+.d1038962{font-size:16px;padding:10px;cursor:pointer;}
+.d1bxvc5y{z-index:100;position:absolute;background-color:rgba(11,204,247);display:var(--d1bxvc5y-0);}
+.t1muk3ao{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #8da1ad;margin-left:5px;}
 
 /*!**********************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/app.linaria.css ***!
   \**********************************************************************************************************************/
-:root{--color-send:#da68f5;--color-receive:#0bccf7;--color-usdt-from:rgba(255,116,107,.3);--color-eth-from:rgba(115,255,124,.3);}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-Regular.ttf');font-weight:400;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-RegularIt.ttf');font-weight:400;font-style:italic;}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-Semibold.ttf');font-weight:600;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-Bold.ttf');font-weight:700;font-style:normal;}*{box-sizing:border-box;outline:none;}html,body,#root,#root>div{margin:0;padding:0;}body{font-size:14px;color:white;background-color:transparent;background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover;}html *{font-family:'ProximaNova',sans-serif;}h1,h2{margin:0;}p{margin:0;}tr,th,table{border:none;border-spacing:0;padding:0;margin:0;border-collapse:inherit;}
+:root{--color-send:#da68f5;--color-receive:#0bccf7;--color-cancel:rgba(255,255,255,0.1);--color-usdt-from:rgba(255,116,107,.3);--color-eth-from:rgba(115,255,124,.3);}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-Regular.ttf');font-weight:400;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-RegularIt.ttf');font-weight:400;font-style:italic;}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-Semibold.ttf');font-weight:600;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-Bold.ttf');font-weight:700;font-style:normal;}*{box-sizing:border-box;outline:none;}html,body,#root,#root>div{margin:0;padding:0;}body{font-size:14px;color:white;background-color:transparent;background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover;}body.web{background-color:#042548;}html *{font-family:'ProximaNova',sans-serif;}h1,h2{margin:0;}p{margin:0;}tr,th,table{border:none;border-spacing:0;padding:0;margin:0;border-collapse:inherit;}
 
 

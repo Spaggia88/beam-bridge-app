@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { 
   setIsInProgress, setTransactions, setPkey
 
-} from './../state/shared';
+} from '@state/shared';
 import Utils from '@core/utils.js';
-import { Transaction, currencies } from './types';
+import { Transaction, currencies } from '@core/types';
 
 const IN_PROGRESS_ID = 5;
 const RECEIVE_COMMENT = 'Receive funds';
@@ -27,6 +27,7 @@ type AppEventHandler = {
 
 const utils = new Utils();
 let transactions: Transaction[] = [];
+let updateCounter = 0;
 
 export default class AppCore {
   private static instance: AppCore;
@@ -52,7 +53,6 @@ export default class AppCore {
     utils.onLoad(async (beamAPI) => {
       const responseHandler = response => {
         const event = JSON.parse(response);
-        console.info(event);
         this.eventHandler(event);
       };
       
@@ -74,8 +74,13 @@ export default class AppCore {
   });
   }
 
-  static viewIncomingLoaded(cid: string, err, res) {
-    console.log('view incoming result:', res);
+  static viewIncomingLoaded(cid: string, err, res, full) {
+    console.log(updateCounter, 'view incoming result:', res);
+    if (updateCounter === 0) {
+      transactions = [];
+    }
+    updateCounter++;
+
     if (res.incoming !== undefined && res.incoming.length > 0) {
       let trs: Transaction[] = [];
       res.incoming.forEach((item, i) => {
@@ -87,8 +92,14 @@ export default class AppCore {
           status: ''
         })
       });
-      transactions = transactions.concat(trs);
-      console.log('concat')
+
+      transactions = transactions.concat(trs);      
+    }
+
+    if (updateCounter === 4) {
+      setTransactions([...transactions]);
+      updateCounter = 0;
+      transactions = [];
     }
   }
 
@@ -129,8 +140,8 @@ export default class AppCore {
             AppCore.viewIncomingLoaded(item.cid, ...args);
         });
     });
-    setTransactions(transactions);
-    transactions = [];
+    //setTransactions(transactions);
+    //transactions = [];
     AppCore.loadAppTransactions();
   };
 

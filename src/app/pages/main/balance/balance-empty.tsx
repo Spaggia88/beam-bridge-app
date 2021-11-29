@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { useStore } from 'effector-react';
+import React from 'react';
 import { styled } from '@linaria/react';
 import { 
   setView, View,
-  
 } from '@state/shared';
 import { Button } from '@pages/shared';
 

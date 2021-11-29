@@ -21,7 +21,8 @@ export interface Transaction {
 }
 
 export const currencies : Currency[] = [
-    {name: "bUSDT", id: 1, decimals: 8, cid: '315d4984697a6ba07cad65065ccbca368b3877882c228160afc4a0d1727b5812'},
-    {name:'bETH', id: 2, decimals: 8, cid: '40306461ecccb777b308643bd6499f9e22c7c6373edb11aae1d32f112c4a79ac'},
-    {name:'bDAI', id: 3, decimals: 8, cid: '8d16dab3c94df2edc7e946daadb7df406f920ee0447bedc8744c57a89c1f1fbd'}
-];
+    {name: "bUSDT", id: 1, decimals: 8, cid: '3167ec1c51270cd9c7be5685d3b825ee20235982375bf4e1392e4a5bb0f66cec'},
+    {name:'bETH', id: 2, decimals: 8, cid: 'b8220407dea1d7f764df40ade9bb01a3e89ad6299c23dc8675e495ff018c80e3'},
+    {name:'bDAI', id: 3, decimals: 8, cid: 'af3e4f34edc2f785fe70520cae7d4b6254d1cbb9809b2702964e7233f8c23f3c'},
+    {name:'bWBTC', id: 4, decimals: 8, cid: '210701a3cbc6bd4204d4aef2be397163fc50638d3f1be722d3ceebe0e3cfe428'},
+];;

@@ -3,12 +3,10 @@ import { useStore } from 'effector-react';
 import { styled } from '@linaria/react';
 import { css } from '@linaria/core';
 import { 
-  setView, View, 
-  $ethBalance,
-  $usdtBalance,
+  setView, View,
   $transactions, $ready
 } from '@state/shared';
-import { BalanceCard, Button, Table } from '@pages/shared';
+import { Button, Table } from '@pages/shared';
 import { currencies, Transaction } from '@app/core/types';
 
 const Container = styled.div`

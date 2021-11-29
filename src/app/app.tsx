@@ -65,6 +65,10 @@ css`
       background-size: cover;
     }
 
+    body.web {
+      background-color: #042548;
+    }
+
     html * {
       font-family: 'ProximaNova', sans-serif;
     }

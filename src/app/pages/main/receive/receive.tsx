@@ -148,10 +148,11 @@ const Selector = (data: {type: string}) => {
 
 const Receive = () => {
   const pKey = useStore($userPkey);
+  const selectedCurrency = useStore($selectedCurrency);
 
   const handleCopyClick: React.MouseEventHandler = () => {
     const el = document.createElement('textarea');
-    el.value = pKey;
+    el.value = selectedCurrency.name.toLowerCase() + pKey;
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
@@ -177,7 +178,7 @@ const Receive = () => {
       </ControlStyled> */}
       <Content>
         <ContentTitle>Сopy and send your bridge contract address to the sender</ContentTitle>
-        <PkeyValue>{pKey}</PkeyValue>
+        <PkeyValue>{selectedCurrency.name.toLowerCase() + pKey}</PkeyValue>
         <Selector type="amount"></Selector>
         <Button color="receive" onClick={handleCopyClick}>copy and clode</Button>
       </Content>

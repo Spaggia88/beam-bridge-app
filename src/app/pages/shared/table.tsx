@@ -56,7 +56,7 @@ const ConfirmReceive = styled.div<{disabled: boolean}>`
   color: #0bccf7;
   text-align: center;
   font-size: 14px;
-  cursor: ${({ disabled }) => {console.log(disabled); return disabled ? "not-allowed" : "pointer"}};
+  cursor: ${({ disabled }) => disabled ? "not-allowed" : "pointer"};
   opacity: ${({ disabled }) => disabled ? "0.5" : ""};
   display: flex;
   flex-direction: row;
@@ -74,8 +74,8 @@ const ConfirmIcon = styled.object`
 
 const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
   const [filterBy, setFilterBy] = useState(0);
+  const [receiveClickedId, setActiveReceive] = useState(null);
   const isInProgress = useStore($isInProgress);
-  console.log(isInProgress)
 
   const sortFn = (objectA, objectB) => {
     const name = config[Math.abs(filterBy)].name;
@@ -95,13 +95,17 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
     setFilterBy(index === filterBy ? -filterBy : index);
   };
 
-  const handleReceiveClick = (tr: Transaction) => {
-    if (!isInProgress) {
+  const handleReceiveClick = (tr: Transaction, index: number) => {
+    if (receiveClickedId !== index) {
+      setActiveReceive(index);
       receive(tr);
+    } else {
+      if (!isInProgress) {
+        receive(tr);
+      }
     }
   };
 
-  console.log(data);
   return data.length > 0 ? (
     <StyledTable>
       <StyledThead>
@@ -122,12 +126,15 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
       <tbody>
         {data.sort(sortFn).map((item, index) => (
           <tr key={index}>
-            {config.map(({ name, fn }, index) => {
+            {config.map(({ name, fn }, itemIndex) => {
               const value = item[name];
+             // console.log(name === 'status' ? itemIndex : '')
               return name === 'status' 
                 ? (
-                <Column key={index}>
-                  <ConfirmReceive disabled={isInProgress} onClick={() => handleReceiveClick(item)}>
+                <Column key={itemIndex}>
+                  <ConfirmReceive 
+                  disabled={isInProgress && (receiveClickedId === itemIndex)} 
+                  onClick={() => handleReceiveClick(item, itemIndex)}>
                     <ConfirmIcon
                       type="image/svg+xml"
                       data={'./assets/icon-send-blue.svg'}
@@ -136,7 +143,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
                     Confirm receive
                   </ConfirmReceive>
                 </Column>) 
-                : (<Column key={index}>{isNil(fn) ? value : fn(value, item)}</Column>);
+                : (<Column key={itemIndex}>{isNil(fn) ? value : fn(value, item)}</Column>);
             })}
           </tr>
         ))}

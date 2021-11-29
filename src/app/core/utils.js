@@ -477,7 +477,7 @@ export default class Utils {
 
         loadContainer.style.textAlign = 'center';
         loadContainer.style.margin = '50px auto 0 auto';
-        loadContainer.style.width = '585px';
+        loadContainer.style.width = '655px';
         loadContainer.style.padding = '5%';
         loadContainer.style.borderRadius = '10px';
 

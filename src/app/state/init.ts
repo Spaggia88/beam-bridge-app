@@ -21,7 +21,9 @@ export async function initApp() {
         "appname": "BEAM Bridge app",
         "min_api_version": "6.1",
         "headless": false,
-        "apiResultHandler": (...args) => { console.log(...args) }
+        "apiResultHandler": (...args) => {
+            console.log('handler:', ...args)
+        }
       }, (err) => {
         Utils.download("./pipe_app.wasm", (err, bytes) => {
             Utils.invokeContract("role=user,action=get_pk,cid="+currencies[0].cid, 
