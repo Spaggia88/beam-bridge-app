@@ -5,6 +5,7 @@ import { Button, Input } from '@pages/shared';
 import { setView, View } from '@state/shared';
 import { $selectedCurrency } from '@state/send';
 import { send } from '@state/init';
+import AppCore from '@core/AppCore';
 
 const Container = styled.div`
   display: flex;
@@ -110,6 +111,9 @@ const Send = () => {
     const address = data.get('address') as string;
     const amount = parseFloat(data.get('amount') as string);
     const fee = parseFloat(data.get('fee') as string);
+
+    const calcValue = await AppCore.calcSomeFee(selectedCurrency.rate_id);
+    console.log(calcValue);
     
     send({
       amount, 

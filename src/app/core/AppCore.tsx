@@ -4,10 +4,12 @@ import {
 
 } from '@state/shared';
 import Utils from '@core/utils.js';
-import { Transaction, currencies } from '@core/types';
+import { Transaction, currencies, GasPrice } from '@core/types';
 
 const IN_PROGRESS_ID = 5;
 const RECEIVE_COMMENT = 'Receive funds';
+
+const API_URL = 'https://api.coingecko.com/api/v3/simple/price';
 
 export enum RPCMethod {
   GetPk = 'get_pk',
@@ -145,7 +147,6 @@ export default class AppCore {
     //setTransactions(transactions);
     //transactions = [];
     AppCore.loadAppTransactions();
-    console.log(AppCore.loadGasPrice());
   };
 
   static loadAppTransactions () {
@@ -159,5 +160,18 @@ export default class AppCore {
   static async loadGasPrice () {
     const response = await fetch(`https://masternet-explorer.beam.mw/bridges/gasprice`);
     return response.json();
+  }
+
+  static async loadRate (rate_id: string) {
+    const response = await fetch(`${API_URL}?ids=${rate_id}&vs_currencies=usd`);
+    const promise: Promise<any> = response.json();
+    return promise;
+  }
+
+  static async calcSomeFee (rate_id: string) {
+    const gasPrice:GasPrice = await AppCore.loadGasPrice();
+    const currRate = await AppCore.loadRate(rate_id);
+
+    return parseFloat(gasPrice.suggestBaseFee) * parseFloat(currRate[rate_id]['usd']);
   }
 }
