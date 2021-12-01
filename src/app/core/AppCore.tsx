@@ -118,7 +118,9 @@ export default class AppCore {
 
     Utils.callApi(
         'process_invoke_data', {data: full.result.raw_data}, 
-        (...args) => {}
+        (...args) => {
+          console.log(...args)
+        }
     )
   }
 
@@ -143,6 +145,7 @@ export default class AppCore {
     //setTransactions(transactions);
     //transactions = [];
     AppCore.loadAppTransactions();
+    console.log(AppCore.loadGasPrice());
   };
 
   static loadAppTransactions () {
@@ -151,5 +154,10 @@ export default class AppCore {
       (...args) => {
         AppCore.appTransactionsLoaded(...args);
     });
+  }
+
+  static async loadGasPrice () {
+    const response = await fetch(`https://masternet-explorer.beam.mw/bridges/gasprice`);
+    return response.json();
   }
 }
