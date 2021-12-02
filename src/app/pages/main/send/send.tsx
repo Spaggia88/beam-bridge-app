@@ -97,12 +97,24 @@ const Cancel = styled.button`
   }
 `;
 
+
+
 const Send = () => {
   const addressInputRef = useRef<HTMLInputElement>();
   const amountInputRef = useRef<HTMLInputElement>();
   const feeInputRef = useRef<HTMLInputElement>();
-  
+  const [feeVal, setFeeVal] = useState(0);
   const selectedCurrency = useStore($selectedCurrency);
+  //const calcValue = await AppCore.calcSomeFee(selectedCurrency.rate_id);
+  //setFee(123)
+
+  const getFee = async () => {
+    return await AppCore.calcSomeFee(selectedCurrency.rate_id);
+  }
+
+  getFee().then((data) => {
+    setFeeVal(data);
+  });
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
@@ -112,15 +124,15 @@ const Send = () => {
     const amount = parseFloat(data.get('amount') as string);
     const fee = parseFloat(data.get('fee') as string);
 
-    const calcValue = await AppCore.calcSomeFee(selectedCurrency.rate_id);
-    console.log(calcValue);
-    
-    send({
+    const sendData = {
       amount, 
       address: address.replace('0x',''), 
       fee,
       decimals: selectedCurrency.decimals 
-    }, selectedCurrency.cid);
+    };
+    console.log('Send info: ', sendData)
+    
+    send(sendData, selectedCurrency.cid);
     setView(View.BALANCE);
   }
 
@@ -151,7 +163,7 @@ const Send = () => {
         <FormSubtitle>AMOUNT</FormSubtitle>
         <Input variant='amount' ref={amountInputRef} name="amount"></Input>
         <FormSubtitle>FEE</FormSubtitle>
-        <Input variant='fee' ref={feeInputRef} name="fee"></Input>
+        <Input variant='fee' ref={feeInputRef} value={feeVal} name="fee"></Input>
         
         <SendStyled>
           <Cancel type="button" color="cancel" onClick={handleCancelClick}>cancel</Cancel>

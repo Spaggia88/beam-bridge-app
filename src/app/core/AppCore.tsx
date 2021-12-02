@@ -163,7 +163,12 @@ export default class AppCore {
   }
 
   static async loadRate (rate_id: string) {
-    const response = await fetch(`${API_URL}?ids=${rate_id}&vs_currencies=usd`);
+    const response = await fetch(`${API_URL}?ids=${rate_id}&vs_currencies=usd`, {
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':'*'
+      }
+    });
     const promise: Promise<any> = response.json();
     return promise;
   }
