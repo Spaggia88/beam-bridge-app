@@ -169,9 +169,15 @@ export default class AppCore {
   }
 
   static async calcSomeFee (rate_id: string) {
+    const RELAY_COSTS_IN_GAS = 120000;
+    const ETH_RATE_ID = 'ethereum';
+
     const gasPrice:GasPrice = await AppCore.loadGasPrice();
+    const ethRate = await AppCore.loadRate(ETH_RATE_ID)
+    const relayCosts = RELAY_COSTS_IN_GAS * parseFloat(gasPrice.FastGasPrice) * parseFloat(ethRate[ETH_RATE_ID]['usd']) / Math.pow(10, 9);
     const currRate = await AppCore.loadRate(rate_id);
 
-    return parseFloat(gasPrice.suggestBaseFee) * parseFloat(currRate[rate_id]['usd']);
+    const RELAY_SAFETY_COEFF = 1.1;
+    return RELAY_SAFETY_COEFF * relayCosts / parseFloat(currRate[rate_id]['usd']);
   }
 }
