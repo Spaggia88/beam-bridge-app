@@ -113,7 +113,7 @@ const Send = () => {
   }
 
   getFee().then((data) => {
-    setFeeVal(data);
+    feeInputRef.current.value = data.toFixed(selectedCurrency.decimals)
   });
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async event => {
@@ -163,7 +163,7 @@ const Send = () => {
         <FormSubtitle>AMOUNT</FormSubtitle>
         <Input variant='amount' ref={amountInputRef} name="amount"></Input>
         <FormSubtitle>FEE</FormSubtitle>
-        <Input variant='fee' ref={feeInputRef} value={feeVal} name="fee"></Input>
+        <Input variant='fee' ref={feeInputRef} name="fee"></Input>
         
         <SendStyled>
           <Cancel type="button" color="cancel" onClick={handleCancelClick}>cancel</Cancel>
