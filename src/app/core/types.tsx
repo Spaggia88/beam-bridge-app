@@ -36,27 +36,27 @@ export const currencies : Currency[] = [
         rate_id: 'tether',
         id: 1,
         decimals: 8,
-        cid: '3167ec1c51270cd9c7be5685d3b825ee20235982375bf4e1392e4a5bb0f66cec'
+        cid: '4f8892c4df5b14c988225d4c207e37f813c14e7c72790c40bcc679f5e11260dc'
     },
     {
         name:'bETH', 
         rate_id: 'ethereum',
         id: 2,
         decimals: 8,
-        cid: 'b8220407dea1d7f764df40ade9bb01a3e89ad6299c23dc8675e495ff018c80e3'
+        cid: '51793f69da15ffbe06fbc401a1936692e5a30a413bfe59c69db87f9f029c5b9f'
     },
     {
         name:'bDAI',
         rate_id: 'dai',
         id: 3,
         decimals: 8,
-        cid: 'af3e4f34edc2f785fe70520cae7d4b6254d1cbb9809b2702964e7233f8c23f3c'
+        cid: '0ac114de582cc964205e84293e280b490a7339310f2eeacb4f6dd29a1e27b730'
     },
     {
         name:'bWBTC',
         rate_id: 'wrapped-bitcoin',
         id: 4,
         decimals: 8,
-        cid: '210701a3cbc6bd4204d4aef2be397163fc50638d3f1be722d3ceebe0e3cfe428'
+        cid: 'd783a8185610a1de5e654cb1ad3a0d76dd870b06a0b872b802c8e61a103d3574'
     },
 ];;
