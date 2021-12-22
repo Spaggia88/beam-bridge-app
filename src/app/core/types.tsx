@@ -1,3 +1,7 @@
+export type Pallete = 'green' | 'ghost' | 'purple' | 'blue' | 'red' | 'white' | 'disconnect';
+
+export type ButtonVariant = 'regular' | 'ghost' | 'block' | 'link' | 'icon' | 'validate' | 'darkest_blue' | 'revoke';
+
 export interface SendParams {
     decimals: number,
     amount: number,

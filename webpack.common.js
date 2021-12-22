@@ -8,7 +8,6 @@ module.exports = {
   mode: 'development',
   devtool: 'eval-source-map',
   devServer: {
-    contentBase: './html',
     port: 13666
   },
   entry: {
@@ -28,6 +27,10 @@ module.exports = {
         test: /\.tsx?$/,
         use: ['babel-loader', '@linaria/webpack-loader'],
         exclude: /node_modules/,
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack', 'svgo-loader'],
       },
       {
         test: /\.css$/,

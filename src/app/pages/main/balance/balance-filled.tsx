@@ -8,6 +8,7 @@ import {
 } from '@state/shared';
 import { Button, Table } from '@pages/shared';
 import { currencies, Transaction } from '@app/core/types';
+import { IconReceive, IconSend } from '@app/icons';
 
 const Container = styled.div`
   display: flex;
@@ -40,8 +41,8 @@ const StyledTable = styled.div`
   overflow: hidden;
 `;
 
-const receiveButton = css`
-    margin-left: 20px;
+const receiveButtonClass = css`
+    margin-left: 20px !important;
 `;
 
 const handleSendClick: React.MouseEventHandler = () => {
@@ -85,15 +86,18 @@ const BalanceFilled: React.FC<any> = () => {
 
   return (
     ready ? (<Container>
-        {/* <Content>
-            <BalanceCard type="usdt" balanceValue={usdtBalance}></BalanceCard>
-            <BalanceCard type="eth" balanceValue={ethBalance}></BalanceCard>
-        </Content> */}
         <StyledControls>
-            <Button color="send" onClick={handleSendClick}>send</Button>
-            <span className={receiveButton}>
-                <Button color="receive" onClick={handleReceiveClick}>receive</Button>
-            </span>
+          <Button icon={IconSend}
+          pallete="purple"
+          onClick={handleSendClick}>
+            beam to ethereum
+          </Button>
+          <Button icon={IconReceive}
+          className={receiveButtonClass}
+          pallete="blue"
+          onClick={handleReceiveClick}>
+            ethereum to beam
+          </Button>
         </StyledControls>
         <StyledTable>
           <Table config={TABLE_CONFIG} data={data} keyBy='MsgId'/>

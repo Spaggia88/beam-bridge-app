@@ -106,7 +106,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
     }
   };
 
-  return data.length > 0 ? (
+  return !isNil(data) && data.length > 0 ? (
     <StyledTable>
       <StyledThead>
         <tr>
