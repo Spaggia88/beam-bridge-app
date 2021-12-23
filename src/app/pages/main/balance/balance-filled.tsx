@@ -48,6 +48,9 @@ const receiveButtonClass = css`
 const EmptyTableContent = styled.div`
   text-align: center;
   margin-top: 72px;
+  font-size: 14px;
+  font-style: italic;
+  color: #8da1ad;
 `;
 
 const handleSendClick: React.MouseEventHandler = () => {

@@ -65,7 +65,7 @@ export const currencies : Currency[] = [
         rate_id: 'wrapped-bitcoin',
         id: 4,
         decimals: 8,
-        fee_decimals: 6,
+        fee_decimals: 8,
         cid: 'd783a8185610a1de5e654cb1ad3a0d76dd870b06a0b872b802c8e61a103d3574'
     },
 ];;
