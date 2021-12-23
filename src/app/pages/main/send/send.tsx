@@ -6,97 +6,93 @@ import { setView, View } from '@state/shared';
 import { $selectedCurrency } from '@state/send';
 import { send } from '@state/init';
 import AppCore from '@core/AppCore';
+import { css } from '@linaria/core';
+
+import { IconCancel } from '@app/icons';
+
+const SendStyled = styled.div`
+  width: 580px;
+  margin: 30px auto !important;
+`;
+
+const Title = styled.div`
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-align: center;
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-`;
-
-const Title = styled.h1`
-  font-size: 14px;
-  letter-spacing: 4px;
-`;
-
-const ControlStyled = styled.div`
-  width: 600px;
-  margin: 20px auto;
-  flex-direction: row;
-  display: flex;
-`;
-
-const BackControl = styled.div`
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-`;
-
-const BackControlIcon = styled.object`
-  display: block;
-  margin-right: 15px;
-`;
-
-const BackControlText = styled.p`
-  opacity: .3;
-  font-size: 14px;
-  font-weight: bold;
-`;
-
-const FormStyled = styled.form`
-  width: 600px;
-  margin-top: 30px;
-  backdrop-filter: blur(10px);
   border-radius: 10px;
-  background-color: rgba(13, 77, 118, .9);
-  padding: 0 20px;
-  padding-bottom: 30px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  margin-top: 30px;
+`;
+
+const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 50px 20px;
+  margin-top: 20px;
 `;
 
-const FormTitle = styled.p`
-  font-size: 24px;
-  font-weight: bold;
-  align-self: center;
-`;
-
-const FormSubtitle = styled.p`
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 30px;
-`;
-
-const SendStyled = styled.div`
+const ContainerLine = styled.p`
+  color: rgba(255, 255, 255, .7);
+  font-size: 16px;
+  font-style: italic;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-left: 20px;
-  margin-top: 50px;
 `;
 
-const handleBackClick: React.MouseEventHandler = () => {
-  setView(View.BALANCE);
-};
-
-const Cancel = styled.button`
-  margin-right: 20px;
-  display: block;
-  padding: 10px 30px;
-  border: none;
-  border-radius: 50px;
-  background-color: var(--color-cancel)};
-  text-align: center;
-  font-weight: bold;
+const Subtitle = styled.p`
   font-size: 14px;
-  color: #ffffff;
-  cursor: pointer;
-
-  &:hover,
-  &:active {
-    box-shadow: 0 0 8px white;
-  }
+  font-weight: bold;
+  letter-spacing: 3.11px;
 `;
 
+const EnsureField = styled.p`
+  opacity: 0.5;
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.26px;
+  margin-left: 15px;
+  margin-top: 10px;
+`;
+
+const InfoList = styled.div`
+  margin-left: 15px;
+  line-height: 1.88;
+  margin-top: 20px;
+`;
+
+const Number = styled.span`
+  width: 25px;
+`;
+
+const Text = styled.span`
+  max-width: 480px;
+  word-break: break-word;
+`;
+
+const LinkClass = css`
+  color: #00f6d2;
+  text-decoration: none;
+  font-weight: bold
+  margin-left: 4px;
+`;
+
+const CancelButtonClass = css`
+  max-width: 133px !important;
+`;
+
+const pTitle = css`
+  color: rgba(255, 255, 255, 1) !important;
+  font-weight: bold;
+`;
 
 
 const Send = () => {
@@ -104,9 +100,14 @@ const Send = () => {
   const amountInputRef = useRef<HTMLInputElement>();
   const feeInputRef = useRef<HTMLInputElement>();
   const [feeVal, setFeeVal] = useState(0);
+  const [address, setAddress] = useState(null);
   const selectedCurrency = useStore($selectedCurrency);
   //const calcValue = await AppCore.calcSomeFee(selectedCurrency.rate_id);
   //setFee(123)
+  
+  const handleBackClick: React.MouseEventHandler = () => {
+    setView(View.BALANCE);
+  };
 
   const getFee = async () => {
     return await AppCore.calcSomeFee(selectedCurrency.rate_id);
@@ -136,41 +137,83 @@ const Send = () => {
     setView(View.BALANCE);
   }
 
-  const handleCancelClick = (event) => {
-    event.preventDefault();
-    setView(View.BALANCE);
+  const cancelClicked = () => {
+    setView(View.BALANCE)
+  }
+
+  const inputChange = (event) => {
+    let value = event.target.value;
+    setAddress(value);
   }
 
   return (
-    <Container>
-      <Title>Send</Title>
-      {/* <ControlStyled>
-        <BackControl onClick={handleBackClick}>
-          <BackControlIcon
-            type="image/svg+xml"
-            data={'./assets/icon-back.svg'}
-            width="16"
-            height="16"
-          ></BackControlIcon>
-          <BackControlText>
-            back
-          </BackControlText>
-        </BackControl>
-      </ControlStyled> */}
-      <FormStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <FormSubtitle>ETH WALLET ADDRESS</FormSubtitle>
-        <Input variant='common' ref={addressInputRef} name="address"></Input>
-        <FormSubtitle>AMOUNT</FormSubtitle>
-        <Input variant='amount' ref={amountInputRef} name="amount"></Input>
-        <FormSubtitle>FEE</FormSubtitle>
-        <Input variant='fee' ref={feeInputRef} name="fee"></Input>
+    // <Container>
+    //   <Title>Send</Title>
+    //   <FormStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
+    //     <FormSubtitle>ETH WALLET ADDRESS</FormSubtitle>
+    //     
+    //     <FormSubtitle>AMOUNT</FormSubtitle>
+    //     <Input variant='amount' ref={amountInputRef} name="amount"></Input>
+    //     <FormSubtitle>FEE</FormSubtitle>
+    //     <Input variant='fee' ref={feeInputRef} name="fee"></Input>
         
-        <SendStyled>
-          <Cancel type="button" color="cancel" onClick={handleCancelClick}>cancel</Cancel>
-          <Button color="send">send</Button>
-        </SendStyled>
-      </FormStyled>
-    </Container>
+    //     <SendStyled>
+    //       <Cancel type="button" color="cancel" onClick={handleCancelClick}>cancel</Cancel>
+    //       <Button color="send">send</Button>
+    //     </SendStyled>
+    //   </FormStyled>
+    // </Container>
+    <SendStyled>
+      <Title>
+        BEAM TO ETHEREUM
+      </Title>
+      <Container>
+        <Subtitle>ETHEREUM BRIDGE ADDRESS</Subtitle>
+        <Input placeholder="Paste Ethereum bridge address here"
+          onChange={ inputChange }
+          variant="common" ref={addressInputRef} name="address"/>
+        <EnsureField>Ensure the address matches the Ethereum network to avoid losses</EnsureField>
+      </Container>
+
+      { address ? 
+        (<></>) : 
+        (<InfoContainer>
+          <ContainerLine>
+            In order to transfer from Beam to Ethereum network, do the following:
+          </ContainerLine>
+          <InfoList>
+            <ContainerLine>
+              <Number>1.</Number>
+              <Text>
+              <a href="https://bridge-ethapp.web.app" className={LinkClass} target="_blank"> 
+                Ethereum side of the bridge
+              </a> in your web browser</Text>
+            </ContainerLine>
+            <ContainerLine>
+              <Number>2.</Number>
+              <Text>Connect your Metamask wallet</Text>
+            </ContainerLine>
+            <ContainerLine>
+              <Number>3.</Number>
+              <Text>Choose <span className={pTitle}>Beam to Ethereum </span> 
+              and follow instructions to obtain Ethereum bridge address</Text>
+            </ContainerLine>
+            <ContainerLine>
+              <Number>4.</Number>
+              <Text>Get back to this screen and paste the address</Text>
+            </ContainerLine>
+          </InfoList>
+        </InfoContainer>)
+      }
+      <SendStyled>
+        <Button variant="ghost" 
+        onClick={cancelClicked} 
+        pallete="purple" 
+        className={CancelButtonClass}
+        icon={IconCancel}> cancel</Button>
+        {/* <Button color="send">send</Button> */}
+       </SendStyled>
+    </SendStyled>
   );
 };
 

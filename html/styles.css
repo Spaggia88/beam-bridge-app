@@ -1,5 +1,5 @@
 /*!*********************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/main/connect/connect.linaria.css ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./.linaria-cache/src/app/pages/main/connect/connect.linaria.css ***!
   \*********************************************************************************************************************************************/
 .c1y3h36i{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
 .t1uoqc41{margin-top:240px;font-size:56px;font-weight:900;}
@@ -8,19 +8,27 @@
 .c1jhng8y{font-size:16px;font-weight:bold;color:#032e49;}
 
 /*!********************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/shared/balance-card.linaria.css ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./.linaria-cache/src/app/pages/shared/balance-card.linaria.css ***!
   \********************************************************************************************************************************************/
 .cyapt4y{width:calc((100% - 10px) / 2);height:75px;margin-top:10px;padding:20px;border-radius:10px;background-image:linear-gradient(99deg, var(--cyapt4y-0) 2%,rgb(0,69,143,.3) 99%);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
 .l5ui9hx{display:block;}
 .bj2d4rr{font-size:16px;margin-left:10px;}
 
 /*!**************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/shared/button.linaria.css ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./.linaria-cache/src/app/pages/shared/button.linaria.css ***!
   \**************************************************************************************************************************************/
-.b1oe7wau{display:block;padding:10px 30px;border:none;border-radius:50px;background-color:var(--b1oe7wau-0);text-align:center;font-weight:bold;font-size:14px;color:#032e49;cursor:pointer;}.b1oe7wau:hover,.b1oe7wau:active{box-shadow:0 0 8px white;}
+.b1oe7wau[disabled]{opacity:0.5;}.b1oe7wau[disabled]:hover,.b1oe7wau[disabled]:active{box-shadow:none !important;cursor:not-allowed !important;}
+.b1f1qi5y.b1oe7wau{display:block;width:100%;max-width:254px;margin:0 auto;margin-bottom:10px;padding:8px 24px;border:none;border-radius:50px;background-color:var(--b1f1qi5y-0);text-align:center;font-weight:bold;font-size:14px;color:var(--color-dark-blue);}.b1f1qi5y.b1oe7wau:hover,.b1f1qi5y.b1oe7wau:active{box-shadow:0 0 8px white;cursor:pointer;}.b1f1qi5y.b1oe7wau > svg{vertical-align:sub;margin-right:10px;}
+.g1kagb6w.b1f1qi5y.b1oe7wau{background-color:rgba(255,255,255,0.1);color:white;}.g1kagb6w.b1f1qi5y.b1oe7wau:hover,.g1kagb6w.b1f1qi5y.b1oe7wau:active{box-shadow:0 0 8px rgba(255,255,255,0.15);background-color:rgba(255,255,255,0.3);}
+.bg1xn4y.g1kagb6w.b1f1qi5y.b1oe7wau{width:100%;max-width:none;padding:20px;border-radius:10px;background-color:rgba(255,255,255,0.03);font-size:14px;text-align:left;text-transform:uppercase;-webkit-letter-spacing:3px;-moz-letter-spacing:3px;-ms-letter-spacing:3px;letter-spacing:3px;color:var(--bg1xn4y-0);}.bg1xn4y.g1kagb6w.b1f1qi5y.b1oe7wau:hover,.bg1xn4y.g1kagb6w.b1f1qi5y.b1oe7wau:active{background-color:rgba(255,255,255,0.1);box-shadow:none;}
+.ife5zce.b1oe7wau{display:inline-block;vertical-align:sub;line-height:0;margin:0 10px;padding:0;background-color:transparent;border:none;cursor:pointer;color:var(--ife5zce-0);}.ife5zce.b1oe7wau > svg{vertical-align:sub;}
+.l826ohx.ife5zce.b1oe7wau{margin:20px 0;font-size:14px;font-weight:700;color:var(--l826ohx-0);}
+.rludnra.g1kagb6w.b1f1qi5y.b1oe7wau{color:var(--color-disconnect);border:1px solid var(--color-disconnect);padding:10px 30px;font-size:14px;font-weight:600;margin:0;background-color:transparent;}.rludnra.g1kagb6w.b1f1qi5y.b1oe7wau:hover,.rludnra.g1kagb6w.b1f1qi5y.b1oe7wau:active{box-shadow:0 0 8px rgba(255,255,255,0.15);background-color:rgba(255,255,255,0.3);}
+.v1qome1g.g1kagb6w.b1f1qi5y.b1oe7wau{color:var(--color-green);border:1px solid var(--color-green);padding:8px 30px;font-size:14px;font-weight:600;margin:0;}
+.d9f0j8r.b1f1qi5y.b1oe7wau{color:var(--color-darkest-blue);}
 
 /*!*************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/shared/input.linaria.css ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./.linaria-cache/src/app/pages/shared/input.linaria.css ***!
   \*************************************************************************************************************************************/
 .cw4stxj{margin-top:20px;position:relative;background-color:rgba(255,255,255,.05);border-radius:10px;width:100%;height:59px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:8px 15px;}
 .i1usz2p7{line-height:20px;border:none;font-size:var(--i1usz2p7-0);color:var(--i1usz2p7-1);background-color:transparent;width:var(--i1usz2p7-2);height:100%;-moz-appearance:textfield;}.i1usz2p7::-webkit-inner-spin-button,.i1usz2p7::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
@@ -31,7 +39,7 @@
 .t48np3t{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #8da1ad;margin-left:5px;}
 
 /*!*************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/shared/table.linaria.css ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./.linaria-cache/src/app/pages/shared/table.linaria.css ***!
   \*************************************************************************************************************************************/
 .sdw61z9{width:600px;}
 .s1x2uxhh{height:40px;border-radius:10px;background-color:rgba(15,77,130,.6);}
@@ -41,15 +49,15 @@
 .cqlcz08{display:block;margin-right:15px;}
 
 /*!****************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/main/balance/balance-filled.linaria.css ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./.linaria-cache/src/app/pages/main/balance/balance-filled.linaria.css ***!
   \****************************************************************************************************************************************************/
 .ceemmbl{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:50px 0;}
 .sddggjs{margin-top:50px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}
 .sbcv357{margin-top:30px;border-radius:10px;overflow:hidden;}
-.r15xlc66{margin-left:20px;}
+.r15xlc66{margin-left:20px !important;}
 
 /*!***************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/main/send/send.linaria.css ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./.linaria-cache/src/app/pages/main/send/send.linaria.css ***!
   \***************************************************************************************************************************************/
 .c1dz5069{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
 .t1rjd5k7{font-size:14px;-webkit-letter-spacing:4px;-moz-letter-spacing:4px;-ms-letter-spacing:4px;letter-spacing:4px;}
@@ -59,22 +67,36 @@
 .c13lx7u7{margin-right:20px;display:block;padding:10px 30px;border:none;border-radius:50px;background-color:var(--color-cancel);text-align:center;font-weight:bold;font-size:14px;color:#ffffff;cursor:pointer;}.c13lx7u7:hover,.c13lx7u7:active{box-shadow:0 0 8px white;}
 
 /*!*********************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/pages/main/receive/receive.linaria.css ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./.linaria-cache/src/app/pages/main/receive/receive.linaria.css ***!
   \*********************************************************************************************************************************************/
-.czv7lc7{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
-.td446te{font-size:14px;-webkit-letter-spacing:4px;-moz-letter-spacing:4px;-ms-letter-spacing:4px;letter-spacing:4px;}
-.ci3h8jc{width:580px;border-radius:10px;background-color:rgba(13,77,118,.9);padding:50px 20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-top:30px;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
-.c1tg1yqr{opacity:0.7;font-size:16px;font-style:italic;}
-.p1ppyx6z{font-size:14px;line-height:1.43;margin-top:20px;margin-bottom:30px;}
-.s1f3z2fq{margin-left:auto;}
-.d8p17ku{cursor:pointer;background-color:transparent;border:none;font-size:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
-.d1038962{font-size:16px;padding:10px;cursor:pointer;}
-.d1bxvc5y{z-index:100;position:absolute;background-color:rgba(11,204,247);display:var(--d1bxvc5y-0);}
-.t1muk3ao{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #8da1ad;margin-left:5px;}
+.bzv7lc7{position:fixed;z-index:3;top:0;left:0;width:100%;height:100%;}
+.sd446te{margin-top:20px;}
+.di3h8jc{cursor:pointer;background-color:transparent;border:none;font-size:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:234px;height:55px;border-radius:10px;background-color:rgba(255,255,255,0.05);padding:15px 24px;}
+.d1tg1yqr{font-size:16px;padding:8px 0;cursor:pointer;font-size:16px;-webkit-letter-spacing:0.4px;-moz-letter-spacing:0.4px;-ms-letter-spacing:0.4px;letter-spacing:0.4px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+.d1ppyx6z{z-index:100;width:234px;border-radius:10px;position:absolute;background-color:#1c3a59;margin-top:10px;padding:12px 24px;display:var(--d1ppyx6z-0);}
+.t9eoyqk{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #8da1ad;margin-left:auto;}
+.c1f3z2fq{line-height:1;margin-left:16px;}
+.s8p17ku{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;margin:20px 0;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+.t1038962{font-size:16px;font-style:italic;color:rgba(255,255,255,0.7);}
+.l1bxvc5y{height:1px;width:202px;background-color:rgba(255,255,255,0.1);}
+.s1muk3ao{padding:8px 10px;border-radius:10px;background-color:rgba(255,255,255,0.05);margin-top:10px;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:480px;}
+.cj0efhv{margin-right:20px;font-size:14px;font-style:italic;color:#b7c1cb;max-width:424px;word-break:break-word;}
+.cr6x27f{cursor:pointer;}
+.r1wy3u8f{width:580px;margin:0 auto !important;}
+.t16wnej0{font-size:14px;font-weight:bold;-webkit-letter-spacing:4px;-moz-letter-spacing:4px;-ms-letter-spacing:4px;letter-spacing:4px;text-align:center;}
+.c1awa5ly{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;border-radius:10px;background-color:rgba(255,255,255,0.05);padding:50px;margin-top:32px;}
+.srds99k{opacity:0.7;font-size:16px;font-style:italic;text-align:center;}
+.snk096p{height:1px;width:100%;background-color:rgba(255,255,255,0.1);margin-top:50px;margin-bottom:40px;}
+.c1cos737{color:rgba(255,255,255,.7);font-size:16px;font-style:italic;}
+.bi770by{font-weight:bold;}
+.i1lhplzp{margin-top:20px;}
+.s1at70e5{margin-top:10px;}
+.pkcmbxs{color:rgba(255,255,255,1) !important;font-weight:bold;}
+.l1jmwq6{color:#00f6d2;-webkit-text-decoration:none;text-decoration:none;font-weight:bold;margin-left:4px;}
+.ctvwfg0{margin-top:30px !important;margin-bottom:50px !important;}
 
-/*!**********************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./.linaria-cache/src/app/app.linaria.css ***!
-  \**********************************************************************************************************************/
-:root{--color-send:#da68f5;--color-receive:#0bccf7;--color-cancel:rgba(255,255,255,0.1);--color-usdt-from:rgba(255,116,107,.3);--color-eth-from:rgba(115,255,124,.3);}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-Regular.ttf');font-weight:400;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-RegularIt.ttf');font-weight:400;font-style:italic;}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-Semibold.ttf');font-weight:600;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('assets/fonts/ProximaNova-Bold.ttf');font-weight:700;font-style:normal;}*{box-sizing:border-box;outline:none;}html,body,#root,#root>div{margin:0;padding:0;}body{font-size:14px;color:white;background-color:transparent;background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover;}body.web{background-color:#042548;}html *{font-family:'ProximaNova',sans-serif;}h1,h2{margin:0;}p{margin:0;}tr,th,table{border:none;border-spacing:0;padding:0;margin:0;border-collapse:inherit;}
-
+/*!*************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./.linaria-cache/src/app/styles.linaria.css ***!
+  \*************************************************************************************************************************/
+:root{--color-purple:#da68f5;--color-red:#f25f5b;--color-yellow:#f4ce4a;--color-green:#00f6d2;--color-blue:#0bccf7;--color-dark-blue:#042548;--color-darkest-blue:#032e49;--color-white:#ffffff;--color-gray:#8196a4;--color-white:white;--color-disconnect:#ff746b;--color-popup:rgba(13,77,118,.95);--color-select:#184469;--color-disabled:#8da1ad;--color-usdt-from:rgba(80,175,149,.3);--color-eth-from:rgba(94,123,242,.3);--color-wbtc-from:rgba(247,147,26,.3);--color-dai-from:rgba(245,172,55,.3);}@font-face{font-family:'ProximaNova';src:url('/assets/fonts/ProximaNova-Regular.ttf');font-weight:400;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('/assets/fonts/ProximaNova-RegularIt.ttf');font-weight:400;font-style:italic;}@font-face{font-family:'ProximaNova';src:url('/assets/fonts/ProximaNova-Semibold.ttf');font-weight:600;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('/assets/fonts/ProximaNova-Bold.ttf');font-weight:700;font-style:normal;}@font-face{font-family:'SFProDisplay';src:url('/assets/fonts/SFProDisplay-Regular.ttf');font-weight:400;font-style:normal;}@font-face{font-family:'SFProDisplay';src:url('/assets/fonts/SFProDisplay-RegularItalic.ttf');font-weight:400;font-style:italic;}@font-face{font-family:'SFProDisplay';src:url('/assets/fonts/SFUIDisplay-Medium.otf');font-weight:600;font-style:normal;}@font-face{font-family:'SFProDisplay';src:url('/assets/fonts/SFProDisplay-Bold.ttf');font-weight:700;font-style:normal;}*{box-sizing:border-box;outline:none;}html,body,#root,#root>div{margin:0;padding:0;}html *{font-family:'ProximaNova',sans-serif;}body{font-size:14px;color:white;background-image:url(assets/bg.png);background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover;}p{margin:0;}h1,h2{margin:0;}ul,ol{list-style:none;margin:0;padding:0;}tr,th,table{border:none;border-spacing:0;padding:0;margin:0;border-collapse:inherit;}
 

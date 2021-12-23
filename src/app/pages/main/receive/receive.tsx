@@ -203,7 +203,7 @@ const CopyArea: React.FC<CopyAreaProps> = ({
     font-style: italic;
     color: #b7c1cb;
     max-width: 424px;
-    word-break: break-word; 
+    word-break: break-word;
   `;
 
   const CopyClass = css`
@@ -298,6 +298,7 @@ const LinkClass = css`
 const CancelButtonClass = css`
   margin-top: 30px !important;
   margin-bottom: 50px !important;
+  max-width: 133px !important;
 `;
 
 const Receive = () => {

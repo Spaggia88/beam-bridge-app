@@ -19,7 +19,7 @@ const ContainerStyled = styled.div`
   background-color: rgba(255, 255, 255, .05);
   border-radius: 10px;
   width: 100%;
-  height: 59px;
+  height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -42,14 +42,16 @@ const InputStyled = styled.input<InputProps>`
     margin: 0;
   }
 
-  // &::placeholder {
-  //   position: absolute;
-  //   top: 0;
-  //   left: 3px;
-  //   line-height: inherit;
-  //   color: white;
-  //   opacity: 0.5;
-  // }
+  &::placeholder {
+    position: absolute;
+    top: 0;
+    left: 3px;
+    line-height: inherit;
+    color: white;
+    opacity: 0.3;
+    font-size: 14px;
+    font-style: italic;
+  }
 `;
 
 // const ErrorStyled = styled.div`
