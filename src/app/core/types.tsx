@@ -14,7 +14,8 @@ export interface Currency {
     rate_id: string,
     decimals: number,
     name: string,
-    cid: string
+    cid: string,
+    fee_decimals: number
 }
 
 export interface Transaction {
@@ -40,6 +41,7 @@ export const currencies : Currency[] = [
         rate_id: 'tether',
         id: 1,
         decimals: 8,
+        fee_decimals: 6,
         cid: '4f8892c4df5b14c988225d4c207e37f813c14e7c72790c40bcc679f5e11260dc'
     },
     {
@@ -47,6 +49,7 @@ export const currencies : Currency[] = [
         rate_id: 'ethereum',
         id: 2,
         decimals: 8,
+        fee_decimals: 8,
         cid: '51793f69da15ffbe06fbc401a1936692e5a30a413bfe59c69db87f9f029c5b9f'
     },
     {
@@ -54,6 +57,7 @@ export const currencies : Currency[] = [
         rate_id: 'dai',
         id: 3,
         decimals: 8,
+        fee_decimals: 8,
         cid: '0ac114de582cc964205e84293e280b490a7339310f2eeacb4f6dd29a1e27b730'
     },
     {
@@ -61,6 +65,7 @@ export const currencies : Currency[] = [
         rate_id: 'wrapped-bitcoin',
         id: 4,
         decimals: 8,
+        fee_decimals: 6,
         cid: 'd783a8185610a1de5e654cb1ad3a0d76dd870b06a0b872b802c8e61a103d3574'
     },
 ];;

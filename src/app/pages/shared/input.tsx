@@ -3,6 +3,8 @@ import { styled } from '@linaria/react';
 import { setCurrency, $selectedCurrency} from '@state/send';
 import { currencies } from '@core/types';
 import { useStore } from 'effector-react';
+import { css } from '@linaria/core';
+import { IconDai, IconEth, IconUsdt, IconWbtc } from '@app/icons';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
@@ -54,6 +56,10 @@ const InputStyled = styled.input<InputProps>`
   }
 `;
 
+const AddressClass = css`
+  height: 55px;
+`;
+
 // const ErrorStyled = styled.div`
 //   position: absolute;
 //   top: 33px;
@@ -93,15 +99,21 @@ const Selector = (data: {type: string}) => {
 
   const DropdownElemOption = styled.div`
     font-size: 16px;
-    padding: 10px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
   `;
 
   const DropdownBody = styled.div<DropdownProps>`
     z-index: 100;
     position: absolute;
-    background-color: rgba(11, 204, 247);
+    background-color: #1c3a59;
     display: ${({ isVisible }) => `${isVisible ? 'block' : 'none'}`};
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: -19px;
+    padding: 20px;
   `;
 
   const Triangle = styled.div`
@@ -113,17 +125,30 @@ const Selector = (data: {type: string}) => {
     margin-left: 5px;
   `;
 
+  const CurrencyClass = css`
+    line-height: 1;
+    margin-left: 16px;
+  `;
+    
+  const ICONS = {
+    'bUSDT': () => <IconUsdt/>,
+    'bWBTC': () => <IconWbtc/>,
+    'bDAI': () => <IconDai/>,
+    'bETH': () => <IconEth/>,
+  };
+
   return data.type === 'amount' ? (
     <StyledDropdown>
       <DropdownElem onClick={toggleDropdown}>
-        {selectedCurrency.name}
+        {ICONS[selectedCurrency.name]()}
+        <span className={CurrencyClass}>{selectedCurrency.name}</span>
         <Triangle></Triangle>
       </DropdownElem>
       <DropdownBody isVisible={isOpen} className={`dropdown-body ${isOpen && 'open'}`}>
         {items.map(item => (
           <DropdownElemOption key={item.id} onClick={e => handleItemClick(item)}>
-            {/* <span className={`${item.id == selectedItem.id && 'selected'}`}>• </span> */}
-            {item.name}
+            {ICONS[item.name]()}
+            <span className={CurrencyClass}>{item.name}</span>
           </DropdownElemOption>
         ))}
       </DropdownBody>
@@ -146,7 +171,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       event.target.value = value;
     }
 
-    return (<ContainerStyled>
+    return (<ContainerStyled className={variant === 'amount' ? AddressClass : null}>
       <InputStyled
         variant={variant} ref={ref} 
         onChange={variant === 'amount' || variant === 'fee' ? inputChange : null}

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useStore } from 'effector-react';
 import { styled } from '@linaria/react';
 import { Button, Input } from '@pages/shared';
@@ -8,11 +8,18 @@ import { send } from '@state/init';
 import AppCore from '@core/AppCore';
 import { css } from '@linaria/core';
 
-import { IconCancel } from '@app/icons';
+import { IconCancel, IconSend } from '@app/icons';
 
-const SendStyled = styled.div`
+const SendStyled = styled.form`
   width: 580px;
-  margin: 30px auto !important;
+  margin: 0 auto !important;
+`;
+
+const ControlsStyled = styled.div`
+  margin: 30px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 const Title = styled.div`
@@ -87,6 +94,12 @@ const LinkClass = css`
 
 const CancelButtonClass = css`
   max-width: 133px !important;
+  margin: 0 !important;
+`;
+
+const TransferButtonClass = css`
+  max-width: 141px !important;
+  margin: 0 0 0 20px !important;
 `;
 
 const pTitle = css`
@@ -94,6 +107,45 @@ const pTitle = css`
   font-weight: bold;
 `;
 
+const SendClass = css`
+  height: 55px !important;
+`;
+
+const AmountContainer = styled.div`
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  margin-top: 20px;
+`;
+
+const FeeContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+const FeeItem = styled.div`
+`;
+
+const FeeValue = styled.div`
+  font-size: 14px;
+  font-weight: 600;
+  color: #da68f5;
+  margin-top: 10px;
+`;
+
+const FormSubtitle = styled.p`
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 30px;
+  letter-spacing: 3.11px;
+  color: rgba(255, 255, 255, 0.5);
+`;
+
+const FeeSubtitleClass = css`
+  margin-top: 0 !important;
+`;
 
 const Send = () => {
   const addressInputRef = useRef<HTMLInputElement>();
@@ -102,9 +154,16 @@ const Send = () => {
   const [feeVal, setFeeVal] = useState(0);
   const [address, setAddress] = useState(null);
   const selectedCurrency = useStore($selectedCurrency);
-  //const calcValue = await AppCore.calcSomeFee(selectedCurrency.rate_id);
-  //setFee(123)
   
+  useEffect(() => {
+    if (address && address.length > 0) {
+      getFee().then((data) => {
+        setFeeVal(parseFloat(data.toFixed(selectedCurrency.fee_decimals)))
+      });
+    }
+  }, [address, selectedCurrency]);
+
+
   const handleBackClick: React.MouseEventHandler = () => {
     setView(View.BALANCE);
   };
@@ -112,10 +171,6 @@ const Send = () => {
   const getFee = async () => {
     return await AppCore.calcSomeFee(selectedCurrency.rate_id);
   }
-
-  getFee().then((data) => {
-    feeInputRef.current.value = data.toFixed(selectedCurrency.decimals)
-  });
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
@@ -128,7 +183,7 @@ const Send = () => {
     const sendData = {
       amount, 
       address: address.replace('0x',''), 
-      fee,
+      fee: feeVal,
       decimals: selectedCurrency.decimals 
     };
     console.log('Send info: ', sendData)
@@ -147,23 +202,7 @@ const Send = () => {
   }
 
   return (
-    // <Container>
-    //   <Title>Send</Title>
-    //   <FormStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
-    //     <FormSubtitle>ETH WALLET ADDRESS</FormSubtitle>
-    //     
-    //     <FormSubtitle>AMOUNT</FormSubtitle>
-    //     <Input variant='amount' ref={amountInputRef} name="amount"></Input>
-    //     <FormSubtitle>FEE</FormSubtitle>
-    //     <Input variant='fee' ref={feeInputRef} name="fee"></Input>
-        
-    //     <SendStyled>
-    //       <Cancel type="button" color="cancel" onClick={handleCancelClick}>cancel</Cancel>
-    //       <Button color="send">send</Button>
-    //     </SendStyled>
-    //   </FormStyled>
-    // </Container>
-    <SendStyled>
+    <SendStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
       <Title>
         BEAM TO ETHEREUM
       </Title>
@@ -176,7 +215,20 @@ const Send = () => {
       </Container>
 
       { address ? 
-        (<></>) : 
+        (<AmountContainer>
+          <Subtitle>AMOUNT</Subtitle>
+          <Input className={SendClass} variant='amount' ref={amountInputRef} name="amount"></Input>
+          <FeeContainer>
+            <FeeItem>
+              <FormSubtitle className={FeeSubtitleClass}>RELAYER FEE</FormSubtitle>
+              <FeeValue>{feeVal}</FeeValue>
+            </FeeItem>
+            <FeeItem>
+              <FormSubtitle className={FeeSubtitleClass}>TRANSACTION FEE</FormSubtitle>
+              <FeeValue>{0.0001}</FeeValue>
+            </FeeItem>
+          </FeeContainer>
+        </AmountContainer>) : 
         (<InfoContainer>
           <ContainerLine>
             In order to transfer from Beam to Ethereum network, do the following:
@@ -205,14 +257,18 @@ const Send = () => {
           </InfoList>
         </InfoContainer>)
       }
-      <SendStyled>
+      <ControlsStyled>
         <Button variant="ghost" 
         onClick={cancelClicked} 
         pallete="purple" 
         className={CancelButtonClass}
         icon={IconCancel}> cancel</Button>
-        {/* <Button color="send">send</Button> */}
-       </SendStyled>
+        { address ? 
+          (<Button type="submit" icon={IconSend} className={TransferButtonClass}
+          pallete="purple" variant="regular">transfer</Button>) : 
+          (<></>) 
+        }
+      </ControlsStyled>
     </SendStyled>
   );
 };

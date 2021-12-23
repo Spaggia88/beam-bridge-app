@@ -19,13 +19,13 @@ interface TableProps {
 }
 
 const StyledTable = styled.table`
-  width: 600px;
+  width: 630px;
 `;
 
 const StyledThead = styled.thead`
   height: 40px;
   border-radius: 10px;
-  background-color: rgba(15, 77, 130, .6);
+  background-color: rgba(255, 255, 255, 0.08);
 `;
 
 const isPositive = (value: number) => 1 / value > 0;
@@ -72,6 +72,10 @@ const ConfirmIcon = styled.object`
   margin-right: 15px;
 `;
 
+const EmptyTable = styled.tr`
+  padding: 72px 199px;
+`;
+
 const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
   const [filterBy, setFilterBy] = useState(0);
   const [receiveClickedId, setActiveReceive] = useState(null);
@@ -106,7 +110,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
     }
   };
 
-  return !isNil(data) && data.length > 0 ? (
+  return  (
     <StyledTable>
       <StyledThead>
         <tr>
@@ -124,7 +128,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
         </tr>
       </StyledThead>
       <tbody>
-        {data.sort(sortFn).map((item, index) => (
+        {!isNil(data) && data.length > 0 ? data.sort(sortFn).map((item, index) => (
           <tr key={index}>
             {config.map(({ name, fn }, itemIndex) => {
               const value = item[name];
@@ -146,10 +150,11 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
                 : (<Column key={itemIndex}>{isNil(fn) ? value : fn(value, item)}</Column>);
             })}
           </tr>
-        ))}
+        )): (<></>)
+      }
       </tbody>
     </StyledTable>
-  ) : (<></>);
+  ) ;
 };
 
 export default Table;

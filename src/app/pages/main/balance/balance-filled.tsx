@@ -45,6 +45,11 @@ const receiveButtonClass = css`
     margin-left: 20px !important;
 `;
 
+const EmptyTableContent = styled.div`
+  text-align: center;
+  margin-top: 72px;
+`;
+
 const handleSendClick: React.MouseEventHandler = () => {
   setView(View.SEND);
 };
@@ -101,6 +106,8 @@ const BalanceFilled: React.FC<any> = () => {
         </StyledControls>
         <StyledTable>
           <Table config={TABLE_CONFIG} data={data} keyBy='MsgId'/>
+          {data && data.length > 0 ? <></> : 
+            <EmptyTableContent>There are no incoming transactions yet</EmptyTableContent>}
         </StyledTable>
     </Container>) : null
   );
