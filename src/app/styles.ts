@@ -6,6 +6,7 @@ css`
     :root {
       --color-purple: #da68f5;
       --color-red: #f25f5b;
+      --color-red-expiring: #ff436a;
       --color-yellow: #f4ce4a;
       --color-green: #00f6d2;
       --color-blue: #0bccf7;
@@ -15,8 +16,9 @@ css`
       --color-gray: #8196a4;
       --color-white: white;
       --color-disconnect: #ff746b;
+      --color-vote-red: #de3155;
 
-      --color-popup: rgba(13, 77, 118, .95);
+      --color-popup: rgba(13, 77, 118);
       --color-select: #184469;
 
       --color-disabled: #8da1ad;
@@ -89,23 +91,24 @@ css`
     }
 
     html,
-    body, #root, #root>div {
+    body {
       margin: 0;
       padding: 0;
+      height: 100%;
+      min-width: 860px;
+    }
+
+    #root {
+      display: inline;
     }
 
     html * {
-      font-family: 'ProximaNova', sans-serif;
+      font-family: 'SFProDisplay', sans-serif;
     }
 
     body {
       font-size: 14px;
       color: white;
-      background-image: url(assets/bg.png);
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
     }    
 
     p {
@@ -117,8 +120,7 @@ css`
     }
 
     ul,
-    ol {
-      list-style: none;
+    ol :not(.description) {
       margin: 0;
       padding: 0;
     }

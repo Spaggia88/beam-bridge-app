@@ -1,19 +1,25 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "target": "es5",
+    "target": "es2020",
+    "module": "commonjs",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "typeRoots": [
       "node_modules/@types",
-      "node_modules/web-ext-types"
+      "node_modules/web-ext-types",
+      "./src/@types"
     ],
     "types": ["node"],
-    "baseUrl": "src/app",
+    "baseUrl": "src/",
     "paths": {
-      "@app/*": ["*"],
-      "@core/*": ["core/*"],
-      "@pages/*": ["pages/*"],
-      "@state/*": ["state/*"],
+      "@app/*": ["app/*"],
+      "@core/*": ["app/core/*"],
+      "@model/*": ["app/model/*"],
+      "@uikit": ["app/uikit"],
+      "@uikit/*": ["app/uikit/*"],
+      "@pages/*": ["app/pages/*"],
+      "@state/*": ["app/state/*"],
       "@assets/*": ["assets/*"]
     }
   },
