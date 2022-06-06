@@ -616,14 +616,14 @@
 }
 
 /*# sourceMappingURL=ReactToastify.css.map */
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Window.tsx ***!
-  \***********************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Window.tsx ***!
+  \**************************************************************************************************************************************************************************************************/
 .cvejpet{background-color:var(--cvejpet-0);min-height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px;}
 
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Button.tsx ***!
-  \***********************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Button.tsx ***!
+  \**************************************************************************************************************************************************************************************************/
 .byymvqg[disabled]{opacity:0.5;}.byymvqg[disabled]:hover,.byymvqg[disabled]:active{box-shadow:none !important;cursor:not-allowed !important;}
 .bxwnet6.byymvqg{display:block;width:100%;max-width:254px;margin:0 auto;margin-bottom:10px;padding:10px 24px;border:none;border-radius:22px;background-color:var(--bxwnet6-0);text-align:center;font-weight:bold;font-size:14px;color:var(--color-dark-blue);}.bxwnet6.byymvqg:hover,.bxwnet6.byymvqg:active{box-shadow:0 0 8px white;cursor:pointer;}.bxwnet6.byymvqg > svg{vertical-align:middle;margin-right:10px;}
 .g1rqlpmm.bxwnet6.byymvqg{background-color:rgba(0,246,210,.1);color:var(--g1rqlpmm-0);border:var(--g1rqlpmm-1);max-width:215px;padding:8px 18px;}.g1rqlpmm.bxwnet6.byymvqg:hover,.g1rqlpmm.bxwnet6.byymvqg:active{box-shadow:0 0 8px rgba(0,246,210,0.15);background-color:rgba(0,246,210,0.3);}.g1rqlpmm.bxwnet6.byymvqg > svg{vertical-align:middle;margin-right:10px;}
@@ -632,21 +632,21 @@
 .ir0lkmi.byymvqg{display:inline-block;vertical-align:sub;margin:0 10px;padding:0;background-color:transparent;border:none;cursor:pointer;color:var(--ir0lkmi-0);}.ir0lkmi.byymvqg > svg{vertical-align:middle;}
 .l1x01uvv.ir0lkmi.byymvqg{margin:20px 0;font-size:14px;font-weight:700;color:var(--l1x01uvv-0);}.l1x01uvv.ir0lkmi.byymvqg > svg{vertical-align:middle;margin-right:10px;}
 
-/*!*************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Backdrop.tsx ***!
-  \*************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Backdrop.tsx ***!
+  \****************************************************************************************************************************************************************************************************/
 .b128d5e8{position:fixed;z-index:3;top:0;left:0;width:100%;height:100%;background-color:rgba(3,36,68,0.3);}
 
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Popup.tsx ***!
-  \**********************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Popup.tsx ***!
+  \*************************************************************************************************************************************************************************************************/
 .cro1evx{-webkit-transform:translateX(-50%) translateY(-50%);-ms-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);position:absolute;top:50%;left:50%;width:391px;padding:30px 20px;border-radius:10px;background-color:var(--color-popup);text-align:center;color:white;}.cro1evx > .cancel-header{right:4px;top:10px;position:absolute;}
 .t7le1pp{font-size:16px;margin:0;margin-bottom:20px;}
 .f17oez35{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:0 -7px;margin-top:20px;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.f17oez35 > button{margin:0 15px !important;}.f17oez35.justify-right{-webkit-box-pack:right;-webkit-justify-content:right;-ms-flex-pack:right;justify-content:right;margin-top:40px;}.f17oez35.qr-code-popup > button{margin:0 auto !important;text-align:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
 
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Input.tsx ***!
-  \**********************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Input.tsx ***!
+  \*************************************************************************************************************************************************************************************************/
 .cxdcu99{position:relative;min-height:50px;margin-bottom:var(--cxdcu99-0);}
 .ic8mneu{width:100%;height:33px;line-height:31px;border:none;border-bottom:2px solid transparent;background-color:transparent;font-size:14px;color:white;}.ic8mneu::-webkit-input-placeholder{color:var(--ic8mneu-0);font-size:14px;-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px);}.ic8mneu::-moz-placeholder{color:var(--ic8mneu-0);font-size:14px;-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px);}.ic8mneu:-ms-input-placeholder{color:var(--ic8mneu-0);font-size:14px;-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px);}.ic8mneu::placeholder{color:var(--ic8mneu-0);font-size:14px;-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px);}.ic8mneu[disabled]{opacity:0.5;cursor:not-allowed;}
 .i1ysrc3i.ic8mneu{border-color:var(--i1ysrc3i-0);}
@@ -655,14 +655,14 @@
 .l1852szz{text-align:start;margin-top:4px;font-family:SFProDisplay;font-size:14px;font-style:italic;color:var(--l1852szz-0);}
 .swukwal{background-color:var(--swukwal-0);border-radius:10px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.swukwal > .beamx-label{-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;margin:0 15px;font-weight:400;font-size:16px;}
 
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Angle.tsx ***!
-  \**********************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Angle.tsx ***!
+  \*************************************************************************************************************************************************************************************************/
 .c1htvbdp{display:inline-block;position:relative;width:13px;height:13px;-webkit-transform-origin:center;-ms-transform-origin:center;transform-origin:center;-webkit-transform:translateY(var(--c1htvbdp-0)) rotate(var(--c1htvbdp-1));-ms-transform:translateY(var(--c1htvbdp-0)) rotate(var(--c1htvbdp-1));transform:translateY(var(--c1htvbdp-0)) rotate(var(--c1htvbdp-1));}.c1htvbdp > svg{position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);}
 
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Select.tsx ***!
-  \***********************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Select.tsx ***!
+  \**************************************************************************************************************************************************************************************************/
 .c66ez3b{display:inline-block;position:relative;margin-left:10px;}
 .s4rt7u{position:absolute;top:100%;right:0;z-index:1;margin-top:8px;padding:10px 0;border-radius:10px;background-color:#00446C;}
 .o1z5g03{padding:10px 20px;cursor:pointer;text-align:left;white-space:nowrap;}.o1z5g03:hover,.o1z5g03:active{background-color:rgba(255,255,255,0.07);}
@@ -670,54 +670,54 @@
 .b1segg38{line-height:18px;cursor:var(--b1segg38-0);padding:0;border:none;background-color:transparent;-webkit-text-decoration:none;text-decoration:none;color:white;white-space:nowrap;}.b1segg38:hover,.b1segg38:active{background-color:transparent;}
 .a10kemvm{display:inline-block;vertical-align:super;margin-left:8px;}
 
-/*!*********************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Rate.tsx ***!
-  \*********************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Rate.tsx ***!
+  \************************************************************************************************************************************************************************************************/
 .rofod38{margin-top:4px;color:var(--color-gray);}
 
-/*!****************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/AmountInput.tsx ***!
-  \****************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/AmountInput.tsx ***!
+  \*******************************************************************************************************************************************************************************************************/
 .s3e9x79{-webkit-align-self:flex-start;-ms-flex-item-align:start;align-self:flex-start;margin-top:10px;}
 .c1imekuk{position:relative;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-bottom:20px;}.c1imekuk > .input-area{width:80%;}
 .c1d3kd85{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}
 .rdj8zs9{font-size:12px;-webkit-align-self:start;-ms-flex-item-align:start;align-self:start;margin-left:15px;text-align:start;}
 .l56amwz{display:inline-block;vertical-align:bottom;line-height:26px;margin-left:8px;}
 
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Toggle.tsx ***!
-  \***********************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Toggle.tsx ***!
+  \**************************************************************************************************************************************************************************************************/
 .ce7efmt{position:relative;width:36px;height:20px;cursor:pointer;}
 .inylini{position:absolute;]z-index: -1;  top: 0;  left: 0;  opacity: 0;;}
 .tsbve94{width:100%;height:100%;border-radius:10px;border:solid 1px var(--color-green);background-color:rgba(0,251,209,0.1);}
 .s1cj5o13{position:absolute;top:2px;left:2px;background-color:var(--color-green);width:16px;height:16px;border-radius:50%;}input[type='checkbox']:checked ~ .s1cj5o13{left:18px;}
 
-/*!*****************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/DepositPopup.tsx ***!
-  \*****************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/DepositPopup.tsx ***!
+  \********************************************************************************************************************************************************************************************************/
 .fpb3d3e{margin-top:20px;margin-left:15px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}.fpb3d3e > .fee-head{-webkit-align-self:start;-ms-flex-item-align:start;align-self:start;}.fpb3d3e > .fee-head > .title{font-size:12px;color:rgba(255,255,255,.5);}.fpb3d3e > .fee-head > .value{font-weight:500;font-size:14px;color:#DA68F5;margin-left:10px;}.fpb3d3e > .fee-rate{-webkit-align-self:start;-ms-flex-item-align:start;align-self:start;font-size:12px;margin-left:31px;}
 .d1shr9fg{width:450px !important;}
 .d1kkwqc0{max-width:138px !important;}
 
-/*!******************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/WithdrawPopup.tsx ***!
-  \******************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/WithdrawPopup.tsx ***!
+  \*********************************************************************************************************************************************************************************************************/
 .ws823l9{max-width:145px !important;}
 .a1ajtg26{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-align:row;-ms-flex-align:row;flex-align:row;}.a1ajtg26 > .amount-input-class{width:340px !important;}.a1ajtg26 > .amount-max-class{margin-top:14px;margin-left:17px;font-weight:bold;font-size:14px;color:#0BCCF7;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
 .wv01qzb{width:450px !important;}
 
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/Table.tsx ***!
-  \**********************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/Table.tsx ***!
+  \*************************************************************************************************************************************************************************************************/
 .sualcge{width:630px;}
 .svveiz0{height:40px;border-radius:10px;background-color:rgba(255,255,255,0.08);}
 .h264i5t{text-align:left;color:var(--h264i5t-0);padding:15px 30px;}
 .c18unxsq{padding:20px 30px;background-color:rgba(13,77,118,.9);}
 .cl5drak{width:167px;height:32px;padding:8px 16px;border-radius:17.5px;border:solid 1px #0bccf7;background-color:rgba(11,204,247,0.1);color:#0bccf7;text-align:center;font-size:14px;cursor:var(--cl5drak-0);opacity:var(--cl5drak-1);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}.cl5drak:hover,.cl5drak:active{box-shadow:var(--cl5drak-2);}.cl5drak > .text{margin:0 auto;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.cl5drak > .text svg{margin-right:10px;}
 
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/shared/components/CurrInput.tsx ***!
-  \**************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/shared/components/CurrInput.tsx ***!
+  \*****************************************************************************************************************************************************************************************************/
 .c1vm519x{margin-top:20px;position:relative;background-color:rgba(255,255,255,.05);border-radius:10px;width:100%;height:40px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:8px 15px;}
 .i12vyi4s{line-height:20px;border:none;font-size:var(--i12vyi4s-0);color:var(--i12vyi4s-1);background-color:transparent;width:var(--i12vyi4s-2);height:100%;-moz-appearance:textfield;}.i12vyi4s::-webkit-inner-spin-button,.i12vyi4s::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}.i12vyi4s::-webkit-input-placeholder{position:absolute;top:0;left:3px;line-height:inherit;color:white;opacity:0.3;font-size:14px;font-style:italic;}.i12vyi4s::-moz-placeholder{position:absolute;top:0;left:3px;line-height:inherit;color:white;opacity:0.3;font-size:14px;font-style:italic;}.i12vyi4s:-ms-input-placeholder{position:absolute;top:0;left:3px;line-height:inherit;color:white;opacity:0.3;font-size:14px;font-style:italic;}.i12vyi4s::placeholder{position:absolute;top:0;left:3px;line-height:inherit;color:white;opacity:0.3;font-size:14px;font-style:italic;}
 .axb2ubo{height:55px;}
@@ -728,18 +728,18 @@
 .t1m6rya{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #8da1ad;margin-left:5px;}
 .c1unjmnw{line-height:1;margin-left:16px;}
 
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/containers/Main/containers/MainPage/MainPage.tsx ***!
-  \*******************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/containers/Main/containers/MainPage/MainPage.tsx ***!
+  \**********************************************************************************************************************************************************************************************************************/
 .cs2a0dm{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:50px 0;}
 .svtn89f{margin-top:50px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}
 .s14rz6wr{margin-top:30px;border-radius:10px;overflow:hidden;}
 .r1qnshws{margin-left:20px !important;}
 .eoksjfc{text-align:center;margin-top:72px;font-size:14px;font-style:italic;color:#8da1ad;}
 
-/*!*****************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/containers/Main/containers/Receive/Receive.tsx ***!
-  \*****************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/containers/Main/containers/Receive/Receive.tsx ***!
+  \********************************************************************************************************************************************************************************************************************/
 .b1s01p2q{position:fixed;z-index:3;top:0;left:0;width:100%;height:100%;}
 .sjdsxuj{margin-top:20px;}
 .d1k8xf82{cursor:pointer;background-color:transparent;border:none;font-size:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:234px;height:55px;border-radius:10px;background-color:rgba(255,255,255,0.05);padding:15px 24px;}
@@ -766,9 +766,9 @@
 .lhonj04{color:#00f6d2;-webkit-text-decoration:none;text-decoration:none;font-weight:bold;margin-left:4px;}
 .c1u5y5eb{margin-top:30px !important;margin-bottom:50px !important;max-width:133px !important;}
 
-/*!***********************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/containers/Main/containers/Send/Send.tsx ***!
-  \***********************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/containers/Main/containers/Send/Send.tsx ***!
+  \**************************************************************************************************************************************************************************************************************/
 .ssxyc4l{width:580px;margin:0 auto !important;}
 .c5nkx1a{margin:30px auto;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
 .tqbxvot{font-size:14px;font-weight:bold;-webkit-letter-spacing:4px;-moz-letter-spacing:4px;-ms-letter-spacing:4px;letter-spacing:4px;text-align:center;}
@@ -792,13 +792,13 @@
 .f1nzlqaz{font-size:14px;font-weight:bold;margin-top:30px;-webkit-letter-spacing:3.11px;-moz-letter-spacing:3.11px;-ms-letter-spacing:3.11px;letter-spacing:3.11px;color:rgba(255,255,255,0.5);}
 .fxi0khc{margin-top:0 !important;}
 
-/*!****************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/styles.ts ***!
-  \****************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/styles.ts ***!
+  \*******************************************************************************************************************************************************************************/
 :root{--color-purple:#da68f5;--color-red:#f25f5b;--color-red-expiring:#ff436a;--color-yellow:#f4ce4a;--color-green:#00f6d2;--color-blue:#0bccf7;--color-dark-blue:#042548;--color-darkest-blue:#032e49;--color-white:#ffffff;--color-gray:#8196a4;--color-white:white;--color-disconnect:#ff746b;--color-vote-red:#de3155;--color-popup:rgba(13,77,118);--color-select:#184469;--color-disabled:#8da1ad;--color-usdt-from:rgba(80,175,149,.3);--color-eth-from:rgba(94,123,242,.3);--color-wbtc-from:rgba(247,147,26,.3);--color-dai-from:rgba(245,172,55,.3);}@font-face{font-family:'ProximaNova';src:url('/assets/fonts/ProximaNova-Regular.ttf');font-weight:400;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('/assets/fonts/ProximaNova-RegularIt.ttf');font-weight:400;font-style:italic;}@font-face{font-family:'ProximaNova';src:url('/assets/fonts/ProximaNova-Semibold.ttf');font-weight:600;font-style:normal;}@font-face{font-family:'ProximaNova';src:url('/assets/fonts/ProximaNova-Bold.ttf');font-weight:700;font-style:normal;}@font-face{font-family:'SFProDisplay';src:url('/assets/fonts/SFProDisplay-Regular.ttf');font-weight:400;font-style:normal;}@font-face{font-family:'SFProDisplay';src:url('/assets/fonts/SFProDisplay-RegularItalic.ttf');font-weight:400;font-style:italic;}@font-face{font-family:'SFProDisplay';src:url('/assets/fonts/SFUIDisplay-Medium.otf');font-weight:600;font-style:normal;}@font-face{font-family:'SFProDisplay';src:url('/assets/fonts/SFProDisplay-Bold.ttf');font-weight:700;font-style:normal;}*{box-sizing:border-box;outline:none;}html,body{margin:0;padding:0;height:100%;min-width:860px;}#root{display:inline;}html *{font-family:'SFProDisplay',sans-serif;}body{font-size:14px;color:white;}p{margin:0;}h1,h2{margin:0;}ul,ol :not(.description){margin:0;padding:0;}tr,th,table{border:none;border-spacing:0;padding:0;margin:0;border-collapse:inherit;}
 
-/*!**************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js!./src/app/app.tsx ***!
-  \**************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/@linaria/webpack5-loader/lib/outputCssLoader.js?cacheProvider=!./src/app/app.tsx ***!
+  \*****************************************************************************************************************************************************************************/
 .tfnuj7w{z-index:999;border-radius:3px;background-color:rgba(255,255,255,0.2);}
 
