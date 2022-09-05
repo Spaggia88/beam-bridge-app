@@ -139,6 +139,6 @@ export async function calcSomeFee (rate_id: string) {
   const relayCosts = RELAY_COSTS_IN_GAS * parseFloat(gasPrice.FastGasPrice) * parseFloat(ethRate[ETH_RATE_ID]['usd']) / Math.pow(10, 9);
   const currRate = await loadRate(rate_id);
 
-  const RELAY_SAFETY_COEFF = 1.1;
+  const RELAY_SAFETY_COEFF = 2;//1.1;
   return RELAY_SAFETY_COEFF * relayCosts / parseFloat(currRate[rate_id]['usd']);
 }

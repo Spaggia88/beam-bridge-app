@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from '@linaria/react';
 import { Transaction } from '@app/core/types';
-import { useStore } from 'effector-react';
 import { useEffect } from 'react';
 import { IconConfirm } from '@app/shared/icons';
 import { Receive } from '@core/api';
@@ -93,6 +92,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
   const [trs, setTrs] = useState(data);
 
   useEffect(() => {
+    setTrs(data);
     // .sort(sortFn)
     //trs = data.length > 0 ? data : [];
   },[data]);

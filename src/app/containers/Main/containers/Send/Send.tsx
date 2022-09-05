@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useStore } from 'effector-react';
 import { styled } from '@linaria/react';
 import { Button, CurrInput, Input, Window } from '@app/shared/components';
 import { css } from '@linaria/core';
@@ -235,7 +234,7 @@ const Send = () => {
             </FeeItem>
             <FeeItem>
               <FormSubtitle className={FeeSubtitleClass}>TRANSACTION FEE</FormSubtitle>
-              <FeeValue>{0.0001}</FeeValue>
+              <FeeValue>{0.011}</FeeValue>
             </FeeItem>
           </FeeContainer>
         </AmountContainer>) : 
@@ -247,7 +246,7 @@ const Send = () => {
             <ContainerLine>
               <Number>1.</Number>
               <Text>
-              <a href="https://bridge-ethapp.web.app" className={LinkClass} target="_blank"> 
+              <a href="https://bridges-dappnet.web.app" className={LinkClass} target="_blank"> 
                 Ethereum side of the bridge
               </a> in your web browser</Text>
             </ContainerLine>
@@ -272,7 +271,7 @@ const Send = () => {
         onClick={cancelClicked} 
         pallete="purple" 
         className={CancelButtonClass}
-        icon={IconCancel}> cancel</Button>
+        icon={IconCancel}> close</Button>
         { address ? 
           (<Button type="submit" icon={IconSend} className={TransferButtonClass}
           pallete="purple" variant="regular">transfer</Button>) : 

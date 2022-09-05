@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useStore } from 'effector-react';
 import { styled } from '@linaria/react';
 import { Button, Window } from '@app/shared/components';
 import { css } from '@linaria/core';
@@ -317,7 +316,7 @@ const Receive = () => {
   const navigate = useNavigate();
 
   const getFullLink = () => {
-    return selectedCurrency ? 'https://bridge-ethapp.web.app/send/' + (selectedCurrency.name.toLowerCase() + pKey) : '';
+    return selectedCurrency ? 'https://bridges-dappnet.web.app/send/' + (selectedCurrency.name.toLowerCase() + pKey) : '';
   }
 
   const pkChanged = (pk) => {
@@ -372,7 +371,7 @@ const Receive = () => {
             <ContainerLine>
               - Copy and open <span className={pTitle}>Ethereum side of the brige </span> manually in your web browser
             </ContainerLine>
-            <CopyArea onCopy={()=> 'https://bridge-ethapp.web.app/send/'}> {'https://bridge-ethapp.web.app/send/'} </CopyArea>
+            <CopyArea onCopy={()=> 'https://bridges-dappnet.web.app/send/'}> {'https://bridges-dappnet.web.app/send/'} </CopyArea>
             <ContainerLine className={SmallIndentClass}>
               - Select <span className={pTitle}> Ethereum to Beam</span>
             </ContainerLine>
@@ -388,7 +387,7 @@ const Receive = () => {
         onClick={cancelClicked} 
         className={CancelButtonClass} 
         pallete="purple" 
-        icon={IconCancel}> cancel</Button>
+        icon={IconCancel}> close</Button>
       </ReceiveStyled>
       
     </Window>
