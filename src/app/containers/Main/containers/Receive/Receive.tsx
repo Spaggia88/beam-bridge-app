@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { LoadPublicKey } from '@app/core/api';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 
 interface DropdownProps {
   isVisible: boolean
@@ -227,6 +227,7 @@ const CopyArea: React.FC<CopyAreaProps> = ({
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
+    toast('Copied to clipboard');
   }
 
   return (
