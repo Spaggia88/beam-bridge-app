@@ -158,7 +158,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
                   <ConfirmReceive 
                   disabled={isInProgress && (receiveClickedId === itemIndex)} 
                   onClick={() => handleReceiveClick(item, itemIndex)}>
-                    <div className='text'><IconConfirm/>Confirm receive</div>
+                    <div className='text'><IconConfirm/>Withdraw</div>
                   </ConfirmReceive>
                 </Column>) 
                 : (<Column key={itemIndex}>{!fn ? value : fn(value, item)}</Column>);

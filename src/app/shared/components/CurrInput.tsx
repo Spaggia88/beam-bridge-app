@@ -1,7 +1,6 @@
 import React, { useState, useRef, HTMLAttributes } from 'react';
 import { styled } from '@linaria/react';
 import { CURRENCIES } from '@app/shared/constants';
-import { useStore } from 'effector-react';
 import { css } from '@linaria/core';
 import { IconDai, IconEth, IconUsdt, IconWbtc } from '@app/shared/icons';
 import { useEffect } from 'react';
@@ -9,7 +8,8 @@ import { useEffect } from 'react';
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   variant: 'amount' | 'common' | 'fee',
-  onCurrChangeCb?: (item) => void
+  onCurrChangeCb?: (item) => void,
+  onChangeHandler?: (value: string) => void;
 }
 
 interface DropdownProps {
@@ -164,15 +164,24 @@ const Selector = (data: {type: string, onCurrChange: (next)=>void}) => {
   </StyledDropdown>) : <></>);
 }
 
+
+export const AMOUNT_MAX = 253999999.9999999;
+const REG_AMOUNT = /^(?!0\d)(\d+)(\.)?(\d{0,8})?$/;
+
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ variant, error, onCurrChangeCb, ...rest }, ref) => {
+  ({ variant, onChangeHandler, error, onCurrChangeCb, ...rest }, ref) => {
     const [selectedCurrency, setCurr] = useState(null);
 
-    const inputChange = (event) => {
-      let value = event.target.value;
-      var regex = new RegExp("^\\d*(\\.?\\d{0," + selectedCurrency.decimals + "})", "g");
-      value = (value.match(regex)[0]) || null;
-      event.target.value = value;
+    const handleInput: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+      const { value: raw } = event.target;
+  
+      if (variant == 'amount') {
+        if ((raw !== '' && !REG_AMOUNT.test(raw)) || parseFloat(raw) > AMOUNT_MAX) {
+          return;
+        }
+      }
+  
+      onChangeHandler(raw);
     };
 
     const currChanged = (next) => {
@@ -184,8 +193,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     <ContainerStyled className={variant === 'amount' ? AddressClass : null}>
       <InputStyled
         variant={variant} ref={ref} 
-        onChange={variant === 'amount' || variant === 'fee' ? inputChange : null}
-        type={variant === 'amount' || variant === 'fee' ? 'number' : 'text'}
+        onInput={handleInput}
         error={error} {...rest} />
       {variant === 'amount' &&
       <Selector type={variant} onCurrChange={currChanged}/>}

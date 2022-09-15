@@ -8,6 +8,11 @@ import { IconCancel, IconSend } from '@app/shared/icons';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@app/shared/constants';
 import { SendTo } from '@core/api';
+import { useFormik } from 'formik';
+
+interface SendFormData {
+  send_amount: string;
+}
 
 const SendStyled = styled.form`
   width: 580px;
@@ -154,6 +159,39 @@ const Send = () => {
   const [feeVal, setFeeVal] = useState(0);
   const [address, setAddress] = useState(null);
   const [selectedCurrency, setCurrency] = useState(null);
+
+  const validate = async (formValues: SendFormData) => {
+    const errorsValidation: any = {};
+    const {
+        send_amount
+    } = formValues;
+
+    if (Number(send_amount) === 0) {
+      errorsValidation.send_amount = `Invalid amount`;
+    }
+
+    return errorsValidation;
+  };
+
+  const formik = useFormik<SendFormData>({
+    initialValues: {
+        send_amount: ''
+    },
+    isInitialValid: false,
+    onSubmit: (value) => {
+    
+    },
+    validate: (e) => validate(e),
+  });
+
+  const {
+    values, setFieldValue, errors, submitForm, resetForm
+  } = formik;
+
+  const isFormDisabled = () => {
+    if (!formik.isValid) return !formik.isValid;
+    return false;
+  };
   
   useEffect(() => {
     if (address && address.length > 0) {
@@ -209,6 +247,10 @@ const Send = () => {
     setAddress(value);
   }
 
+  const handleAmountChange = (amount: string) => {
+    setFieldValue('send_amount', amount, true);
+  };
+
   return (
     <Window>
     <SendStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
@@ -226,15 +268,22 @@ const Send = () => {
       { address ? 
         (<AmountContainer>
           <Subtitle>AMOUNT</Subtitle>
-          <CurrInput onCurrChangeCb={ currChanged } className={SendClass} variant='amount' ref={amountInputRef} name="amount"/>
+          <CurrInput 
+            onCurrChangeCb={ currChanged }
+            className={SendClass}
+            onChangeHandler={handleAmountChange}
+            value={values.send_amount}
+            variant='amount'
+            ref={amountInputRef}
+            name="amount"/>
           <FeeContainer>
             <FeeItem>
               <FormSubtitle className={FeeSubtitleClass}>RELAYER FEE</FormSubtitle>
-              <FeeValue>{feeVal}</FeeValue>
+              {selectedCurrency ? <FeeValue>{feeVal} {selectedCurrency.name}</FeeValue> : <></>}
             </FeeItem>
             <FeeItem>
               <FormSubtitle className={FeeSubtitleClass}>TRANSACTION FEE</FormSubtitle>
-              <FeeValue>{0.011}</FeeValue>
+              <FeeValue>{0.011} BEAM</FeeValue>
             </FeeItem>
           </FeeContainer>
         </AmountContainer>) : 
@@ -273,8 +322,12 @@ const Send = () => {
         className={CancelButtonClass}
         icon={IconCancel}> close</Button>
         { address ? 
-          (<Button type="submit" icon={IconSend} className={TransferButtonClass}
-          pallete="purple" variant="regular">transfer</Button>) : 
+          (<Button type="submit" 
+            disabled={isFormDisabled()} 
+            icon={IconSend}
+            className={TransferButtonClass}
+            pallete="purple" 
+            variant="regular">transfer</Button>) : 
           (<></>) 
         }
       </ControlsStyled>
