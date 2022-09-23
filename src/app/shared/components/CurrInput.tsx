@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   variant: 'amount' | 'common' | 'fee',
+  valid?: boolean;
   onCurrChangeCb?: (item) => void,
   onChangeHandler?: (value: string) => void;
 }
@@ -16,7 +17,7 @@ interface DropdownProps {
   isVisible: boolean
 }
 
-const ContainerStyled = styled.div`
+const ContainerStyled = styled.div<{valid: boolean}>`
   margin-top: 20px;
   position: relative;
   background-color: rgba(255, 255, 255, .05);
@@ -27,13 +28,15 @@ const ContainerStyled = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 8px 15px;
+  border: ${({ valid }) => (valid ? 'none' : '1px solid')};
+  border-color: ${({ valid }) => (valid ? 'rgba(255,255,255,0.3)' : 'var(--color-red)')};
 `;
 
 const InputStyled = styled.input<InputProps>`
   line-height: 20px;
   border: none;
   font-size: ${({ variant }) => `${variant === 'common' ? '16px' : '36px'}`};
-  color: ${({ variant }) => `${variant === 'common' ? 'white' : '#da68f5'}`};
+  color: ${({ variant, valid }) => `${variant === 'common' ? (valid ? 'white' : 'var(--color-red)') : '#da68f5'}`};
   background-color: transparent;
   width: ${({ variant }) => `${variant === 'common' ? '100%' : '90%'}`};
   height: 100%;
@@ -169,7 +172,7 @@ export const AMOUNT_MAX = 253999999.9999999;
 const REG_AMOUNT = /^(?!0\d)(\d+)(\.)?(\d{0,8})?$/;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ variant, onChangeHandler, error, onCurrChangeCb, ...rest }, ref) => {
+  ({ variant, valid, onChangeHandler, error, onCurrChangeCb, ...rest }, ref) => {
     const [selectedCurrency, setCurr] = useState(null);
 
     const handleInput: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -190,8 +193,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-    <ContainerStyled className={variant === 'amount' ? AddressClass : null}>
+    <ContainerStyled valid={valid} className={variant === 'amount' ? AddressClass : null}>
       <InputStyled
+        valid={valid}
         variant={variant} ref={ref} 
         onInput={handleInput}
         error={error} {...rest} />

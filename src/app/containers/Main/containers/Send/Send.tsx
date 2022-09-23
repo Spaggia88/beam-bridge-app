@@ -9,9 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@app/shared/constants';
 import { SendTo } from '@core/api';
 import { useFormik } from 'formik';
+import ethereum_address from 'ethereum-address';
 
 interface SendFormData {
   send_amount: string;
+  address: string;
 }
 
 const SendStyled = styled.form`
@@ -155,7 +157,6 @@ const Send = () => {
   const navigate = useNavigate();
   const addressInputRef = useRef<HTMLInputElement>();
   const amountInputRef = useRef<HTMLInputElement>();
-  const feeInputRef = useRef<HTMLInputElement>();
   const [feeVal, setFeeVal] = useState(0);
   const [address, setAddress] = useState(null);
   const [selectedCurrency, setCurrency] = useState(null);
@@ -163,11 +164,17 @@ const Send = () => {
   const validate = async (formValues: SendFormData) => {
     const errorsValidation: any = {};
     const {
-        send_amount
+        send_amount,
+        address
     } = formValues;
 
-    if (parseFloat(send_amount) == 0) {
+    if (send_amount == '' || parseFloat(send_amount) == 0) {
       errorsValidation.send_amount = `Invalid amount`;
+    }
+
+    const regex = new RegExp('^[A-Za-z0-9]+$');
+    if (!regex.test(address) || !ethereum_address.isAddress(address)) {
+      errorsValidation.address = `Invalid address`;
     }
 
     return errorsValidation;
@@ -175,7 +182,8 @@ const Send = () => {
 
   const formik = useFormik<SendFormData>({
     initialValues: {
-        send_amount: ''
+        send_amount: '',
+        address: ''
     },
     isInitialValid: false,
     onSubmit: (value) => {
@@ -207,10 +215,8 @@ const Send = () => {
     setCurrency(newCurr);
   }
 
-
-  const handleBackClick: React.MouseEventHandler = () => {
-    navigate(ROUTES.MAIN.MAIN_PAGE)
-  };
+  const isAddressValid = () => !errors.address;
+  const isSendAmountValid = () => !errors.send_amount;
 
   const getFee = async () => {
     if (selectedCurrency){
@@ -224,15 +230,13 @@ const Send = () => {
     const data = new FormData(event.currentTarget);
     const address = data.get('address') as string;
     const amount = parseFloat(data.get('amount') as string);
-    const fee = parseFloat(data.get('fee') as string);
-
+    
     const sendData = {
       amount, 
       address: address.replace('0x',''), 
       fee: feeVal,
       decimals: selectedCurrency.decimals 
     };
-    console.log('Send info: ', sendData)
     
     SendTo(sendData, selectedCurrency.cid);
     navigate(ROUTES.MAIN.MAIN_PAGE);
@@ -242,9 +246,9 @@ const Send = () => {
     navigate(ROUTES.MAIN.MAIN_PAGE);
   }
 
-  const inputChange = (event) => {
-    let value = event.target.value;
-    setAddress(value);
+  const handleAddressChange = (address: string) => {
+    setFieldValue('address', address, true);
+    setAddress(address);
   }
 
   const handleAmountChange = (amount: string) => {
@@ -260,8 +264,11 @@ const Send = () => {
       <Container>
         <Subtitle>ETHEREUM BRIDGE ADDRESS</Subtitle>
         <CurrInput placeholder="Paste Ethereum bridge address here"
-          onChange={ inputChange }
-          variant="common" ref={addressInputRef} name="address"/>
+          onChangeHandler={handleAddressChange}
+          valid={isAddressValid()}
+          variant="common"
+          ref={addressInputRef}
+          name="address"/>
         <EnsureField>Ensure the address matches the Ethereum network to avoid losses</EnsureField>
       </Container>
 
@@ -273,6 +280,7 @@ const Send = () => {
             className={SendClass}
             onChangeHandler={handleAmountChange}
             value={values.send_amount}
+            valid={isSendAmountValid()}
             variant='amount'
             ref={amountInputRef}
             name="amount"/>
