@@ -24,6 +24,8 @@ export function LoadIncoming<T = any>(cid): Promise<T> {
         Utils.invokeContract("role=manager,action=view_incoming,startFrom=0,cid="+cid, 
         (error, result, full) => {
             resolve(result.incoming);
+
+            console.log('incoming transactions: ', result.incoming);
         });
     });
 }

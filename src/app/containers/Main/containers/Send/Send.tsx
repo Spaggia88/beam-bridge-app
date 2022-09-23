@@ -166,7 +166,7 @@ const Send = () => {
         send_amount
     } = formValues;
 
-    if (Number(send_amount) === 0) {
+    if (parseFloat(send_amount) == 0) {
       errorsValidation.send_amount = `Invalid amount`;
     }
 

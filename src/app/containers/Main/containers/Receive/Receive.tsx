@@ -3,7 +3,14 @@ import { styled } from '@linaria/react';
 import { Button, Window } from '@app/shared/components';
 import { css } from '@linaria/core';
 import { CURRENCIES, ROUTES } from '@app/shared/constants';
-import { IconCancel, IconCopyWhite, IconDai, IconEth, IconUsdt, IconWbtc } from '@app/shared/icons';
+import { IconCancel, 
+  IconCopyWhite,
+  IconDai,
+  IconEth,
+  IconUsdt,
+  IconWbtc,
+  IconArrowManual,
+  IconLink } from '@app/shared/icons';
 import { useEffect } from 'react';
 import { LoadPublicKey } from '@app/core/api';
 import { useDispatch } from 'react-redux';
@@ -16,6 +23,12 @@ interface DropdownProps {
 
 interface BackDropProps {
   onCancel?: React.MouseEventHandler;
+}
+
+interface SelectorProps {
+  onCurrChange: (next) => void;
+  onPkChanged: (pk) => void;
+  className: string;
 }
 
 interface CopyAreaProps {
@@ -50,7 +63,7 @@ const BackDrop: React.FC<BackDropProps> = ({
   );
 };
 
-const Selector = (data: {type: string, onCurrChange: (next) => void, onPkChanged: (pk) => void}) => {
+const Selector: React.FC<SelectorProps> = ({onCurrChange, onPkChanged, className}) => {
   const dispatch = useDispatch();
   const [isOpen, setOpen] = useState(false);
   const [items, setItem] = useState(CURRENCIES);
@@ -59,17 +72,17 @@ const Selector = (data: {type: string, onCurrChange: (next) => void, onPkChanged
   
   useEffect(()=>{
     setCurr(items[0])
-    data.onCurrChange(items[0]);
+    onCurrChange(items[0]);
     LoadPublicKey(null, items[0].cid).then((pk) => {
-      data.onPkChanged(pk);
+      onPkChanged(pk);
     });
   }, [])
   
   const handleItemClick = async (item) => {
     setCurr(item);
-    data.onCurrChange(item);
+    onCurrChange(item);
     const pk = await LoadPublicKey(null, item.cid);
-    data.onPkChanged(pk);
+    onPkChanged(pk);
     setOpen(false);
   }
 
@@ -134,29 +147,27 @@ const Selector = (data: {type: string, onCurrChange: (next) => void, onPkChanged
     'bETH': () => <IconEth/>,
   };
 
-  return data.type === 'amount' ? (
-    <StyledDropdown>
-      <DropdownElem onClick={toggleDropdown}>
-        {ICONS[selectedCurrency.name]()}
-        <span className={CurrencyClass}>{selectedCurrency.name}</span>
-        <Triangle></Triangle>
-      </DropdownElem>
-      {
-        isOpen ? 
-        <>
-          <DropdownBody isVisible={isOpen} className={`dropdown-body ${isOpen && 'open'}`}>
-            {items.map(item => (
-              <DropdownElemOption key={item.id} onClick={e => handleItemClick(item)}>
-                {ICONS[item.name]()}
-                <span className={CurrencyClass}>{item.name}</span>
-              </DropdownElemOption>
-            ))}
-          </DropdownBody>
-          <BackDrop onCancel={()=>setOpen(false)}/>
-        </> : null
-      }
-    </StyledDropdown>
-  ) : (<></>);
+  return (<StyledDropdown className={className}>
+    <DropdownElem onClick={toggleDropdown}>
+      {ICONS[selectedCurrency.name]()}
+      <span className={CurrencyClass}>{selectedCurrency.name}</span>
+      <Triangle></Triangle>
+    </DropdownElem>
+    {
+      isOpen ? 
+      <>
+        <DropdownBody isVisible={isOpen} className={`dropdown-body ${isOpen && 'open'}`}>
+          {items.map(item => (
+            <DropdownElemOption key={item.id} onClick={e => handleItemClick(item)}>
+              {ICONS[item.name]()}
+              <span className={CurrencyClass}>{item.name}</span>
+            </DropdownElemOption>
+          ))}
+        </DropdownBody>
+        <BackDrop onCancel={()=>setOpen(false)}/>
+      </> : null
+    }
+  </StyledDropdown>);
 }
 
 const OrSeparator: React.FC<BackDropProps> = ({}) => {
@@ -253,11 +264,71 @@ const Title = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.05);
   padding: 50px;
   margin-top: 32px;
+
+  > .currency-selector {
+    align-self: center;
+  }
+
+  > .automatic-title {
+    font-weight: 700;
+    font-size: 14px;
+
+    > .content {
+      letter-spacing: 2.625px;
+    }
+
+    > .info {
+      letter-spacing: 1px;
+    }
+  }
+
+  > .eth-link {
+    display: flex;
+    margin-top: 20px;
+    cursor: pointer;
+
+    > .text {
+      font-style: italic;
+      font-weight: 500;
+      font-size: 16px;
+      color: #00F6D2;
+      margin-left: 10px;
+      text-decoration: none;
+    }
+  }
+
+  > .link-info {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    color: #B7C1CB;
+    margin-top: 7px;
+  }
+
+  > .manual-expand {
+    display: flex;
+    cursor: pointer;
+
+    > .text-expand {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.625px;
+      opacity: 0.5;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    > .icon-expand {
+      margin-left: auto;
+    }
+
+    > .icon-expand.expanded {
+      transform: rotate(180deg);
+    }
+  }
 `;
 
 const Subtitle = styled.div`
@@ -311,9 +382,18 @@ const CancelButtonClass = css`
   max-width: 133px !important;
 `;
 
+const ExpandedContent = styled.div`
+  margin-top: 20px;
+
+  > .sub-link {
+    margin-top: 10px;
+  }
+`;
+
 const Receive = () => {
   const [pKey, setPk] = useState('');
   const [selectedCurrency, setCur] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
 
   const getFullLink = () => {
@@ -332,6 +412,10 @@ const Receive = () => {
     navigate(ROUTES.MAIN.MAIN_PAGE);
   }
 
+  const onExpandClicked = () => {
+    setIsExpanded(!isExpanded);
+  }
+
   return (
     <Window>
       <ReceiveStyled>
@@ -340,10 +424,49 @@ const Receive = () => {
         </Title>
         <Container>
           <Subtitle>Choose currency</Subtitle>
-          <Selector onCurrChange={currChanged} onPkChanged={pkChanged} type="amount"></Selector>
+          <Selector className='currency-selector'
+            onCurrChange={currChanged}
+            onPkChanged={pkChanged}></Selector>
           <StyledSeparator/>
-          <div>
+          <div className='automatic-title'>
+            <span className='content'>AUTOMATIC WAY</span>
+            <span className='info'>(recommended)</span>
+          </div>
+          <div className='eth-link'>
+            <IconLink/>
+            <a className='text' href={getFullLink()} target="_blank">
+              Ethereum side of the bridge
+            </a>
+          </div>
+          <div className='link-info'>(your Beam bridge address will be pasted automatically)</div>
+          <OrSeparator/>
+          <div className='manual-expand' onClick={onExpandClicked}>
+            <span className='text-expand'>MANUAL WAY TO THE BRIDGE</span>
+            <IconArrowManual className={'icon-expand ' + (isExpanded ? 'expanded' : '')}/>
+          </div>
+          { isExpanded ? 
+          <ExpandedContent>
             <ContainerLine>
+              - Copy and open <span className={pTitle}>Ethereum side of the brige </span> 
+              manually in your web browser
+            </ContainerLine>
+            <CopyArea onCopy={()=> 'https://bridges-dappnet.web.app/send/'}>
+              {'https://bridges-dappnet.web.app/send/'}
+            </CopyArea>
+            <ContainerLine className='sub-link'>
+              - Select <span className={pTitle}>Ethereum to BEAM </span>
+            </ContainerLine>
+            <ContainerLine>
+              - Copy and paste this address to the Beam bridge address field
+            </ContainerLine>
+            {selectedCurrency &&
+              <CopyArea onCopy={()=> (selectedCurrency.name.toLowerCase() + pKey)}>
+                {selectedCurrency.name.toLowerCase() + pKey}
+              </CopyArea>
+            }
+          </ExpandedContent> : <></>}
+          {/* <div> */}
+            {/* <ContainerLine>
               In order to transfer from Ethereum to Beam network, do <span className={BoldClass}>ONE</span> of the following:
             </ContainerLine>
             <ContainerLine className={IndentClass}>
@@ -381,8 +504,8 @@ const Receive = () => {
             </ContainerLine>
             {selectedCurrency &&
             <CopyArea onCopy={()=> (selectedCurrency.name.toLowerCase() + pKey)}> {selectedCurrency.name.toLowerCase() + pKey} </CopyArea>
-            }
-          </div>
+            } */}
+          {/* </div> */}
         </Container>
         <Button variant="ghost" 
         onClick={cancelClicked} 

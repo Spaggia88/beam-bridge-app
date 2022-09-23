@@ -66,7 +66,7 @@ const MainPage: React.FC = () => {
       fn: (value: string, tr: BridgeTransaction) => {
         const curr = CURRENCIES.find((item) => item.cid === tr.cid);
 
-        return parseInt(value) / Math.pow(10, 8) + ' ' + curr.name;
+        return ((parseInt(value) / Math.pow(10, curr.decimals)).toFixed(curr.validator_dec)).replace(/\.0+$/,'') + ' ' + curr.name;
       }
     },
     {

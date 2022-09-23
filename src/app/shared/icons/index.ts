@@ -50,6 +50,8 @@ import IconEth from './icon-eth.svg';
 import IconWbtc from './icon-wbtc.svg';
 import IconUsdt from './icon-usdt.svg';
 import IconDai from './icon-dai.svg';
+import IconLink from './icon-link.svg';
+import IconArrowManual from './icon-arrow-manual.svg';
 
 export {
   IconBack,
@@ -103,5 +105,7 @@ export {
   IconDai,
   IconEth,
   IconUsdt,
-  IconWbtc
+  IconWbtc,
+  IconLink,
+  IconArrowManual
 }
