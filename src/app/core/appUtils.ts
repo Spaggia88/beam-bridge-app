@@ -117,7 +117,7 @@ async function loadRate (rate_id: string) {
 }
 
 async function loadGasPrice () {
-  const response = await fetch(`https://masternet-explorer.beam.mw/bridges/gasprice`);
+  const response = await fetch(`https://explorer-api.beam.mw/bridges/gasprice`);
   return response.json();
 }
 
