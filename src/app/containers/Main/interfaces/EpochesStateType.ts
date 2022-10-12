@@ -10,6 +10,7 @@ export interface FaucetStateType {
     withdraw: boolean;
   };
   rate: number;
+  relayerFee: any;
   funds: FaucetFund[];
   isDonateInProgress: boolean;
   donatedBeam: number;

@@ -31,6 +31,7 @@ export function remoteEventChannel() {
               (error, result, full) => {
                 if (result) {
                   store.dispatch(mainActions.loadAppParams.request(bytes));
+                  store.dispatch(mainActions.loadRate.request());
                 }
               }
             );

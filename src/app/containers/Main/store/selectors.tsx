@@ -15,3 +15,4 @@ export const selectDonatedBeam = () => createSelector(selectMain, (state) => sta
 export const selectDonatedBeamX = () => createSelector(selectMain, (state) => state.donatedBeamX);
 export const selectIsInProgress = () => createSelector(selectMain, (state) => state.isInProgress);
 export const selectFunds = () => createSelector(selectMain, (state) => state.funds);
+export const selectFees = () => createSelector(selectMain, (state) => state.relayerFee);

@@ -1,6 +1,7 @@
 import { GROTHS_IN_BEAM } from '@app/shared/constants';
 
 const API_URL = 'https://api.coingecko.com/api/v3/simple/price';
+const LENGTH_MAX = 8;
 
 export const copyToClipboard = (value: string) => {
   let textField = document.createElement('textarea');
@@ -17,8 +18,6 @@ export function compact(value: string, stringLength: number = 5): string {
   }
   return `${value.substr(0, stringLength)}…${value.substr(-stringLength, stringLength)}`;
 }
-
-const LENGTH_MAX = 8;
 
 export function truncate(value: string): string {
   if (!value) {
@@ -130,15 +129,17 @@ interface GasPrice {
   suggestBaseFee: string
 }
 
-export async function calcSomeFee (rate_id: string) {
+export async function calcRelayerFee (ethRate, currRate) {
   const RELAY_COSTS_IN_GAS = 120000;
-  const ETH_RATE_ID = 'ethereum';
-
   const gasPrice:GasPrice = await loadGasPrice();
-  const ethRate = await loadRate(ETH_RATE_ID)
-  const relayCosts = RELAY_COSTS_IN_GAS * parseFloat(gasPrice.FastGasPrice) * parseFloat(ethRate[ETH_RATE_ID]['usd']) / Math.pow(10, 9);
-  const currRate = await loadRate(rate_id);
-
+  const {FastGasPrice, ProposeGasPrice} = gasPrice;
+  let gasValue = null;
+  if (Number(FastGasPrice) > (2 * Number(ProposeGasPrice))) {
+    gasValue =  2 * Number(ProposeGasPrice); 
+  } else {
+    gasValue = Number(FastGasPrice);
+  }
+  const relayCosts = RELAY_COSTS_IN_GAS * gasValue * ethRate / Math.pow(10, 9);
   const RELAY_SAFETY_COEFF = 2;//1.1;
-  return RELAY_SAFETY_COEFF * relayCosts / parseFloat(currRate[rate_id]['usd']);
+  return RELAY_SAFETY_COEFF * relayCosts / currRate;
 }

@@ -10,6 +10,7 @@ export const setFaucetFunds = createAction('@@MAIN/SET_USER_VIEW')<FaucetFund[]>
 export const setDonatedBeam = createAction('@@MAIN/SET_DONATED_BEAM')<number>();
 export const setDonatedBeamx = createAction('@@MAIN/SET_DONATED_BEAMX')<number>();
 export const setIsInProgress = createAction('@@MAIN/SET_IS_IN_PROGRESS')<boolean>();
+export const setFeeValues = createAction('@@MAIN/SET_FEE_VALUES')<any>();
 
 export const setPopupState = createAction('@@MAIN/SET_POPUP_STATE')<{type: string, state: boolean}>();
 

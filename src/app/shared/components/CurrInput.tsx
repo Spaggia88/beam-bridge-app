@@ -4,11 +4,14 @@ import { CURRENCIES } from '@app/shared/constants';
 import { css } from '@linaria/core';
 import { IconDai, IconEth, IconUsdt, IconWbtc } from '@app/shared/icons';
 import { useEffect } from 'react';
+import { Rate } from './';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
-  variant: 'amount' | 'common' | 'fee',
+  variant?: 'amount' | 'common' | 'fee',
   valid?: boolean;
+  value?: string;
+  label?: string;
   onCurrChangeCb?: (item) => void,
   onChangeHandler?: (value: string) => void;
 }
@@ -62,6 +65,22 @@ const InputStyled = styled.input<InputProps>`
 
 const AddressClass = css`
   height: 55px;
+`;
+
+const LabelStyled = styled.div<InputProps>`
+  text-align: start;
+  margin-top: 4px;
+  font-family: SFProDisplay;
+  font-size: 14px;
+  margin-left: 15px;
+  font-style: italic;
+  color: ${({ valid }) => (valid ? 'rgba(255, 255, 255, .7)' : 'var(--color-red)')};
+`;
+
+const rateStyle = css`
+  font-size: 12px;
+  align-self: start;
+  margin-left: 15px;
 `;
 
 // const ErrorStyled = styled.div`
@@ -172,7 +191,7 @@ export const AMOUNT_MAX = 253999999.9999999;
 const REG_AMOUNT = /^(?!0\d)(\d+)(\.)?(\d{0,8})?$/;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ variant, valid, onChangeHandler, error, onCurrChangeCb, ...rest }, ref) => {
+  ({ variant, label, valid, value, onChangeHandler, error, onCurrChangeCb, ...rest }, ref) => {
     const [selectedCurrency, setCurr] = useState(null);
 
     const handleInput: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -193,15 +212,21 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-    <ContainerStyled valid={valid} className={variant === 'amount' ? AddressClass : null}>
-      <InputStyled
-        valid={valid}
-        variant={variant} ref={ref} 
-        onInput={handleInput}
-        error={error} {...rest} />
-      {variant === 'amount' &&
-      <Selector type={variant} onCurrChange={currChanged}/>}
-    </ContainerStyled>);
+      <>
+        <ContainerStyled valid={valid} className={variant === 'amount' ? AddressClass : null}>
+          <InputStyled
+            valid={valid}
+            variant={variant} ref={ref} 
+            onInput={handleInput}
+            error={error} {...rest} />
+          {variant === 'amount' &&
+          <Selector type={variant} onCurrChange={currChanged}/>}
+        </ContainerStyled>
+        {label && <LabelStyled valid={valid}>{!valid ? label : ''}</LabelStyled>}
+        {!error && selectedCurrency && <Rate value={parseFloat(value)}
+         selectedCurrencyId={selectedCurrency.rate_id} className={rateStyle} />}
+      </>  
+    );
   },
 );
 

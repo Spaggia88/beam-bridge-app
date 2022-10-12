@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { styled } from '@linaria/react';
-import { Button, CurrInput, Input, Window } from '@app/shared/components';
+import { Button, CurrInput, Rate, Window } from '@app/shared/components';
 import { css } from '@linaria/core';
-import { calcSomeFee } from '@core/appUtils';
 
 import { IconCancel, IconSend } from '@app/shared/icons';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +9,8 @@ import { ROUTES } from '@app/shared/constants';
 import { SendTo } from '@core/api';
 import { useFormik } from 'formik';
 import ethereum_address from 'ethereum-address';
+import { useSelector } from 'react-redux';
+import { selectFees } from '../../store/selectors';
 
 interface SendFormData {
   send_amount: string;
@@ -65,6 +66,11 @@ const Subtitle = styled.p`
   font-size: 14px;
   font-weight: bold;
   letter-spacing: 3.11px;
+`;
+
+const RateStyleClass = css`
+  font-size: 12px;
+  align-self: start;
 `;
 
 const EnsureField = styled.p`
@@ -157,7 +163,7 @@ const Send = () => {
   const navigate = useNavigate();
   const addressInputRef = useRef<HTMLInputElement>();
   const amountInputRef = useRef<HTMLInputElement>();
-  const [feeVal, setFeeVal] = useState(0);
+  const relayerFees = useSelector(selectFees());
   const [address, setAddress] = useState(null);
   const [selectedCurrency, setCurrency] = useState(null);
 
@@ -169,12 +175,12 @@ const Send = () => {
     } = formValues;
 
     if (send_amount == '' || parseFloat(send_amount) == 0) {
-      errorsValidation.send_amount = `Invalid amount`;
+      errorsValidation.send_amount = `Insufficient amount`;
     }
 
     const regex = new RegExp('^[A-Za-z0-9]+$');
     if (!regex.test(address) || !ethereum_address.isAddress(address)) {
-      errorsValidation.address = `Invalid address`;
+      errorsValidation.address = `Unrecognized address`;
     }
 
     return errorsValidation;
@@ -200,16 +206,6 @@ const Send = () => {
     if (!formik.isValid) return !formik.isValid;
     return false;
   };
-  
-  useEffect(() => {
-    if (address && address.length > 0) {
-      getFee().then((data) => {
-        if (data) {
-            setFeeVal(parseFloat(data.toFixed(selectedCurrency.fee_decimals)));
-        }
-      });
-    }
-  }, [address, selectedCurrency]);
 
   const currChanged = (newCurr) => {
     setCurrency(newCurr);
@@ -217,12 +213,6 @@ const Send = () => {
 
   const isAddressValid = () => !errors.address;
   const isSendAmountValid = () => !errors.send_amount;
-
-  const getFee = async () => {
-    if (selectedCurrency){
-        return await calcSomeFee(selectedCurrency.rate_id);
-    }
-  }
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
@@ -234,7 +224,7 @@ const Send = () => {
     const sendData = {
       amount, 
       address: address.replace('0x',''), 
-      fee: feeVal,
+      fee: relayerFees[selectedCurrency.rate_id],
       decimals: selectedCurrency.decimals 
     };
     
@@ -266,6 +256,8 @@ const Send = () => {
         <CurrInput placeholder="Paste Ethereum bridge address here"
           onChangeHandler={handleAddressChange}
           valid={isAddressValid()}
+          value={values.address}
+          label={errors.address}
           variant="common"
           ref={addressInputRef}
           name="address"/>
@@ -281,17 +273,26 @@ const Send = () => {
             onChangeHandler={handleAmountChange}
             value={values.send_amount}
             valid={isSendAmountValid()}
+            label={errors.send_amount}
             variant='amount'
             ref={amountInputRef}
             name="amount"/>
           <FeeContainer>
             <FeeItem>
               <FormSubtitle className={FeeSubtitleClass}>RELAYER FEE</FormSubtitle>
-              {selectedCurrency ? <FeeValue>{feeVal} {selectedCurrency.name}</FeeValue> : <></>}
+              {selectedCurrency && relayerFees && <>
+                <FeeValue>{relayerFees[selectedCurrency.rate_id]} {selectedCurrency.name}</FeeValue>
+                <Rate value={relayerFees[selectedCurrency.rate_id]}
+                  selectedCurrencyId={selectedCurrency.rate_id}
+                  className={RateStyleClass} />
+              </>}
             </FeeItem>
             <FeeItem>
               <FormSubtitle className={FeeSubtitleClass}>TRANSACTION FEE</FormSubtitle>
               <FeeValue>{0.011} BEAM</FeeValue>
+              <Rate value={0.011}
+                  selectedCurrencyId={'beam'}
+                  className={RateStyleClass} />
             </FeeItem>
           </FeeContainer>
         </AmountContainer>) : 

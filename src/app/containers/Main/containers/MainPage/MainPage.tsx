@@ -4,7 +4,7 @@ import { css } from '@linaria/core';
 
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Window, Button, Table } from '@app/shared/components';
+import { Window, Button, Table, Rate } from '@app/shared/components';
 import { selectAppParams, selectBridgeTransactions, selectRate } from '../../store/selectors';
 import { IconSend, IconReceive } from '@app/shared/icons';
 import { CURRENCIES, ROUTES } from '@app/shared/constants';
@@ -17,16 +17,9 @@ const Container = styled.div`
   margin: 50px 0;
 `;
 
-const Content = styled.div`
-  width: 100%;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-`;
-
-const ContentHeader = styled.p`
-  font-size: 24px;
-  font-weight: bold;
+const RateStyleClass = css`
+  font-size: 12px;
+  align-self: start;
 `;
 
 const StyledControls = styled.div`
@@ -65,8 +58,15 @@ const MainPage: React.FC = () => {
       title: 'Amount',
       fn: (value: string, tr: BridgeTransaction) => {
         const curr = CURRENCIES.find((item) => item.cid === tr.cid);
+        const val = parseInt(value) / Math.pow(10, curr.decimals);
+        const stringVal = val.toFixed(curr.validator_dec).replace(/\.?0+$/,"") + ' ' + curr.name;
 
-        return ((parseInt(value) / Math.pow(10, curr.decimals)).toFixed(curr.validator_dec)).replace(/\.0+$/,'') + ' ' + curr.name;
+        return (<>
+          <span>{stringVal}</span>
+          <Rate value={val}
+                  selectedCurrencyId={curr.rate_id}
+                  className={RateStyleClass} />
+        </>);
       }
     },
     {

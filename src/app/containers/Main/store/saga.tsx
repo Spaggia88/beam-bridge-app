@@ -1,20 +1,17 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { navigate } from '@app/shared/store/actions';
 import { ROUTES, CURRENCIES } from '@app/shared/constants';
-import { LoadViewParams, LoadViewFunds, LoadPublicKey, LoadIncoming } from '@core/api';
-import { selectTransactions } from '@app/shared/store/selectors';
+import { LoadPublicKey, LoadIncoming } from '@core/api';
+import { calcRelayerFee } from '@core/appUtils';
 
 import { actions } from '.';
 import store from '../../../../index';
-import { BridgeTransaction, FaucetAppParams, FaucetFund, IncomingTransaction, Transaction } from '@app/core/types';
-
+import { BridgeTransaction, IncomingTransaction } from '@app/core/types';
 import { setIsLoaded } from '@app/shared/store/actions';
 import { selectIsLoaded } from '@app/shared/store/selectors';
-import { RateResponse } from '../interfaces';
 
-const FETCH_INTERVAL = 310000;
+const FETCH_INTERVAL = 5000;
 const API_URL = 'https://api.coingecko.com/api/v3/simple/price';
-const RATE_PARAMS = 'ids=beam&vs_currencies=usd';
 
 export function* loadParamsSaga(
     action: ReturnType<typeof actions.loadAppParams.request>,
@@ -50,16 +47,34 @@ export function* loadParamsSaga(
     }
 }
 
-async function loadRatesApiCall() {
-  const response = await fetch(`${API_URL}?${RATE_PARAMS}`);
-  const promise: RateResponse = await response.json();
-  return promise.beam.usd;
+async function loadRatesApiCall(rate_ids) {
+  const response = await fetch(`${API_URL}?ids=${rate_ids.join(',')}&vs_currencies=usd`);
+  const promise = await response.json();
+  return promise;
+}
+
+async function loadRelayerFee(ethRate: number, currFee: number) {
+  const res = await calcRelayerFee(ethRate, currFee);
+  return res;
 }
 
 export function* loadRate() {
   try {
-    const result: number = yield call(loadRatesApiCall);
-
+    let rate_ids = [];
+    CURRENCIES.forEach((curr) => {
+      rate_ids.push(curr.rate_id);
+    });
+    rate_ids.push('beam');
+    const result = yield call(loadRatesApiCall, rate_ids);
+    let feeVals = {};
+    for (let item in result) {
+      if (item === 'beam') {
+        continue;
+      }
+      const feeVal = yield call(loadRelayerFee, result['ethereum'].usd, result[item].usd);
+      feeVals[item] = feeVal;
+    }
+    yield put(actions.setFeeValues(feeVals));
     yield put(actions.loadRate.success(result));
     setTimeout(() => store.dispatch(actions.loadRate.request()), FETCH_INTERVAL);
   } catch (e) {

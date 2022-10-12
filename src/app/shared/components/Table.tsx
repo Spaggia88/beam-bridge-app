@@ -8,7 +8,7 @@ import { Receive } from '@core/api';
 interface CellConfig {
   name: string;
   title: string;
-  fn?: (value: any, source: any) => string;
+  fn?: (value: any, source: any) => any;
 }
 
 interface TableProps {
@@ -76,28 +76,16 @@ const ConfirmReceive = styled.div<{disabled: boolean}>`
   }
 `;
 
-const ConfirmIcon = styled.object`
-  display: block;
-  margin-right: 15px;
-`;
-
-const EmptyTable = styled.tr`
-  padding: 72px 199px;
-`;
-
 const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
-  const [filterBy, setFilterBy] = useState(0);
   const [receiveClickedId, setActiveReceive] = useState(null);
-  const isInProgress =  false //useStore($isInProgress);
-  const [trs, setTrs] = useState(data);
+  const isInProgress =  false 
+
+  const [filterBy, setFilterBy] = useState(0);
+  let tableData = [...data];
 
   useEffect(() => {
-    setTrs(data);
-    // .sort(sortFn)
-    //trs = data.length > 0 ? data : [];
+    tableData = [...data];
   },[data]);
-
-  console.log('TABLE:', data);
 
   const sortFn = (objectA, objectB) => {
     const name = config[Math.abs(filterBy)].name;
@@ -147,11 +135,10 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
         </tr>
       </StyledThead>
       <tbody>
-        {trs && trs.length > 0 ? trs.map((item, index) => (
+        {tableData && tableData.length > 0 ? tableData.sort(sortFn).map((item, index) => (
           <tr key={index}>
             {config.map(({ name, fn }, itemIndex) => {
               const value = item[name];
-             // console.log(name === 'status' ? itemIndex : '')
               return name === 'status' 
                 ? (
                 <Column key={itemIndex}>
