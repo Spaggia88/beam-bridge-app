@@ -86,28 +86,7 @@ const onMakeTx = (err, sres, full, params: {id: number, vote: number} = null, to
     Utils.callApi(
         'process_invoke_data', {data: full.result.raw_data}, 
         (error, result, full) => {
-            if (params && params.id) {
-                const votes = localStorage.getItem('votes');
-                let updatedVotes = [];
-                if (votes) {
-                    updatedVotes = [...(JSON.parse(votes).votes)];
-                }
-
-                updatedVotes.push({id: params.id, txid: result.txid, vote: params.vote});
-                
-                localStorage.setItem('votes', JSON.stringify({'votes': updatedVotes}));
-            }
-
-            if (toasted && !error) {
-                const CreatedProposalMsg = (text: string) => (
-                    <div>
-                      Voting <span style={{fontWeight: 'bold'}}>{text}</span> created
-                    </div>
-                );
-
-                const text = toasted.length > 50 ? toasted.substring(0, 50) + '...' : toasted;
-                toast(CreatedProposalMsg(text));
-            }
+            console.log('FULL', result)
         }
     )
 }

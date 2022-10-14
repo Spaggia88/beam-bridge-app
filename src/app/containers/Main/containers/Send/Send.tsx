@@ -162,8 +162,6 @@ const FeeSubtitleClass = css`
 
 const Send = () => {
   const navigate = useNavigate();
-  const addressInputRef = useRef<HTMLInputElement>();
-  const amountInputRef = useRef<HTMLInputElement>();
   const relayerFees = useSelector(selectFees());
   const [address, setAddress] = useState(null);
   const [selectedCurrency, setCurrency] = useState(null);
@@ -266,7 +264,6 @@ const Send = () => {
           value={values.address}
           label={errors.address}
           variant="common"
-          ref={addressInputRef}
           name="address"/>
         <EnsureField>Ensure the address matches the Ethereum network to avoid losses</EnsureField>
       </Container>
@@ -282,7 +279,6 @@ const Send = () => {
             valid={isSendAmountValid()}
             label={errors.send_amount}
             variant='amount'
-            ref={amountInputRef}
             name="amount"/>
           <FeeContainer>
             <FeeItem>

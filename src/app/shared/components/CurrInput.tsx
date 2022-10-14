@@ -216,6 +216,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <ContainerStyled valid={valid} className={variant === 'amount' ? AddressClass : null}>
           <InputStyled
             valid={valid}
+            value={value}
             variant={variant} ref={ref} 
             onInput={handleInput}
             error={error} {...rest} />
