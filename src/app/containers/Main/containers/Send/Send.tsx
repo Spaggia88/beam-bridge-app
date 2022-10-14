@@ -16,6 +16,7 @@ interface SendFormData {
   send_amount: string;
   address: string;
 }
+let isLoaded = false;
 
 const SendStyled = styled.form`
   width: 580px;
@@ -174,7 +175,10 @@ const Send = () => {
         address
     } = formValues;
 
-    if (send_amount == '' || parseFloat(send_amount) == 0) {
+    if (!isLoaded && send_amount.length > 0) {
+      isLoaded = true;
+    }
+    if ((send_amount == '' || parseFloat(send_amount) == 0) && isLoaded) {
       errorsValidation.send_amount = `Insufficient amount`;
     }
 
@@ -203,7 +207,9 @@ const Send = () => {
   } = formik;
 
   const isFormDisabled = () => {
+    console.log('is disadbled:', isLoaded);
     if (!formik.isValid) return !formik.isValid;
+    if (!isLoaded) return true;
     return false;
   };
 
@@ -233,6 +239,7 @@ const Send = () => {
   }
 
   const cancelClicked = () => {
+    isLoaded = false;
     navigate(ROUTES.MAIN.MAIN_PAGE);
   }
 

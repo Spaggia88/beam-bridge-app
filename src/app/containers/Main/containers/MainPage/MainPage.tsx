@@ -83,6 +83,10 @@ const MainPage: React.FC = () => {
     navigate(ROUTES.MAIN.RECEIVE);
   };
 
+  const isDisabled = () => {
+    return rate === 0;
+  }
+
   return (
     <>
       <Window>
@@ -90,6 +94,7 @@ const MainPage: React.FC = () => {
           <StyledControls>
             <Button icon={IconSend}
             pallete="purple"
+            disabled={isDisabled()}
             onClick={handleSendClick}>
               beam to ethereum
             </Button>

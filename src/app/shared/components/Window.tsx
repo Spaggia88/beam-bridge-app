@@ -1,15 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { styled } from '@linaria/react';
 import Utils from '@core/utils.js';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '@app/shared/constants';
-import { IconBackWindow, IconAddProposal } from '@app/shared/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAppParams, selectPopupsState } from '@app/containers/Main/store/selectors';
-import { Button, DepositPopup, WithdrawPopup } from './';
+import { selectPopupsState } from '@app/containers/Main/store/selectors';
+import { DepositPopup, WithdrawPopup } from './';
 import { setPopupState } from '@app/containers/Main/store/actions';
 import { css } from '@linaria/core';
-import { useEffect } from 'react';
 
 interface WindowProps {
   onPrevious?: React.MouseEventHandler | undefined;
