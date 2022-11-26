@@ -54,6 +54,7 @@
     "@linaria/core": "^3.0.0-beta.4",
     "@linaria/react": "^3.0.0-beta.7",
     "babel-polyfill": "^6.26.0",
+    "bignumber.js": "^9.1.0",
     "ethereum-address": "^0.0.4",
     "formik": "^2.2.9",
     "immer": "^9.0.6",

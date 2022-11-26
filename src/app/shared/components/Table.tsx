@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { styled } from '@linaria/react';
-import { Transaction } from '@app/core/types';
 import { useEffect } from 'react';
-import { IconConfirm } from '@app/shared/icons';
-import { Receive } from '@core/api';
 
 interface CellConfig {
   name: string;
   title: string;
-  fn?: (value: any, source: any) => any;
+  fn?: (value: any, source: any, index?: number) => any;
 }
 
 interface TableProps {
@@ -45,37 +42,6 @@ const Column = styled.td`
   background-color: rgba(13, 77, 118, .9);
 `;
 
-const ConfirmReceive = styled.div<{disabled: boolean}>`
-  width: 167px;
-  height: 32px;
-  padding: 8px 16px;
-  border-radius: 17.5px;
-  border: solid 1px #0bccf7;
-  background-color: rgba(11, 204, 247, 0.1);
-  color: #0bccf7;
-  text-align: center;
-  font-size: 14px;
-  cursor: ${({ disabled }) => disabled ? "not-allowed" : "pointer"};
-  opacity: ${({ disabled }) => disabled ? "0.5" : ""};
-  display: flex;
-  flex-direction: row;
-
-  &:hover,
-  &:active {
-    box-shadow: ${({ disabled }) => disabled ? "none" : "0 0 8px white"};
-  }
-
-  > .text {
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-
-    svg {
-      margin-right: 10px;
-    }
-  }
-`;
-
 const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
   const [receiveClickedId, setActiveReceive] = useState(null);
   const isInProgress =  false 
@@ -105,18 +71,6 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
     setFilterBy(index === filterBy ? -filterBy : index);
   };
 
-  const handleReceiveClick = (tr: Transaction, index: number) => {
-    Receive(tr);
-    // if (receiveClickedId !== index) {
-    //   setActiveReceive(index);
-    //   //receive(tr);
-    // } else {
-    //   if (!isInProgress) {
-    //     //receive(tr);
-    //   }
-    // }
-  };
-
   return  (
     <StyledTable>
       <StyledThead>
@@ -139,16 +93,7 @@ const Table: React.FC<TableProps> = ({ keyBy, data, config }) => {
           <tr key={index}>
             {config.map(({ name, fn }, itemIndex) => {
               const value = item[name];
-              return name === 'status' 
-                ? (
-                <Column key={itemIndex}>
-                  <ConfirmReceive 
-                  disabled={isInProgress && (receiveClickedId === itemIndex)} 
-                  onClick={() => handleReceiveClick(item, itemIndex)}>
-                    <div className='text'><IconConfirm/>withdraw</div>
-                  </ConfirmReceive>
-                </Column>) 
-                : (<Column key={itemIndex}>{!fn ? value : fn(value, item)}</Column>);
+              return (<Column key={itemIndex}>{!fn ? value : fn(value, item, index)}</Column>);
             })}
           </tr>
         )): (<></>)

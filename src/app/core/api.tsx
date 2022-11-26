@@ -1,6 +1,7 @@
 import Utils from '@core/utils.js';
 import React from 'react';
 import { toast } from 'react-toastify';
+import BigNumber from "bignumber.js";
 
 const CID =  '';
 
@@ -23,10 +24,11 @@ export function LoadIncoming<T = any>(cid): Promise<T> {
 }
 
 export function SendTo<T = any>(sendData, cid: string): Promise<T> {
-    const { amount, address, fee, decimals } = sendData;
-    const finalAmount = amount * Math.pow(10, decimals)
-    const relayerFee = fee * Math.pow(10, decimals);
-
+    const { amount, address, fee, decimals, selectedCurrency } = sendData;
+    const expBy = (new BigNumber(10).exponentiatedBy(decimals))
+    const finalAmount = (new BigNumber(amount)).times(expBy).toNumber()
+    const relayerFee = (new BigNumber(fee)).times(expBy).toNumber()
+    console.log(BigNumber(2).plus(10));
     return new Promise((resolve, reject) => {
         Utils.invokeContract("role=user,action=send,cid=" + cid + 
         ",amount=" + finalAmount + 
@@ -86,7 +88,6 @@ const onMakeTx = (err, sres, full, params: {id: number, vote: number} = null, to
     Utils.callApi(
         'process_invoke_data', {data: full.result.raw_data}, 
         (error, result, full) => {
-            console.log('FULL', result)
         }
     )
 }

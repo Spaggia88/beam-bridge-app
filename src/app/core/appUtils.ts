@@ -115,23 +115,8 @@ async function loadRate (rate_id: string) {
   return promise;
 }
 
-async function loadGasPrice () {
-  const response = await fetch(`https://explorer-api.beam.mw/bridges/gasprice`);
-  return response.json();
-}
-
-interface GasPrice {
-  FastGasPrice: string,
-  LastBlock: string,
-  ProposeGasPrice: string,
-  SafeGasPrice: string,
-  gasUsedRatio: string,
-  suggestBaseFee: string
-}
-
-export async function calcRelayerFee (ethRate, currRate) {
+export async function calcRelayerFee (ethRate, currRate, gasPrice) {
   const RELAY_COSTS_IN_GAS = 120000;
-  const gasPrice:GasPrice = await loadGasPrice();
   const {FastGasPrice, ProposeGasPrice} = gasPrice;
   let gasValue = null;
   if (Number(FastGasPrice) > (2 * Number(ProposeGasPrice))) {

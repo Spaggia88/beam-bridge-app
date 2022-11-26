@@ -205,7 +205,6 @@ const Send = () => {
   } = formik;
 
   const isFormDisabled = () => {
-    console.log('is disadbled:', isLoaded);
     if (!formik.isValid) return !formik.isValid;
     if (!isLoaded) return true;
     return false;
@@ -229,7 +228,8 @@ const Send = () => {
       amount, 
       address: address.replace('0x',''), 
       fee: relayerFees[selectedCurrency.rate_id],
-      decimals: selectedCurrency.decimals 
+      decimals: selectedCurrency.decimals,
+      selectedCurrency
     };
     
     SendTo(sendData, selectedCurrency.cid);

@@ -9,6 +9,9 @@ import { selectAppParams, selectBridgeTransactions, selectRate } from '../../sto
 import { IconSend, IconReceive } from '@app/shared/icons';
 import { CURRENCIES, ROUTES } from '@app/shared/constants';
 import { BridgeTransaction } from '@core/types';
+import { Transaction } from '@app/core/types';
+import { IconConfirm } from '@app/shared/icons';
+import { Receive } from '@core/api';
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +49,37 @@ const EmptyTableContent = styled.div`
   color: #8da1ad;
 `;
 
+const ConfirmReceive = styled.div<{disabled?: boolean}>`
+  width: 167px;
+  height: 32px;
+  padding: 8px 16px;
+  border-radius: 17.5px;
+  border: solid 1px #0bccf7;
+  background-color: rgba(11, 204, 247, 0.1);
+  color: #0bccf7;
+  text-align: center;
+  font-size: 14px;
+  cursor: ${({ disabled }) => disabled ? "not-allowed" : "pointer"};
+  opacity: ${({ disabled }) => disabled ? "0.5" : ""};
+  display: flex;
+  flex-direction: row;
+
+  &:hover,
+  &:active {
+    box-shadow: ${({ disabled }) => disabled ? "none" : "0 0 8px white"};
+  }
+
+  > .text {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 10px;
+    }
+  }
+`;
+
 const MainPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -71,7 +105,16 @@ const MainPage: React.FC = () => {
     },
     {
       name: 'status',
-      title: 'Status'
+      title: 'Status',
+      fn: (value: any, tr: BridgeTransaction, index: number) => {
+        return (
+          <ConfirmReceive 
+          //disabled={isInProgress && (receiveClickedId === itemIndex)} 
+          onClick={() => handleReceiveTrClick(value, tr, index)}>
+            <div className='text'><IconConfirm/>withdraw</div>
+          </ConfirmReceive>
+        )
+      }
     }
   ];
 
@@ -81,6 +124,18 @@ const MainPage: React.FC = () => {
   
   const handleReceiveClick: React.MouseEventHandler = () => {
     navigate(ROUTES.MAIN.RECEIVE);
+  };
+
+  const handleReceiveTrClick = (value, tr, index: number) => {
+    Receive(tr);
+    // if (receiveClickedId !== index) {
+    //   setActiveReceive(index);
+    //   //receive(tr);
+    // } else {
+    //   if (!isInProgress) {
+    //     //receive(tr);
+    //   }
+    // }
   };
 
   const isDisabled = () => {
