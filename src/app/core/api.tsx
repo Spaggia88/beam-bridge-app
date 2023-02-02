@@ -25,9 +25,9 @@ export function LoadIncoming<T = any>(cid): Promise<T> {
 
 export function SendTo<T = any>(sendData, cid: string): Promise<T> {
     const { amount, address, fee, decimals, selectedCurrency } = sendData;
-    const expBy = (new BigNumber(10).exponentiatedBy(decimals))
-    const finalAmount = (new BigNumber(amount)).times(expBy).toNumber()
-    const relayerFee = (new BigNumber(fee)).times(expBy).toNumber()
+    const expBy = (new BigNumber(10).exponentiatedBy(decimals));
+    const finalAmount = (new BigNumber(amount)).times(expBy).toNumber();
+    const relayerFee = (new BigNumber(fee)).times(expBy).toNumber();
     console.log(BigNumber(2).plus(10));
     return new Promise((resolve, reject) => {
         Utils.invokeContract("role=user,action=send,cid=" + cid + 
