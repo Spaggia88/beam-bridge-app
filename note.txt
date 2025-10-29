@@ -1,0 +1,14 @@
+# About this fork 🧩
+
+This repository is a **fork** of the original project:
+👉 [insert link to the original repository here]
+
+Fork created by **Spaggia88** 🏝️  
+This fork is used to:
+- Experiment with new ideas 💡  
+- Test changes without affecting the main project 🧪  
+- Learn, tinker, and have some fun with the code 😄  
+
+This is not an official version of the project, but a customized one for my own tests and exploration.
+
+💬 Contact: [https://github.com/Spaggia88](https://github.com/Spaggia88)
